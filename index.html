@@ -89,6 +89,10 @@
       transition: background 0.3s, color 0.3s;
     }
     .nav-cta:hover { background: var(--gold); color: var(--black); }
+    button.nav-cta, button.btn-primary, button.btn-secondary {
+      font-family: 'Raleway', sans-serif; background: none;
+      cursor: pointer; outline: none;
+    }
 
     /* ─── HERO ─── */
     .hero {
@@ -428,6 +432,49 @@
     .social-link:hover { border-color: var(--gold); color: var(--gold); }
     .footer-copy { font-size: 0.65rem; color: var(--muted); opacity: 0.6; }
 
+    /* ─── POPUP RÉSERVATION ─── */
+    .res-popup-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10,9,6,0.82);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .res-popup-overlay.open {
+      opacity: 1; pointer-events: all;
+    }
+    .res-popup {
+      background: var(--charcoal);
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 36px 36px 28px;
+      position: relative;
+      transform: translateY(28px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease;
+      opacity: 0;
+    }
+    .res-popup-overlay.open .res-popup {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .res-popup-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 20px; gap: 20px;
+    }
+    .res-popup-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1.2;
+    }
+    .res-popup-title em { color: var(--gold); font-style: italic; }
+    .res-popup-close {
+      background: none; border: 1px solid rgba(201,168,76,0.25);
+      color: var(--muted); font-size: 1.1rem; line-height: 1;
+      width: 32px; height: 32px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .res-popup-close:hover { border-color: var(--gold); color: var(--gold); }
+
     /* ─── SCROLL REVEAL ─── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -453,7 +500,7 @@
     <li><a href="#corporate">Corporatif</a></li>
     <li><a href="#reservation">Contact</a></li>
   </ul>
-  <a href="tel:4508188668" class="nav-cta">Réserver</a>
+  <button class="nav-cta res-trigger">Réserver</button>
 </nav>
 
 <!-- ─── HERO ─── -->
@@ -472,7 +519,7 @@
       Le chef Simon Courcelles et son équipe vous accueillent dans un espace pensé pour les gens qui apprécient autant les bonnes affaires que les bons repas.
     </p>
     <div class="hero-actions">
-      <a href="tel:4508188668" class="btn-primary">Faire une réservation</a>
+      <button class="btn-primary res-trigger">Faire une réservation</button>
       <a href="#menu" class="btn-secondary">Découvrir le menu</a>
     </div>
     <div class="hero-info">
@@ -542,7 +589,7 @@
       <p class="section-tag">Ce que l'on cuisine</p>
       <h2 class="section-title">La carte, en <em>images.</em></h2>
     </div>
-    <a href="#reservation" class="btn-secondary">Réserver une table →</a>
+    <button class="btn-secondary res-trigger">Réserver une table →</button>
   </div>
   <div class="menu-grid">
     <div class="menu-item large reveal">
@@ -678,7 +725,7 @@
       À deux, en famille ou entre collègues — le Bistro St-Charles vous accueille avec la même passion du beau et du bon.
     </p>
     <div class="res-actions reveal reveal-delay-2">
-      <a href="tel:4508188668" class="btn-primary">Appeler maintenant</a>
+      <button class="btn-primary res-trigger">Réserver en ligne</button>
       <a href="https://www.facebook.com/bistrostcharles" target="_blank" class="btn-secondary">Suivre sur Facebook</a>
     </div>
     <div class="res-contact reveal reveal-delay-3">
@@ -721,6 +768,17 @@
   </div>
 </footer>
 
+<!-- ─── POPUP RÉSERVATION ─── -->
+<div class="res-popup-overlay" id="resPopup" role="dialog" aria-modal="true" aria-label="Réservation">
+  <div class="res-popup">
+    <div class="res-popup-header">
+      <div class="res-popup-title">Réserver<br><em>votre table</em></div>
+      <button class="res-popup-close" id="resPopupClose" aria-label="Fermer">&#x2715;</button>
+    </div>
+    <iframe src="https://widgets.libroreserve.com/WEB/QC015530247062/book" style="border: 0px solid #333;" width="275" height="300"></iframe>
+  </div>
+</div>
+
 <script>
   // Cursor
   const cursor = document.getElementById('cursor');
@@ -747,6 +805,19 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
+
+  // Popup réservation
+  const popup = document.getElementById('resPopup');
+  const popupClose = document.getElementById('resPopupClose');
+  const triggers = document.querySelectorAll('.res-trigger');
+
+  function openPopup() { popup.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closePopup() { popup.classList.remove('open'); document.body.style.overflow = ''; }
+
+  triggers.forEach(btn => btn.addEventListener('click', openPopup));
+  popupClose.addEventListener('click', closePopup);
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
 </script>
 </body>
 </html>
