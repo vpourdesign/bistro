@@ -481,6 +481,91 @@
     .reveal-delay-1 { transition-delay: 0.15s; }
     .reveal-delay-2 { transition-delay: 0.3s; }
     .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ─── HAMBURGER & MOBILE NAV ─── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile {
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(10,9,6,0.97); backdrop-filter: blur(12px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 40px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .nav-mobile.open { opacity: 1; pointer-events: all; }
+    .nav-mobile ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 28px; }
+    .nav-mobile ul a {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .nav-mobile ul a:hover { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 20px; }
+      nav.scrolled { padding: 12px 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero { grid-template-columns: 1fr; height: auto; min-height: unset; }
+      .hero-left { height: 42vmax; min-height: 220px; max-height: 340px; }
+      .hero-right { padding: 40px 24px 56px; }
+      .hero-text { max-width: 100%; font-size: 0.9rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 28px; }
+      .hero-info { position: static; flex-direction: column; gap: 16px; margin-top: 28px; animation: none; opacity: 1; }
+      .hero-number { display: none; }
+
+      .strip { padding: 12px 20px; gap: 20px; overflow-x: auto; }
+
+      section { padding: 56px 20px; }
+
+      .about { grid-template-columns: 1fr; }
+      .about-images img { height: 180px; }
+      .about-images img:first-child { height: 240px; }
+      .about-content { padding: 44px 24px; }
+      .about-content::before { font-size: 8rem; top: -10px; right: 10px; }
+
+      .menu-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-item.large { grid-column: span 1; }
+      .menu-item img { height: 230px; }
+      .menu-item.large img { height: 270px; }
+
+      .gallery-strip { height: 140px; }
+
+      .experience { grid-template-columns: 1fr; }
+      .exp-content { padding: 44px 24px; }
+      .exp-image { height: 260px; }
+      .exp-image img { height: 100%; }
+
+      .corp-grid { grid-template-columns: 1fr; }
+      .corp-card { padding: 28px 24px; }
+
+      .reservation { padding: 72px 20px; }
+      .res-contact { flex-direction: column; gap: 24px; padding-top: 32px; margin-top: 32px; }
+      .res-actions { flex-direction: column; align-items: center; gap: 16px; }
+
+      footer { padding: 44px 20px; grid-template-columns: 1fr; text-align: center; gap: 24px; }
+      .footer-right { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-links { flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+      .res-popup { width: calc(100vw - 32px); padding: 24px 20px 20px; }
+      .res-popup iframe { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -500,7 +585,18 @@
     <li><a href="#reservation">Contact</a></li>
   </ul>
   <button class="nav-cta res-trigger">Réserver</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="menu.html" class="nav-mobile-link">Menu</a></li>
+    <li><a href="#experience" class="nav-mobile-link">L'expérience</a></li>
+    <li><a href="#corporate" class="nav-mobile-link">Corporatif</a></li>
+    <li><a href="#reservation" class="nav-mobile-link">Contact</a></li>
+  </ul>
+  <button class="nav-cta res-trigger nav-mobile-link">Réserver</button>
+</div>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
@@ -792,6 +888,15 @@
   popupClose.addEventListener('click', closePopup);
   popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+  // Hamburger
+  const hamburger = document.getElementById('navHamburger');
+  const navMobile = document.getElementById('navMobile');
+  function openNav() { hamburger.classList.add('open'); navMobile.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeNav() { hamburger.classList.remove('open'); navMobile.classList.remove('open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', () => navMobile.classList.contains('open') ? closeNav() : openNav());
+  document.querySelectorAll('.nav-mobile-link').forEach(el => el.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 </script>
 </body>
 </html>
