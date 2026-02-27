@@ -27,7 +27,7 @@
     2. Colle ce code dans l'éditeur (remplace tout le contenu) :
 
   ─────────────────────────────────────────────────────────────
-  function doGet(e) {
+  function readDoc() {
     var doc  = DocumentApp.getActiveDocument();
     var body = doc.getBody();
     var n    = body.getNumChildren();
@@ -62,15 +62,40 @@
       }
     }
     if (currentSection) sections.push(currentSection);
+    return { sections: sections, updated: new Date().toISOString() };
+  }
 
-    var json = JSON.stringify({ sections: sections, updated: new Date().toISOString() });
+  // Appelé automatiquement par le trigger onChange
+  function updateMenuCache() {
+    var data = readDoc();
+    PropertiesService.getScriptProperties()
+      .setProperty('menuCache', JSON.stringify(data));
+  }
+
+  // Lance cette fonction UNE SEULE FOIS depuis l'éditeur pour activer le trigger
+  function setupTrigger() {
+    ScriptApp.newTrigger('updateMenuCache')
+      .forDocument(DocumentApp.getActiveDocument())
+      .onChange()
+      .create();
+  }
+
+  function doGet(e) {
+    var cached = PropertiesService.getScriptProperties().getProperty('menuCache');
+
+    // Si le cache est vide (première fois), lire le Doc directement
+    if (!cached) {
+      updateMenuCache();
+      cached = PropertiesService.getScriptProperties().getProperty('menuCache');
+    }
+
     var callback = e && e.parameter && e.parameter.callback;
     if (callback) {
-      var out = ContentService.createTextOutput(callback + '(' + json + ')');
+      var out = ContentService.createTextOutput(callback + '(' + cached + ')');
       out.setMimeType(ContentService.MimeType.JAVASCRIPT);
       return out;
     }
-    var out = ContentService.createTextOutput(json);
+    var out = ContentService.createTextOutput(cached);
     out.setMimeType(ContentService.MimeType.JSON);
     return out;
   }
@@ -81,6 +106,10 @@
     5. Exécuter en tant que : Moi
     6. Qui peut accéder : Tout le monde (même les anonymes)
     7. Déployer → copier l'URL fournie
+    8. IMPORTANT : Dans l'éditeur Apps Script, clique sur le menu
+       déroulant des fonctions, sélectionne "setupTrigger" et
+       clique ▶ Exécuter — à faire UNE SEULE FOIS pour activer
+       la mise à jour automatique du cache.
 
   ÉTAPE 3 — Coller l'URL ici
   ───────────────────────────
@@ -517,7 +546,7 @@
   // ─── CONFIG ────────────────────────────────────────────────────────────────
   // Colle ici l'URL de ton Apps Script déployé.
   // Laisse vide pour afficher un menu de démonstration.
-  const MENU_URL = 'https://script.google.com/macros/s/AKfycbyl3ypetIWW6qsPp_vnpfaRLBMqxat7TMZGlTdc8dCZ-A56ltK13sxSQLPPpIo3TuT6/exec';
+  const MENU_URL = 'https://script.google.com/macros/s/AKfycby49cOUMqoOiX5UA11wR9ESs0-yHHS_g2KZCK2LdrGy_ivliBSXAsSuGv8hUs2RQfY/exec';
   // ───────────────────────────────────────────────────────────────────────────
 
   // Cursor
