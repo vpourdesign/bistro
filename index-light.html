@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bistro St-Charles — Mirabel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:    #f5f4f1;
+      --charcoal: #eceae6;
+      --dark:     #e0ddd8;
+      --gold:     #9a7220;
+      --gold-dim: #745618;
+      --cream:    #1a1815;
+      --muted:    #78716a;
+      --white:    #0d0c0a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ─── CURSOR ─── */
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s, width 0.3s, height 0.3s;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(154,114,32,0.5);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.18s ease, width 0.3s, height 0.3s;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      background: linear-gradient(to bottom, rgba(245,244,241,0.92) 0%, transparent 100%);
+      transition: background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(245,244,241,0.97);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-decoration: none;
+      display: flex; flex-direction: column; line-height: 1;
+    }
+    .nav-logo img { filter: brightness(0); }
+    .nav-logo span { font-family: 'Raleway', sans-serif; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--muted); margin-top: 2px; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; opacity: 0.75;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      border: 1px solid var(--gold); padding: 10px 26px;
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+    button.nav-cta, button.btn-primary, button.btn-secondary {
+      font-family: 'Raleway', sans-serif; background: none;
+      cursor: pointer; outline: none;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-left {
+      position: relative; overflow: hidden;
+    }
+    .hero-left img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.75) contrast(1.05);
+      transform: scale(1.06);
+      animation: zoomOut 10s ease forwards;
+    }
+    @keyframes zoomOut { to { transform: scale(1); } }
+
+    .hero-left::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,9,6,0.45) 0%, transparent 55%),
+                  linear-gradient(to right, rgba(10,9,6,0.3) 0%, transparent 60%);
+    }
+    .hero-right {
+      background: var(--charcoal);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 70px 80px 60px;
+      position: relative;
+      border-left: 1px solid rgba(0,0,0,0.08);
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(154,114,32,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(154,114,32,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.9s 0.4s ease forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 5vw, 5rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--white);
+      opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards;
+    }
+    .hero-title em { color: var(--gold); font-style: italic; }
+    .hero-divider {
+      width: 50px; height: 1px; background: var(--gold);
+      margin: 32px 0;
+      opacity: 0; animation: fadeUp 0.9s 0.8s ease forwards;
+    }
+    .hero-text {
+      font-size: 0.95rem; line-height: 1.85; color: var(--muted); max-width: 400px;
+      opacity: 0; animation: fadeUp 0.9s 1s ease forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 20px; margin-top: 44px; align-items: center;
+      opacity: 0; animation: fadeUp 0.9s 1.2s ease forwards;
+    }
+    .btn-primary {
+      background: var(--gold); color: #faf7f2;
+      padding: 14px 36px; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-dim); transform: translateY(-2px); }
+    .btn-secondary {
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+      border-bottom: 1px solid rgba(154,114,32,0.4); padding-bottom: 2px;
+    }
+    .btn-secondary:hover { opacity: 1; color: var(--gold); }
+    .hero-info {
+      position: absolute; bottom: 40px; left: 60px;
+      display: flex; gap: 40px;
+      opacity: 0; animation: fadeUp 0.9s 1.4s ease forwards;
+    }
+    .hero-info-item { display: flex; flex-direction: column; gap: 4px; }
+    .hero-info-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+    .hero-info-val { font-size: 0.82rem; color: var(--cream); }
+
+    .hero-number {
+      position: absolute; bottom: 40px; right: -30px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18rem; line-height: 1;
+      color: rgba(154,114,32,0.04);
+      pointer-events: none; user-select: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── STRIP ─── */
+    .strip {
+      background: var(--gold);
+      padding: 18px 60px;
+      display: flex; gap: 60px; align-items: center; overflow: hidden;
+    }
+    .strip-item {
+      display: flex; align-items: center; gap: 14px;
+      white-space: nowrap; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #faf7f2; font-weight: 500;
+    }
+    .strip-dot { width: 4px; height: 4px; background: #faf7f2; border-radius: 50%; opacity: 0.4; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 120px 60px; }
+    .section-tag {
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300; line-height: 1.1; color: var(--white);
+      margin-bottom: 24px;
+    }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-body {
+      font-size: 0.95rem; line-height: 1.9; color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      background: var(--charcoal);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      padding: 0;
+    }
+    .about-images {
+      display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto;
+      gap: 3px; position: relative;
+    }
+    .about-images img {
+      width: 100%; height: 280px; object-fit: cover;
+      filter: brightness(0.9) contrast(1.05);
+      transition: filter 0.5s;
+    }
+    .about-images img:hover { filter: brightness(1) contrast(1.05); }
+    .about-images img:first-child {
+      grid-column: 1 / -1; height: 340px;
+    }
+    .about-content {
+      padding: 90px 80px 90px 70px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    .about-content::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18rem; line-height: 1;
+      color: rgba(154,114,32,0.06);
+      position: absolute; top: -20px; right: 40px;
+      pointer-events: none;
+    }
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--gold); line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .about-chef {
+      display: flex; align-items: center; gap: 16px; margin-top: 40px;
+    }
+    .chef-line { width: 30px; height: 1px; background: var(--gold); }
+    .chef-name { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); }
+    .chef-title { font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+
+    /* ─── MENU SHOWCASE ─── */
+    .menu-section { background: var(--black); }
+    .menu-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 64px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 3px;
+    }
+    .menu-item { position: relative; overflow: hidden; cursor: pointer; }
+    .menu-item img {
+      width: 100%; height: 380px; object-fit: cover;
+      filter: brightness(0.75) contrast(1.1) saturate(0.95);
+      transform: scale(1.04);
+      transition: transform 0.8s ease, filter 0.8s ease;
+      display: block;
+    }
+    .menu-item:hover img { transform: scale(1); filter: brightness(0.9) contrast(1.1) saturate(1); }
+    .menu-item-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 50px 28px 28px;
+      background: linear-gradient(to top, rgba(10,9,6,0.88) 0%, transparent 100%);
+      transform: translateY(8px);
+      transition: transform 0.4s ease;
+    }
+    .menu-item:hover .menu-item-label { transform: translateY(0); }
+    .menu-item-cat { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .menu-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 300; color: #faf7f2; }
+    .menu-item.large { grid-column: span 2; }
+    .menu-item.large img { height: 460px; }
+
+    /* ─── EXPERIENCE ─── */
+    .experience {
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0;
+    }
+    .exp-content {
+      padding: 100px 80px 100px 60px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .exp-features { margin-top: 52px; display: flex; flex-direction: column; gap: 28px; }
+    .exp-feature { display: flex; gap: 24px; align-items: flex-start; }
+    .exp-icon {
+      width: 42px; height: 42px; border: 1px solid rgba(154,114,32,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--gold); font-size: 1rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .exp-feature:hover .exp-icon { border-color: var(--gold); background: rgba(154,114,32,0.08); }
+    .exp-feature-title { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); margin-bottom: 6px; }
+    .exp-feature-text { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .exp-image { position: relative; overflow: hidden; }
+    .exp-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82) contrast(1.1); }
+    .exp-image::before {
+      content: 'MIRABEL'; z-index: 1;
+      position: absolute; bottom: 40px; left: -20px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 7rem;
+      color: rgba(154,114,32,0.1); letter-spacing: 0.1em; pointer-events: none;
+    }
+
+    /* ─── GALLERY STRIP ─── */
+    .gallery-strip {
+      padding: 0; background: var(--dark);
+      display: flex; height: 300px; gap: 3px; overflow: hidden;
+    }
+    .gallery-strip img {
+      flex: 1; object-fit: cover; min-width: 0;
+      filter: brightness(0.65) grayscale(0.15) contrast(1.1);
+      transition: flex 0.7s ease, filter 0.7s ease;
+    }
+    .gallery-strip img:hover {
+      flex: 2.5;
+      filter: brightness(0.9) grayscale(0) contrast(1.1);
+    }
+
+    /* ─── EVENTS / CORPORATE ─── */
+    .corporate {
+      background: var(--charcoal);
+      position: relative; overflow: hidden;
+    }
+    .corporate::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(154,114,32,0.05) 0%, transparent 65%);
+    }
+    .corporate-inner {
+      max-width: 760px; margin: 0 auto; text-align: center; position: relative; z-index: 1;
+    }
+    .corp-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 60px;
+    }
+    .corp-card {
+      padding: 42px 36px; border: 1px solid rgba(0,0,0,0.09);
+      transition: border-color 0.3s, background 0.3s;
+      text-align: left;
+    }
+    .corp-card:hover { border-color: rgba(154,114,32,0.4); background: rgba(154,114,32,0.05); }
+    .corp-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: rgba(154,114,32,0.15);
+      line-height: 1; margin-bottom: 16px;
+    }
+    .corp-title { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
+    .corp-text { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── RESERVATION ─── */
+    .reservation {
+      background: var(--black);
+      position: relative; overflow: hidden;
+      padding: 160px 60px;
+    }
+    .res-bg {
+      position: absolute; inset: 0;
+      background: url('17-Le-St-Charles-12-09-2020.jpg') center/cover no-repeat;
+      filter: brightness(0.14) saturate(0.3);
+    }
+    .res-inner {
+      position: relative; z-index: 1;
+      max-width: 620px; margin: 0 auto; text-align: center;
+    }
+    .res-inner .section-title { font-size: clamp(2.8rem, 5vw, 4.5rem); color: #f0e8d8; }
+    .res-inner .section-title em { color: var(--gold); }
+    .res-inner .section-tag { color: var(--gold); }
+    .res-body {
+      font-size: 1rem; color: rgba(240,232,216,0.72); line-height: 1.8; margin: 24px 0 48px;
+    }
+    .res-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .res-contact {
+      display: flex; gap: 50px; justify-content: center; margin-top: 52px; padding-top: 52px;
+      border-top: 1px solid rgba(201,168,76,0.18);
+    }
+    .res-contact-item { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+    .res-contact-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+    .res-contact-val { font-size: 0.92rem; color: #f0e8d8; }
+    .reservation .btn-secondary { color: rgba(240,232,216,0.75); border-bottom-color: rgba(201,168,76,0.35); }
+    .reservation .btn-secondary:hover { color: var(--gold); opacity: 1; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      padding: 64px 60px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 40px;
+    }
+    .footer-logo img { filter: brightness(0); }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.15em; color: var(--gold); }
+    .footer-logo span { display: block; font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 2px; }
+    .footer-links { display: flex; gap: 36px; justify-content: center; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-right { text-align: right; }
+    .footer-social { display: flex; gap: 18px; justify-content: flex-end; margin-bottom: 16px; }
+    .social-link {
+      width: 36px; height: 36px; border: 1px solid rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-copy { font-size: 0.65rem; color: var(--muted); opacity: 0.6; }
+
+    /* ─── POPUP RÉSERVATION ─── */
+    .res-popup-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(220,218,214,0.88);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .res-popup-overlay.open { opacity: 1; pointer-events: all; }
+    .res-popup {
+      background: #f8f7f4;
+      border: 1px solid rgba(0,0,0,0.12);
+      padding: 36px 36px 28px; position: relative;
+      transform: translateY(28px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease;
+      opacity: 0;
+    }
+    .res-popup-overlay.open .res-popup { transform: translateY(0) scale(1); opacity: 1; }
+    .res-popup-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 20px; }
+    .res-popup-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1.2; }
+    .res-popup-title em { color: var(--gold); font-style: italic; }
+    .res-popup-close {
+      background: none; border: 1px solid rgba(0,0,0,0.15);
+      color: var(--muted); font-size: 1.1rem; line-height: 1;
+      width: 32px; height: 32px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .res-popup-close:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ─── HAMBURGER & MOBILE NAV ─── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile {
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(245,244,241,0.97); backdrop-filter: blur(12px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 40px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .nav-mobile.open { opacity: 1; pointer-events: all; }
+    .nav-mobile ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 28px; }
+    .nav-mobile ul a {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .nav-mobile ul a:hover { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 20px; }
+      nav.scrolled { padding: 12px 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero { grid-template-columns: 1fr; height: auto; min-height: unset; }
+      .hero-left { height: 42vmax; min-height: 220px; max-height: 340px; }
+      .hero-right { padding: 40px 24px 56px; }
+      .hero-text { max-width: 100%; font-size: 0.9rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 28px; }
+      .hero-info { position: static; flex-direction: column; gap: 16px; margin-top: 28px; animation: none; opacity: 1; }
+      .hero-number { display: none; }
+
+      .strip { padding: 12px 20px; gap: 20px; overflow-x: auto; }
+
+      section { padding: 56px 20px; }
+
+      .about { grid-template-columns: 1fr; }
+      .about-images img { height: 180px; }
+      .about-images img:first-child { height: 240px; }
+      .about-content { padding: 44px 24px; }
+      .about-content::before { font-size: 8rem; top: -10px; right: 10px; }
+
+      .menu-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-item.large { grid-column: span 1; }
+      .menu-item img { height: 230px; }
+      .menu-item.large img { height: 270px; }
+
+      .gallery-strip { height: 140px; }
+
+      .experience { grid-template-columns: 1fr; }
+      .exp-content { padding: 44px 24px; }
+      .exp-image { height: 260px; }
+      .exp-image img { height: 100%; }
+
+      .corp-grid { grid-template-columns: 1fr; }
+      .corp-card { padding: 28px 24px; }
+
+      .reservation { padding: 72px 20px; }
+      .res-contact { flex-direction: column; gap: 24px; padding-top: 32px; margin-top: 32px; }
+      .res-actions { flex-direction: column; align-items: center; gap: 16px; }
+
+      footer { padding: 44px 20px; grid-template-columns: 1fr; text-align: center; gap: 24px; }
+      .footer-right { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-links { flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+      .res-popup { width: calc(100vw - 32px); padding: 24px 20px 20px; }
+      .res-popup iframe { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="logobistro.svg" alt="Bistro St-Charles" style="height:38px;width:auto;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="menu-light.html">Menu</a></li>
+    <li><a href="#experience">L'expérience</a></li>
+    <li><a href="#corporate">Corporatif</a></li>
+    <li><a href="#reservation">Contact</a></li>
+  </ul>
+  <button class="nav-cta res-trigger">Réserver</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="menu-light.html" class="nav-mobile-link">Menu</a></li>
+    <li><a href="#experience" class="nav-mobile-link">L'expérience</a></li>
+    <li><a href="#corporate" class="nav-mobile-link">Corporatif</a></li>
+    <li><a href="#reservation" class="nav-mobile-link">Contact</a></li>
+  </ul>
+  <button class="nav-cta res-trigger nav-mobile-link">Réserver</button>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-left">
+    <img src="17-Le-St-Charles-12-09-2020.jpg" alt="Tartare de boeuf et vin rouge" />
+  </div>
+  <div class="hero-right">
+    <div class="hero-eyebrow">Restaurant · Mirabel, Québec</div>
+    <h1 class="hero-title">
+      La <em>gastronomie</em><br>au cœur de<br>la Rive-Nord.
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-text">
+      Le Bistro St-Charles, c'est une cuisine locale réinventée — créative, raffinée et sincère.
+      Le chef Simon Courcelles et son équipe vous accueillent dans un espace pensé pour les gens qui apprécient autant les bonnes affaires que les bons repas.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary res-trigger">Faire une réservation</button>
+      <a href="menu-light.html" class="btn-secondary">Découvrir le menu</a>
+    </div>
+    <div class="hero-info">
+      <div class="hero-info-item">
+        <span class="hero-info-label">Téléphone</span>
+        <span class="hero-info-val">(450) 818-8668</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="hero-info-label">Adresse</span>
+        <span class="hero-info-val">17680 Rue Charles #100</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-number">St-C</div>
+</section>
+
+<!-- ─── STRIP ─── -->
+<div class="strip">
+  <div class="strip-item">Cuisine locale réinventée</div>
+  <div class="strip-dot"></div>
+  <div class="strip-item">Chef Simon Courcelles</div>
+  <div class="strip-dot"></div>
+  <div class="strip-item">Menu saisonnier</div>
+  <div class="strip-dot"></div>
+  <div class="strip-item">Événements corporatifs</div>
+  <div class="strip-dot"></div>
+  <div class="strip-item">Classiques intemporels</div>
+  <div class="strip-dot"></div>
+  <div class="strip-item">Vins sélectionnés</div>
+  <div class="strip-dot"></div>
+  <div class="strip-item">Mirabel · Rive-Nord</div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <div class="about-images">
+    <img src="96-Le-St-Charles-12-09-2020.jpg" alt="Vin rouge et menu Bistro St-Charles" />
+    <img src="63-Le-St-Charles-12-09-2020.jpg" alt="Tartare de saumon" />
+    <img src="70-Le-St-Charles-12-09-2020.jpg" alt="Crevettes croustillantes" />
+  </div>
+  <div class="about-content">
+    <p class="section-tag reveal">Notre histoire</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Un bistro de <em>quartier</em><br>avec une âme de<br>grand restaurant.
+    </h2>
+    <blockquote class="about-quote reveal reveal-delay-2">
+      « On met la table pour une cuisine locale réinventée, créative et ancrée dans les saisons. »
+    </blockquote>
+    <p class="section-body reveal reveal-delay-2">
+      Au Bistro St-Charles, chaque assiette est une invitation à ralentir, savourer et se retrouver.
+      Les plats créatifs côtoient les classiques intemporels, toujours guidés par les produits de saison et une passion authentique pour la gastronomie.
+    </p>
+    <div class="about-chef reveal reveal-delay-3">
+      <div class="chef-line"></div>
+      <div>
+        <div class="chef-name">Chef Simon Courcelles</div>
+        <div class="chef-title">Chef exécutif & cofondateur</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MENU ─── -->
+<section class="menu-section" id="menu">
+  <div class="menu-header reveal">
+    <div>
+      <p class="section-tag">Ce que l'on cuisine</p>
+      <h2 class="section-title">La carte, en <em>images.</em></h2>
+    </div>
+    <button class="btn-secondary res-trigger">Réserver une table →</button>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-item large reveal">
+      <img src="26-Le-St-Charles-12-09-2020.jpg" alt="Tartare de bœuf" />
+    </div>
+    <div class="menu-item reveal">
+      <img src="35-Le-St-Charles-12-09-2020.jpg" alt="Huîtres fraîches" />
+    </div>
+    <div class="menu-item reveal reveal-delay-1">
+      <img src="40-Le-St-Charles-12-09-2020.jpg" alt="Burrata & tomates heritage" />
+    </div>
+    <div class="menu-item reveal reveal-delay-2">
+      <img src="53-Le-St-Charles-12-09-2020.jpg" alt="Poulpe grillé" />
+    </div>
+    <div class="menu-item reveal reveal-delay-3">
+      <img src="7-Le-St-Charles-12-09-2020.jpg" alt="Filet de bœuf" />
+    </div>
+    <div class="menu-item reveal reveal-delay-1">
+      <img src="298999905_1082228962684452_1606249259693894104_n.jpg" alt="Tartare de saumon" />
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY STRIP ─── -->
+<div class="gallery-strip">
+  <img src="35-Le-St-Charles-12-09-2020.jpg" alt="huîtres" />
+  <img src="63-Le-St-Charles-12-09-2020.jpg" alt="tartare saumon" />
+  <img src="40-Le-St-Charles-12-09-2020.jpg" alt="burrata" />
+  <img src="26-Le-St-Charles-12-09-2020.jpg" alt="tartare boeuf" />
+  <img src="7-Le-St-Charles-12-09-2020.jpg" alt="filet" />
+</div>
+
+<!-- ─── EXPERIENCE ─── -->
+<section class="experience" id="experience">
+  <div class="exp-content">
+    <p class="section-tag reveal">L'expérience</p>
+    <h2 class="section-title reveal reveal-delay-1">Plus qu'un repas —<br>un <em>moment.</em></h2>
+    <p class="section-body reveal reveal-delay-2">
+      Du dîner d'affaires au souper entre amis, le Bistro St-Charles crée le cadre idéal pour vos moments importants. Cuisine ouverte, service attentionné, ambiance chaleureuse.
+    </p>
+    <div class="exp-features">
+      <div class="exp-feature reveal reveal-delay-1">
+        <div class="exp-icon">♦</div>
+        <div>
+          <div class="exp-feature-title">Menu saisonnier</div>
+          <p class="exp-feature-text">Des assiettes qui évoluent avec les saisons, toujours au meilleur de ce que le Québec produit.</p>
+        </div>
+      </div>
+      <div class="exp-feature reveal reveal-delay-2">
+        <div class="exp-icon">◈</div>
+        <div>
+          <div class="exp-feature-title">Carte des vins curatée</div>
+          <p class="exp-feature-text">Des vins du monde entier, choisis pour sublimer chaque plat du menu.</p>
+        </div>
+      </div>
+      <div class="exp-feature reveal reveal-delay-3">
+        <div class="exp-icon">◉</div>
+        <div>
+          <div class="exp-feature-title">Service raffiné</div>
+          <p class="exp-feature-text">Une équipe passionnée qui prend soin de chaque détail de votre expérience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="exp-image">
+    <img src="70-Le-St-Charles-12-09-2020.jpg" alt="Ambiance Bistro St-Charles" />
+  </div>
+</section>
+
+<!-- ─── CORPORATE ─── -->
+<section class="corporate" id="corporate">
+  <div class="corporate-inner">
+    <p class="section-tag reveal">Événements & corporatif</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      L'endroit idéal pour<br>vos <em>dîners d'affaires.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2" style="max-width: 560px; margin: 0 auto;">
+      Salon privé, menus sur mesure, service dédié. Le Bistro St-Charles est le partenaire de confiance des professionnels de la Rive-Nord pour leurs événements corporatifs et repas d'affaires.
+    </p>
+    <div class="corp-grid">
+      <div class="corp-card reveal">
+        <div class="corp-num">01</div>
+        <div class="corp-title">Dîners & Déjeuners</div>
+        <p class="corp-text">Une cuisine raffinée pour impressionner vos clients et collègues dans un cadre élégant.</p>
+      </div>
+      <div class="corp-card reveal reveal-delay-1">
+        <div class="corp-num">02</div>
+        <div class="corp-title">Événements privés</div>
+        <p class="corp-text">Salon semi-privé disponible pour vos réunions, anniversaires et célébrations d'équipe.</p>
+      </div>
+      <div class="corp-card reveal reveal-delay-2">
+        <div class="corp-num">03</div>
+        <div class="corp-title">Menus sur mesure</div>
+        <p class="corp-text">Travaillez avec le chef pour créer une expérience gastronomique unique, adaptée à votre événement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESERVATION ─── -->
+<section class="reservation" id="reservation">
+  <div class="res-bg"></div>
+  <div class="res-inner">
+    <p class="section-tag reveal">Nous rejoindre</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Réservez votre<br><em>table ce soir.</em>
+    </h2>
+    <p class="res-body reveal reveal-delay-2">
+      À deux, en famille ou entre collègues — le Bistro St-Charles vous accueille avec la même passion du beau et du bon.
+    </p>
+    <div class="res-actions reveal reveal-delay-2">
+      <button class="btn-primary res-trigger">Réserver en ligne</button>
+      <a href="https://www.facebook.com/bistrostcharles" target="_blank" class="btn-secondary">Suivre sur Facebook</a>
+    </div>
+    <div class="res-contact reveal reveal-delay-3">
+      <div class="res-contact-item">
+        <span class="res-contact-label">Téléphone</span>
+        <span class="res-contact-val">(450) 818-8668</span>
+      </div>
+      <div class="res-contact-item">
+        <span class="res-contact-label">Adresse</span>
+        <span class="res-contact-val">17680 Rue Charles #100, Mirabel QC J7J 0T6</span>
+      </div>
+      <div class="res-contact-item">
+        <span class="res-contact-label">Réseaux sociaux</span>
+        <span class="res-contact-val">@bistrostcharles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <img src="logobistro.svg" alt="Bistro St-Charles" style="height:48px;width:auto;" />
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#about">À propos</a>
+    <a href="menu-light.html">Menu</a>
+    <a href="#corporate">Corporatif</a>
+    <a href="#reservation">Contact</a>
+  </div>
+  <div class="footer-right">
+    <div class="footer-social">
+      <a href="https://www.facebook.com/bistrostcharles" target="_blank" class="social-link">f</a>
+      <a href="https://www.instagram.com/bistrostcharles/" target="_blank" class="social-link">in</a>
+    </div>
+    <div class="footer-copy">©2025 Bistro St-Charles. Tous droits réservés.</div>
+  </div>
+</footer>
+
+<!-- ─── POPUP RÉSERVATION ─── -->
+<div class="res-popup-overlay" id="resPopup" role="dialog" aria-modal="true" aria-label="Réservation">
+  <div class="res-popup">
+    <div class="res-popup-header">
+      <div class="res-popup-title">Réserver<br><em>votre table</em></div>
+      <button class="res-popup-close" id="resPopupClose" aria-label="Fermer">&#x2715;</button>
+    </div>
+    <iframe src="https://widgets.libroreserve.com/WEB/QC015530247062/book" style="border: 0px solid #ddd;" width="275" height="300"></iframe>
+  </div>
+</div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Popup réservation
+  const popup = document.getElementById('resPopup');
+  const popupClose = document.getElementById('resPopupClose');
+  const triggers = document.querySelectorAll('.res-trigger');
+
+  function openPopup() { popup.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closePopup() { popup.classList.remove('open'); document.body.style.overflow = ''; }
+
+  triggers.forEach(btn => btn.addEventListener('click', openPopup));
+  popupClose.addEventListener('click', closePopup);
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+  // Hamburger
+  const hamburger = document.getElementById('navHamburger');
+  const navMobile = document.getElementById('navMobile');
+  function openNav() { hamburger.classList.add('open'); navMobile.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeNav() { hamburger.classList.remove('open'); navMobile.classList.remove('open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', () => navMobile.classList.contains('open') ? closeNav() : openNav());
+  document.querySelectorAll('.nav-mobile-link').forEach(el => el.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+</body>
+</html>
