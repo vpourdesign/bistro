@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Bistro St-Charles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:    #f5f4f1;
+      --charcoal: #eceae6;
+      --dark:     #e0ddd8;
+      --gold:     #9a7220;
+      --gold-dim: #745618;
+      --cream:    #1a1815;
+      --muted:    #78716a;
+      --white:    #0d0c0a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── CURSOR ─── */
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s, width 0.3s, height 0.3s;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(154,114,32,0.5);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.18s ease, width 0.3s, height 0.3s;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      background: linear-gradient(to bottom, rgba(245,244,241,0.92) 0%, transparent 100%);
+      transition: background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(245,244,241,0.97);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: 0.18em;
+      color: var(--gold); text-decoration: none;
+      display: flex; flex-direction: column; line-height: 1;
+    }
+    .nav-logo img { filter: brightness(0); }
+    .nav-logo span { font-family: 'Raleway', sans-serif; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--muted); margin-top: 2px; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; opacity: 0.75;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      border: 1px solid var(--gold); padding: 10px 26px;
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none; background: none;
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Raleway', sans-serif; cursor: pointer; outline: none;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ─── HERO ─── */
+    .menu-hero {
+      height: 52vh; min-height: 400px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .menu-hero-bg {
+      position: absolute; inset: 0;
+      background: url('26-Le-St-Charles-12-09-2020.jpg') center/cover no-repeat;
+      filter: brightness(0.18) saturate(0.3);
+    }
+    .menu-hero-inner {
+      position: relative; z-index: 1;
+      text-align: center;
+    }
+    .menu-hero-eyebrow {
+      font-size: 0.62rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 22px;
+    }
+    .menu-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4.5rem, 9vw, 8rem);
+      font-weight: 300; line-height: 0.9;
+      color: #f5f4f1;
+    }
+    .menu-hero-title em { font-style: italic; color: var(--gold); }
+    .menu-hero-sub {
+      margin-top: 24px;
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(245,244,241,0.5);
+    }
+    .menu-hero-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(154,114,32,0.5), transparent);
+      margin: 28px auto 0;
+    }
+
+    /* ─── MAIN ─── */
+    .menu-body {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 100px 60px 140px;
+    }
+
+    /* ─── LOADING ─── */
+    .menu-loading {
+      text-align: center; padding: 80px 0;
+    }
+    .menu-loading-text {
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* ─── ERROR ─── */
+    .menu-error {
+      text-align: center; padding: 80px 0; display: none;
+    }
+    .menu-error p { font-size: 0.9rem; color: var(--muted); line-height: 1.9; }
+    .menu-error a { color: var(--gold); text-decoration: none; }
+
+    /* ─── SECTIONS ─── */
+    .menu-sections { display: none; }
+    .menu-sections.loaded { display: block; }
+
+    .menu-section-block { margin-bottom: 96px; }
+    .menu-section-block:last-child { margin-bottom: 0; }
+
+    .menu-section-header {
+      display: flex; align-items: center; gap: 24px;
+      margin-bottom: 44px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .menu-section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.6rem; line-height: 1;
+      color: rgba(154,114,32,0.12);
+      flex-shrink: 0;
+    }
+    .menu-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300; color: var(--white);
+    }
+    .menu-section-tag {
+      font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 4px;
+    }
+
+    /* ─── ITEMS GRID ─── */
+    .menu-items-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .menu-item-card {
+      padding: 28px 32px;
+      background: var(--charcoal);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: border-color 0.35s, background 0.35s;
+      position: relative; overflow: hidden;
+    }
+    .menu-item-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .menu-item-card:hover {
+      border-color: rgba(154,114,32,0.25);
+      background: var(--dark);
+    }
+    .menu-item-card:hover::before { transform: scaleY(1); }
+
+    .menu-item-header {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      gap: 12px; margin-bottom: 10px;
+    }
+    .menu-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem; font-weight: 400;
+      color: var(--white); line-height: 1.3;
+    }
+    .menu-item-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(154,114,32,0.3);
+      margin-bottom: 4px; min-width: 16px;
+    }
+    .menu-item-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      color: var(--gold); white-space: nowrap; flex-shrink: 0;
+    }
+    .menu-item-desc {
+      font-size: 0.78rem; line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ─── SEPARATOR ─── */
+    .section-separator {
+      width: 1px; height: 72px;
+      background: linear-gradient(to bottom, transparent, rgba(154,114,32,0.25), transparent);
+      margin: 0 auto 96px;
+    }
+
+    /* ─── BOTTOM CTA ─── */
+    .menu-cta {
+      text-align: center;
+      padding: 80px 0 0;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 100px;
+    }
+    .menu-cta-tag { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .menu-cta h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;
+      color: var(--white); margin-bottom: 32px;
+    }
+    .menu-cta h3 em { font-style: italic; color: var(--gold); }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold); color: #faf7f2;
+      padding: 14px 36px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer; outline: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-dim); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      padding: 64px 60px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 40px;
+    }
+    .footer-logo img { filter: brightness(0); }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.15em; color: var(--gold); }
+    .footer-logo span { display: block; font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 2px; }
+    .footer-links { display: flex; gap: 36px; justify-content: center; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-right { text-align: right; }
+    .footer-social { display: flex; gap: 18px; justify-content: flex-end; margin-bottom: 16px; }
+    .social-link {
+      width: 36px; height: 36px; border: 1px solid rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-copy { font-size: 0.65rem; color: var(--muted); opacity: 0.6; }
+
+    /* ─── POPUP ─── */
+    .res-popup-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(220,218,214,0.88); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+    }
+    .res-popup-overlay.open { opacity: 1; pointer-events: all; }
+    .res-popup {
+      background: #f8f7f4; border: 1px solid rgba(0,0,0,0.12);
+      padding: 36px 36px 28px; position: relative;
+      transform: translateY(28px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease;
+      opacity: 0;
+    }
+    .res-popup-overlay.open .res-popup { transform: translateY(0) scale(1); opacity: 1; }
+    .res-popup-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 20px; }
+    .res-popup-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1.2; }
+    .res-popup-title em { color: var(--gold); font-style: italic; }
+    .res-popup-close {
+      background: none; border: 1px solid rgba(0,0,0,0.15);
+      color: var(--muted); font-size: 1.1rem; line-height: 1;
+      width: 32px; height: 32px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .res-popup-close:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+
+    /* ─── HAMBURGER & MOBILE NAV ─── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile {
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(245,244,241,0.97); backdrop-filter: blur(12px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 40px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .nav-mobile.open { opacity: 1; pointer-events: all; }
+    .nav-mobile ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 28px; }
+    .nav-mobile ul a {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .nav-mobile ul a:hover { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 20px; }
+      nav.scrolled { padding: 12px 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .menu-body { padding: 80px 20px 100px; }
+      .menu-items-grid { grid-template-columns: 1fr; }
+      .menu-hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+      footer { padding: 44px 20px; grid-template-columns: 1fr; text-align: center; gap: 24px; }
+      .footer-right { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-links { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .res-popup { width: calc(100vw - 32px); padding: 24px 20px 20px; }
+      .res-popup iframe { width: 100%; }
+      .menu-item-price { font-size: 1.9rem; }
+      .menu-item-desc { font-size: 1rem; line-height: 1.8; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <a href="index-light.html" class="nav-logo">
+    <img src="logobistro.svg" alt="Bistro St-Charles" style="height:38px;width:auto;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index-light.html">Accueil</a></li>
+    <li><a href="menu-light.html" class="active">Menu</a></li>
+    <li><a href="index-light.html#experience">L'expérience</a></li>
+    <li><a href="index-light.html#corporate">Corporatif</a></li>
+    <li><a href="index-light.html#reservation">Contact</a></li>
+  </ul>
+  <button class="nav-cta res-trigger">Réserver</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="index-light.html" class="nav-mobile-link">Accueil</a></li>
+    <li><a href="menu-light.html" class="nav-mobile-link">Menu</a></li>
+    <li><a href="index-light.html#experience" class="nav-mobile-link">L'expérience</a></li>
+    <li><a href="index-light.html#corporate" class="nav-mobile-link">Corporatif</a></li>
+    <li><a href="index-light.html#reservation" class="nav-mobile-link">Contact</a></li>
+  </ul>
+  <button class="nav-cta res-trigger nav-mobile-link">Réserver</button>
+</div>
+
+<!-- ─── HERO ─── -->
+<div class="menu-hero">
+  <div class="menu-hero-bg"></div>
+  <div class="menu-hero-inner reveal">
+    <p class="menu-hero-eyebrow">Bistro St-Charles · Mirabel</p>
+    <h1 class="menu-hero-title">La <em>carte</em></h1>
+    <p class="menu-hero-sub">Cuisine locale · Saisons · Chef Simon Courcelles</p>
+    <div class="menu-hero-line"></div>
+  </div>
+</div>
+
+<!-- ─── MENU ─── -->
+<main class="menu-body">
+
+  <div class="menu-loading" id="menuLoading">
+    <p class="menu-loading-text">Chargement de la carte…</p>
+  </div>
+
+  <div class="menu-error" id="menuError">
+    <p>
+      Impossible de charger la carte pour le moment.<br>
+      Consultez notre <a href="https://www.facebook.com/bistrostcharles" target="_blank">page Facebook</a>
+      ou appelez-nous au <a href="tel:4508188668">(450) 818-8668</a>.
+    </p>
+  </div>
+
+  <div class="menu-sections" id="menuSections"></div>
+
+  <div class="menu-cta reveal" id="menuCta" style="display:none;">
+    <p class="menu-cta-tag">Votre soirée vous attend</p>
+    <h3>Réserver <em>votre table</em></h3>
+    <button class="btn-primary res-trigger">Réserver en ligne</button>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <img src="logobistro.svg" alt="Bistro St-Charles" style="height:48px;width:auto;" />
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="index-light.html#about">À propos</a>
+    <a href="menu-light.html">Menu</a>
+    <a href="index-light.html#corporate">Corporatif</a>
+    <a href="index-light.html#reservation">Contact</a>
+  </div>
+  <div class="footer-right">
+    <div class="footer-social">
+      <a href="https://www.facebook.com/bistrostcharles" target="_blank" class="social-link">f</a>
+      <a href="https://www.instagram.com/bistrostcharles/" target="_blank" class="social-link">in</a>
+    </div>
+    <div class="footer-copy">©2025 Bistro St-Charles. Tous droits réservés.</div>
+  </div>
+</footer>
+
+<!-- ─── POPUP RÉSERVATION ─── -->
+<div class="res-popup-overlay" id="resPopup" role="dialog" aria-modal="true" aria-label="Réservation">
+  <div class="res-popup">
+    <div class="res-popup-header">
+      <div class="res-popup-title">Réserver<br><em>votre table</em></div>
+      <button class="res-popup-close" id="resPopupClose" aria-label="Fermer">&#x2715;</button>
+    </div>
+    <iframe src="https://widgets.libroreserve.com/WEB/QC015530247062/book" style="border:0" width="275" height="300"></iframe>
+  </div>
+</div>
+
+<script>
+  const MENU_URL = 'https://script.google.com/macros/s/AKfycby49cOUMqoOiX5UA11wR9ESs0-yHHS_g2KZCK2LdrGy_ivliBSXAsSuGv8hUs2RQfY/exec';
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Popup
+  const popup = document.getElementById('resPopup');
+  const openPopup  = () => { popup.classList.add('open');    document.body.style.overflow = 'hidden'; };
+  const closePopup = () => { popup.classList.remove('open'); document.body.style.overflow = ''; };
+  document.querySelectorAll('.res-trigger').forEach(b => b.addEventListener('click', openPopup));
+  document.getElementById('resPopupClose').addEventListener('click', closePopup);
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+  // Hamburger
+  const hamburger = document.getElementById('navHamburger');
+  const navMobile = document.getElementById('navMobile');
+  function openNav() { hamburger.classList.add('open'); navMobile.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeNav() { hamburger.classList.remove('open'); navMobile.classList.remove('open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', () => navMobile.classList.contains('open') ? closeNav() : openNav());
+  document.querySelectorAll('.nav-mobile-link').forEach(el => el.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  // ─── RENDER ──────────────────────────────────────────────────────────────
+  function renderMenu(data) {
+    const loading  = document.getElementById('menuLoading');
+    const error    = document.getElementById('menuError');
+    const sections = document.getElementById('menuSections');
+    const cta      = document.getElementById('menuCta');
+
+    loading.style.display = 'none';
+
+    if (!data.sections || data.sections.length === 0) {
+      error.style.display = 'block';
+      return;
+    }
+
+    let html = '';
+    data.sections.forEach((section, i) => {
+      if (i > 0) html += '<div class="section-separator"></div>';
+
+      const num = String(i + 1).padStart(2, '0');
+      html += `
+        <div class="menu-section-block">
+          <div class="menu-section-header">
+            <span class="menu-section-num">${num}</span>
+            <div>
+              <p class="menu-section-tag">La carte</p>
+              <h2 class="menu-section-title">${escHtml(section.title)}</h2>
+            </div>
+          </div>
+          <div class="menu-items-grid">
+            ${section.items.map(item => `
+              <div class="menu-item-card">
+                <div class="menu-item-header">
+                  <span class="menu-item-name">${escHtml(item.name)}</span>
+                  <span class="menu-item-dots"></span>
+                  <span class="menu-item-price">${escHtml(item.price)}</span>
+                </div>
+                ${item.description ? `<p class="menu-item-desc">${escHtml(item.description)}</p>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    });
+
+    sections.innerHTML = html;
+    sections.classList.add('loaded');
+    cta.style.display = 'block';
+
+    sections.querySelectorAll('.menu-section-block').forEach(el => io.observe(el));
+    io.observe(cta);
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function fetchJSONP(url) {
+    return new Promise(function(resolve, reject) {
+      var cbName = '__menuCb' + Date.now();
+      var script  = document.createElement('script');
+      var timer   = setTimeout(function() { cleanup(); reject(new Error('timeout')); }, 12000);
+
+      function cleanup() {
+        clearTimeout(timer);
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[cbName] = function(data) { cleanup(); resolve(data); };
+      script.onerror = function() { cleanup(); reject(new Error('script error')); };
+      script.src = url + (url.indexOf('?') === -1 ? '?' : '&') + 'callback=' + cbName;
+      document.head.appendChild(script);
+    });
+  }
+
+  if (MENU_URL) {
+    fetchJSONP(MENU_URL)
+      .then(renderMenu)
+      .catch(() => {
+        document.getElementById('menuLoading').style.display = 'none';
+        document.getElementById('menuError').style.display   = 'block';
+      });
+  } else {
+    renderMenu({
+      sections: [
+        {
+          title: 'Entrées',
+          items: [
+            { name: 'Tartare de bœuf', price: '26 $', description: 'Câpres, échalote, jaune d\'œuf, croûtons maison' },
+            { name: 'Huîtres fraîches (6)', price: '24 $', description: 'Mignonette classique, citron, Tabasco' },
+            { name: 'Burrata & tomates héritage', price: '18 $', description: 'Basilic, réduction balsamique, fleur de sel' },
+            { name: 'Soupe du moment', price: '12 $', description: 'Selon les arrivages du marché' }
+          ]
+        },
+        {
+          title: 'Plats principaux',
+          items: [
+            { name: 'Filet de bœuf', price: '48 $', description: 'Sauce au poivre, gratin dauphinois, légumes rôtis' },
+            { name: 'Saumon de l\'Atlantique', price: '34 $', description: 'Beurre blanc aux herbes, purée de panais, asperges' },
+            { name: 'Poulet rôti aux herbes', price: '28 $', description: 'Jus de rôti, légumes racines, pommes de terre grenaille' },
+            { name: 'Pâtes fraîches végétariennes', price: '24 $', description: 'Légumes du moment, parmesan, huile de truffe' }
+          ]
+        },
+        {
+          title: 'Desserts',
+          items: [
+            { name: 'Crème brûlée à la vanille', price: '12 $', description: '' },
+            { name: 'Moelleux au chocolat', price: '14 $', description: 'Glace à la vanille, coulis de framboise' },
+            { name: 'Assiette de fromages', price: '18 $', description: 'Sélection de fromages québécois, confiture et noix' },
+            { name: 'Tarte du moment', price: '12 $', description: 'Selon l\'inspiration du chef' }
+          ]
+        }
+      ]
+    });
+  }
+</script>
+</body>
+</html>
