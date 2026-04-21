@@ -717,46 +717,61 @@
     });
   }
 
+  const MENU_FALLBACK = {
+    sections: [
+      {
+        title: 'Entrées',
+        items: [
+          { name: 'Calamars China Town', price: '18 $', description: '' },
+          { name: 'Fondu au Fromage',    price: '19 $', description: '' },
+          { name: 'Burrata',             price: '27 $', description: '' },
+          { name: 'Pieuvre',             price: '25 $', description: '' },
+          { name: 'Arancini',            price: '19 $', description: '' },
+          { name: 'Choux de Bruxelles Frits', price: '18 $', description: '' }
+        ]
+      },
+      {
+        title: 'Les Crus',
+        items: [
+          { name: 'Crudo Hamachi',       price: '23 $',       description: '' },
+          { name: 'Carpaccio',           price: '22 $',       description: '' },
+          { name: 'Tartare de Thon',     price: '18 $ · 39 $', description: '' },
+          { name: 'Tartare de Bœuf',     price: '17 $ · 36 $', description: '' },
+          { name: 'Tartare de Saumon',   price: '17 $ · 36 $', description: '' },
+          { name: 'Huîtres Fraîches',    price: '20 $ · 37 $', description: '' }
+        ]
+      },
+      {
+        title: 'Salade',
+        items: [
+          { name: 'Salade Verte', price: '11 $ · 17 $', description: '' },
+          { name: 'Salade César', price: '14 $ · 19 $', description: '' }
+        ]
+      },
+      {
+        title: 'Repas',
+        items: [
+          { name: 'Morue',                    price: '44 $', description: '' },
+          { name: 'Boudin',                   price: '32 $', description: '' },
+          { name: 'Poulet à la Jerk',         price: '37 $', description: '' },
+          { name: 'Filet Mignon',             price: '60 $', description: '' },
+          { name: 'Filet d\'Épaule de Bœuf',  price: '41 $', description: '' },
+          { name: 'Ravioli aux Champignons',  price: '28 $', description: '' },
+          { name: 'Poutine St-Charles',       price: '26 $', description: '' },
+          { name: 'Burger',                   price: '26 $', description: '' }
+        ]
+      }
+    ]
+  };
+
   if (MENU_URL) {
     fetchJSONP(MENU_URL)
-      .then(renderMenu)
-      .catch(() => {
-        document.getElementById('menuLoading').style.display = 'none';
-        document.getElementById('menuError').style.display   = 'block';
-      });
+      .then(function(data) {
+        renderMenu(data && data.sections && data.sections.length > 0 ? data : MENU_FALLBACK);
+      })
+      .catch(function() { renderMenu(MENU_FALLBACK); });
   } else {
-    // ── Démo : remplace par tes vraies données une fois le script configuré ──
-    renderMenu({
-      sections: [
-        {
-          title: 'Entrées',
-          items: [
-            { name: 'Tartare de bœuf', price: '26 $', description: 'Câpres, échalote, jaune d\'œuf, croûtons maison' },
-            { name: 'Huîtres fraîches (6)', price: '24 $', description: 'Mignonette classique, citron, Tabasco' },
-            { name: 'Burrata & tomates héritage', price: '18 $', description: 'Basilic, réduction balsamique, fleur de sel' },
-            { name: 'Soupe du moment', price: '12 $', description: 'Selon les arrivages du marché' }
-          ]
-        },
-        {
-          title: 'Plats principaux',
-          items: [
-            { name: 'Filet de bœuf', price: '48 $', description: 'Sauce au poivre, gratin dauphinois, légumes rôtis' },
-            { name: 'Saumon de l\'Atlantique', price: '34 $', description: 'Beurre blanc aux herbes, purée de panais, asperges' },
-            { name: 'Poulet rôti aux herbes', price: '28 $', description: 'Jus de rôti, légumes racines, pommes de terre grenaille' },
-            { name: 'Pâtes fraîches végétariennes', price: '24 $', description: 'Légumes du moment, parmesan, huile de truffe' }
-          ]
-        },
-        {
-          title: 'Desserts',
-          items: [
-            { name: 'Crème brûlée à la vanille', price: '12 $', description: '' },
-            { name: 'Moelleux au chocolat', price: '14 $', description: 'Glace à la vanille, coulis de framboise' },
-            { name: 'Assiette de fromages', price: '18 $', description: 'Sélection de fromages québécois, confiture et noix' },
-            { name: 'Tarte du moment', price: '12 $', description: 'Selon l\'inspiration du chef' }
-          ]
-        }
-      ]
-    });
+    renderMenu(MENU_FALLBACK);
   }
 </script>
 </body>
