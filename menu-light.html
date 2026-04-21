@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menu — Bistro St-Charles</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,8 +14,8 @@
       --black:    #f5f4f1;
       --charcoal: #eceae6;
       --dark:     #e0ddd8;
-      --gold:     #9a7220;
-      --gold-dim: #745618;
+      --gold:     #b84d2a;
+      --gold-dim: #922f18;
       --cream:    #1a1815;
       --muted:    #78716a;
       --white:    #0d0c0a;
@@ -26,8 +26,8 @@
     body {
       background: var(--black);
       color: var(--cream);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 300;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
       overflow-x: hidden;
     }
 
@@ -44,7 +44,7 @@
     }
     .cursor-ring {
       width: 36px; height: 36px;
-      border: 1px solid rgba(154,114,32,0.5);
+      border: 1px solid rgba(184,77,42,0.5);
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9998;
@@ -73,10 +73,10 @@
       display: flex; flex-direction: column; line-height: 1;
     }
     .nav-logo img { filter: brightness(0); }
-    .nav-logo span { font-family: 'Raleway', sans-serif; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--muted); margin-top: 2px; }
+    .nav-logo span { font-family: 'DM Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--muted); margin-top: 2px; }
     .nav-links { display: flex; gap: 40px; list-style: none; }
     .nav-links a {
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--cream); text-decoration: none; opacity: 0.75;
       transition: opacity 0.3s, color 0.3s;
     }
@@ -84,10 +84,10 @@
     .nav-links a.active { opacity: 1; color: var(--gold); }
     .nav-cta {
       border: 1px solid var(--gold); padding: 10px 26px;
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--gold); text-decoration: none; background: none;
       transition: background 0.3s, color 0.3s;
-      font-family: 'Raleway', sans-serif; cursor: pointer; outline: none;
+      font-family: 'DM Sans', sans-serif; cursor: pointer; outline: none;
     }
     .nav-cta:hover { background: var(--gold); color: var(--black); }
 
@@ -125,7 +125,7 @@
     }
     .menu-hero-line {
       width: 1px; height: 48px;
-      background: linear-gradient(to bottom, rgba(154,114,32,0.5), transparent);
+      background: linear-gradient(to bottom, rgba(184,77,42,0.5), transparent);
       margin: 28px auto 0;
     }
 
@@ -169,18 +169,23 @@
     }
     .menu-section-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.6rem; line-height: 1;
-      color: rgba(154,114,32,0.12);
+      font-size: 4rem; line-height: 1;
+      color: rgba(184,77,42,0.16);
       flex-shrink: 0;
     }
     .menu-section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 300; color: var(--white);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 400; color: var(--white);
     }
     .menu-section-tag {
-      font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 4px;
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .menu-section-tag::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0;
     }
 
     /* ─── ITEMS GRID ─── */
@@ -207,7 +212,7 @@
       transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
     }
     .menu-item-card:hover {
-      border-color: rgba(154,114,32,0.25);
+      border-color: rgba(184,77,42,0.25);
       background: var(--dark);
     }
     .menu-item-card:hover::before { transform: scaleY(1); }
@@ -224,7 +229,7 @@
     }
     .menu-item-dots {
       flex: 1;
-      border-bottom: 1px dotted rgba(154,114,32,0.3);
+      border-bottom: 1px dotted rgba(184,77,42,0.3);
       margin-bottom: 4px; min-width: 16px;
     }
     .menu-item-price {
@@ -240,7 +245,7 @@
     /* ─── SEPARATOR ─── */
     .section-separator {
       width: 1px; height: 72px;
-      background: linear-gradient(to bottom, transparent, rgba(154,114,32,0.25), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(184,77,42,0.25), transparent);
       margin: 0 auto 96px;
     }
 
@@ -262,7 +267,7 @@
       display: inline-block;
       background: var(--gold); color: #faf7f2;
       padding: 14px 36px;
-      font-family: 'Raleway', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
       text-decoration: none; border: none; cursor: pointer; outline: none;
       transition: background 0.3s, transform 0.3s;
@@ -279,7 +284,7 @@
     }
     .footer-logo img { filter: brightness(0); }
     .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.15em; color: var(--gold); }
-    .footer-logo span { display: block; font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 2px; }
+    .footer-logo span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 2px; }
     .footer-links { display: flex; gap: 36px; justify-content: center; }
     .footer-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
     .footer-links a:hover { color: var(--gold); }
