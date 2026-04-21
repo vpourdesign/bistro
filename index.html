@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bistro St-Charles — Mirabel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -139,13 +139,13 @@
       opacity: 0; animation: fadeUp 0.9s 0.4s ease forwards;
     }
     .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.4rem, 5.2vw, 5.4rem);
-      font-weight: 400; line-height: 1.05;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      font-weight: 800; line-height: 1.0;
       color: var(--white);
       opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards;
     }
-    .hero-title em { color: var(--gold); font-style: italic; }
+    .hero-title em { color: var(--gold); font-style: normal; }
     .hero-divider {
       width: 50px; height: 1px; background: var(--gold);
       margin: 32px 0;
@@ -222,12 +222,12 @@
       width: 28px; height: 1.5px; background: var(--gold); flex-shrink: 0;
     }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 4.2vw, 4rem);
-      font-weight: 400; line-height: 1.08; color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 800; line-height: 1.05; color: var(--white);
       margin-bottom: 24px;
     }
-    .section-title em { color: var(--gold); font-style: italic; }
+    .section-title em { color: var(--gold); font-style: normal; }
     .section-body {
       font-size: 0.95rem; line-height: 1.9; color: var(--muted);
       max-width: 520px;
@@ -259,16 +259,16 @@
     }
     .about-content::before {
       content: '"';
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 18rem; line-height: 1;
       color: rgba(90,45,14,0.06);
       position: absolute; top: -20px; right: 40px;
       pointer-events: none;
     }
     .about-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-style: italic;
-      color: var(--gold); line-height: 1.6;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.5rem; font-style: normal; font-weight: 700;
+      color: var(--gold); line-height: 1.5;
       margin-bottom: 36px;
     }
     .about-chef {
@@ -308,7 +308,7 @@
     }
     .menu-item:hover .menu-item-label { transform: translateY(0); }
     .menu-item-cat { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .menu-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 300; color: #faf7f2; }
+    .menu-item-name { font-family: 'Nunito', sans-serif; font-size: 1.45rem; font-weight: 300; color: #faf7f2; }
     .menu-item.large { grid-column: span 2; }
     .menu-item.large img { height: 460px; }
 
@@ -462,8 +462,8 @@
     }
     .res-popup-overlay.open .res-popup { transform: translateY(0) scale(1); opacity: 1; }
     .res-popup-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 20px; }
-    .res-popup-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1.2; }
-    .res-popup-title em { color: var(--gold); font-style: italic; }
+    .res-popup-title { font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--white); line-height: 1.2; }
+    .res-popup-title em { color: var(--gold); font-style: normal; }
     .res-popup-close {
       background: none; border: 1px solid rgba(0,0,0,0.15);
       color: var(--muted); font-size: 1.1rem; line-height: 1;
@@ -505,8 +505,8 @@
     .nav-mobile.open { opacity: 1; pointer-events: all; }
     .nav-mobile ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 28px; }
     .nav-mobile ul a {
-      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
-      color: var(--cream); text-decoration: none; letter-spacing: 0.05em;
+      font-family: 'Nunito', sans-serif; font-size: 2.2rem; font-weight: 800;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.02em;
       transition: color 0.3s;
     }
     .nav-mobile ul a:hover { color: var(--gold); }
