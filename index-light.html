@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bistro St-Charles — Mirabel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -13,8 +13,8 @@
       --black:    #f5f4f1;
       --charcoal: #eceae6;
       --dark:     #e0ddd8;
-      --gold:     #9a7220;
-      --gold-dim: #745618;
+      --gold:     #b84d2a;
+      --gold-dim: #922f18;
       --cream:    #1a1815;
       --muted:    #78716a;
       --white:    #0d0c0a;
@@ -25,8 +25,8 @@
     body {
       background: var(--black);
       color: var(--cream);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 300;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
       overflow-x: hidden;
       cursor: default;
     }
@@ -44,7 +44,7 @@
     }
     .cursor-ring {
       width: 36px; height: 36px;
-      border: 1px solid rgba(154,114,32,0.5);
+      border: 1px solid rgba(184,77,42,0.5);
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9998;
@@ -75,23 +75,23 @@
       display: flex; flex-direction: column; line-height: 1;
     }
     .nav-logo img { filter: brightness(0); }
-    .nav-logo span { font-family: 'Raleway', sans-serif; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--muted); margin-top: 2px; }
+    .nav-logo span { font-family: 'DM Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--muted); margin-top: 2px; }
     .nav-links { display: flex; gap: 40px; list-style: none; }
     .nav-links a {
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--cream); text-decoration: none; opacity: 0.75;
       transition: opacity 0.3s, color 0.3s;
     }
     .nav-links a:hover { opacity: 1; color: var(--gold); }
     .nav-cta {
       border: 1px solid var(--gold); padding: 10px 26px;
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--gold); text-decoration: none;
       transition: background 0.3s, color 0.3s;
     }
     .nav-cta:hover { background: var(--gold); color: var(--black); }
     button.nav-cta, button.btn-primary, button.btn-secondary {
-      font-family: 'Raleway', sans-serif; background: none;
+      font-family: 'DM Sans', sans-serif; background: none;
       cursor: pointer; outline: none;
     }
 
@@ -106,7 +106,7 @@
     }
     .hero-left img {
       width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.75) contrast(1.05);
+      filter: brightness(0.88) contrast(1.02);
       transform: scale(1.06);
       animation: zoomOut 10s ease forwards;
     }
@@ -115,8 +115,8 @@
     .hero-left::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(10,9,6,0.45) 0%, transparent 55%),
-                  linear-gradient(to right, rgba(10,9,6,0.3) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(15,14,11,0.45) 0%, transparent 55%),
+                  linear-gradient(to right, rgba(15,14,11,0.3) 0%, transparent 60%);
     }
     .hero-right {
       background: var(--charcoal);
@@ -129,19 +129,19 @@
       content: '';
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       background:
-        radial-gradient(ellipse at 80% 20%, rgba(154,114,32,0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(154,114,32,0.03) 0%, transparent 50%);
+        radial-gradient(ellipse at 80% 20%, rgba(184,77,42,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(184,77,42,0.03) 0%, transparent 50%);
       pointer-events: none;
     }
     .hero-eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 24px;
       opacity: 0; animation: fadeUp 0.9s 0.4s ease forwards;
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 5vw, 5rem);
-      font-weight: 300; line-height: 1.05;
+      font-size: clamp(3.4rem, 5.2vw, 5.4rem);
+      font-weight: 400; line-height: 1.05;
       color: var(--white);
       opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards;
     }
@@ -161,17 +161,17 @@
     }
     .btn-primary {
       background: var(--gold); color: #faf7f2;
-      padding: 14px 36px; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      text-decoration: none; font-weight: 500;
+      padding: 15px 38px; font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; font-weight: 600;
       transition: background 0.3s, transform 0.2s;
       display: inline-block;
     }
     .btn-primary:hover { background: var(--gold-dim); transform: translateY(-2px); }
     .btn-secondary {
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--cream); text-decoration: none; opacity: 0.7;
       transition: opacity 0.3s, color 0.3s;
-      border-bottom: 1px solid rgba(154,114,32,0.4); padding-bottom: 2px;
+      border-bottom: 1px solid rgba(184,77,42,0.4); padding-bottom: 2px;
     }
     .btn-secondary:hover { opacity: 1; color: var(--gold); }
     .hero-info {
@@ -187,7 +187,7 @@
       position: absolute; bottom: 40px; right: -30px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 18rem; line-height: 1;
-      color: rgba(154,114,32,0.04);
+      color: rgba(184,77,42,0.04);
       pointer-events: none; user-select: none;
     }
 
@@ -199,27 +199,32 @@
     /* ─── STRIP ─── */
     .strip {
       background: var(--gold);
-      padding: 18px 60px;
-      display: flex; gap: 60px; align-items: center; overflow: hidden;
+      padding: 20px 60px;
+      display: flex; gap: 52px; align-items: center; overflow: hidden;
     }
     .strip-item {
       display: flex; align-items: center; gap: 14px;
-      white-space: nowrap; font-size: 0.72rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: #faf7f2; font-weight: 500;
+      white-space: nowrap; font-size: 0.73rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #faf7f2; font-weight: 600;
     }
-    .strip-dot { width: 4px; height: 4px; background: #faf7f2; border-radius: 50%; opacity: 0.4; }
+    .strip-dot { width: 5px; height: 5px; background: #faf7f2; border-radius: 50%; opacity: 0.35; }
 
     /* ─── SECTION BASE ─── */
     section { padding: 120px 60px; }
     .section-tag {
-      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::before {
+      content: ''; display: inline-block;
+      width: 28px; height: 1.5px; background: var(--gold); flex-shrink: 0;
     }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 4vw, 3.8rem);
-      font-weight: 300; line-height: 1.1; color: var(--white);
+      font-size: clamp(2.6rem, 4.2vw, 4rem);
+      font-weight: 400; line-height: 1.08; color: var(--white);
       margin-bottom: 24px;
     }
     .section-title em { color: var(--gold); font-style: italic; }
@@ -240,7 +245,7 @@
     }
     .about-images img {
       width: 100%; height: 280px; object-fit: cover;
-      filter: brightness(0.9) contrast(1.05);
+      filter: brightness(0.96) contrast(1.02);
       transition: filter 0.5s;
     }
     .about-images img:hover { filter: brightness(1) contrast(1.05); }
@@ -256,7 +261,7 @@
       content: '"';
       font-family: 'Cormorant Garamond', serif;
       font-size: 18rem; line-height: 1;
-      color: rgba(154,114,32,0.06);
+      color: rgba(184,77,42,0.06);
       position: absolute; top: -20px; right: 40px;
       pointer-events: none;
     }
@@ -288,16 +293,16 @@
     .menu-item { position: relative; overflow: hidden; cursor: pointer; }
     .menu-item img {
       width: 100%; height: 380px; object-fit: cover;
-      filter: brightness(0.75) contrast(1.1) saturate(0.95);
+      filter: brightness(0.88) contrast(1.02) saturate(1.05);
       transform: scale(1.04);
       transition: transform 0.8s ease, filter 0.8s ease;
       display: block;
     }
-    .menu-item:hover img { transform: scale(1); filter: brightness(0.9) contrast(1.1) saturate(1); }
+    .menu-item:hover img { transform: scale(1); filter: brightness(1.0) contrast(1.02) saturate(1.1); }
     .menu-item-label {
       position: absolute; bottom: 0; left: 0; right: 0;
       padding: 50px 28px 28px;
-      background: linear-gradient(to top, rgba(10,9,6,0.88) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(15,14,11,0.88) 0%, transparent 100%);
       transform: translateY(8px);
       transition: transform 0.4s ease;
     }
@@ -319,21 +324,21 @@
     .exp-features { margin-top: 52px; display: flex; flex-direction: column; gap: 28px; }
     .exp-feature { display: flex; gap: 24px; align-items: flex-start; }
     .exp-icon {
-      width: 42px; height: 42px; border: 1px solid rgba(154,114,32,0.3);
+      width: 42px; height: 42px; border: 1px solid rgba(184,77,42,0.3);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; color: var(--gold); font-size: 1rem;
       transition: border-color 0.3s, background 0.3s;
     }
-    .exp-feature:hover .exp-icon { border-color: var(--gold); background: rgba(154,114,32,0.08); }
+    .exp-feature:hover .exp-icon { border-color: var(--gold); background: rgba(184,77,42,0.08); }
     .exp-feature-title { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); margin-bottom: 6px; }
     .exp-feature-text { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
     .exp-image { position: relative; overflow: hidden; }
-    .exp-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82) contrast(1.1); }
+    .exp-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.88) contrast(1.02); }
     .exp-image::before {
       content: 'MIRABEL'; z-index: 1;
       position: absolute; bottom: 40px; left: -20px;
       font-family: 'Bebas Neue', sans-serif; font-size: 7rem;
-      color: rgba(154,114,32,0.1); letter-spacing: 0.1em; pointer-events: none;
+      color: rgba(184,77,42,0.1); letter-spacing: 0.1em; pointer-events: none;
     }
 
     /* ─── GALLERY STRIP ─── */
@@ -343,12 +348,12 @@
     }
     .gallery-strip img {
       flex: 1; object-fit: cover; min-width: 0;
-      filter: brightness(0.65) grayscale(0.15) contrast(1.1);
+      filter: brightness(0.88) grayscale(0) contrast(1.02);
       transition: flex 0.7s ease, filter 0.7s ease;
     }
     .gallery-strip img:hover {
       flex: 2.5;
-      filter: brightness(0.9) grayscale(0) contrast(1.1);
+      filter: brightness(1.0) grayscale(0) contrast(1.02);
     }
 
     /* ─── EVENTS / CORPORATE ─── */
@@ -359,7 +364,7 @@
     .corporate::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(154,114,32,0.05) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 50% 50%, rgba(184,77,42,0.05) 0%, transparent 65%);
     }
     .corporate-inner {
       max-width: 760px; margin: 0 auto; text-align: center; position: relative; z-index: 1;
@@ -372,9 +377,9 @@
       transition: border-color 0.3s, background 0.3s;
       text-align: left;
     }
-    .corp-card:hover { border-color: rgba(154,114,32,0.4); background: rgba(154,114,32,0.05); }
+    .corp-card:hover { border-color: rgba(184,77,42,0.4); background: rgba(184,77,42,0.05); }
     .corp-num {
-      font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: rgba(154,114,32,0.15);
+      font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: rgba(184,77,42,0.15);
       line-height: 1; margin-bottom: 16px;
     }
     .corp-title { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
@@ -404,12 +409,12 @@
     .res-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .res-contact {
       display: flex; gap: 50px; justify-content: center; margin-top: 52px; padding-top: 52px;
-      border-top: 1px solid rgba(201,168,76,0.18);
+      border-top: 1px solid rgba(201,96,64,0.18);
     }
     .res-contact-item { display: flex; flex-direction: column; gap: 6px; align-items: center; }
     .res-contact-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
     .res-contact-val { font-size: 0.92rem; color: #f0e8d8; }
-    .reservation .btn-secondary { color: rgba(240,232,216,0.75); border-bottom-color: rgba(201,168,76,0.35); }
+    .reservation .btn-secondary { color: rgba(240,232,216,0.75); border-bottom-color: rgba(201,96,64,0.35); }
     .reservation .btn-secondary:hover { color: var(--gold); opacity: 1; }
 
     /* ─── FOOTER ─── */
@@ -422,7 +427,7 @@
     }
     .footer-logo img { filter: brightness(0); }
     .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.15em; color: var(--gold); }
-    .footer-logo span { display: block; font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 2px; }
+    .footer-logo span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 2px; }
     .footer-links { display: flex; gap: 36px; justify-content: center; }
     .footer-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
     .footer-links a:hover { color: var(--gold); }
