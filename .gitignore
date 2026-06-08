@@ -1,0 +1,16 @@
+.DS_Store
+node_modules/
+.claude/
+stitch-output.html
+stitch-output-v1.html
+index-v1-manual.html
+*.docx
+IMG_*.png
+*.HEIC
+.github/
+05_plan_media/
+06_livrables/
+_menu_inbox/
+scripts/
+NOTES.md
+CLAUDE.md

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet"/>
+<style>
+@font-face{
+  font-family:'More Sugar'; font-style:normal; font-weight:400; font-display:swap;
+  src: url('./fonts/MoreSugar.ttf') format('truetype');
+}
+@font-face{
+  font-family:'More Sugar'; font-style:normal; font-weight:300; font-display:swap;
+  src: url('./fonts/MoreSugar-Thin.ttf') format('truetype');
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#331200",
+                    "secondary-fixed-dim": "#A4BAD0",
+                    "primary": "#181C1D",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f4f0e7",
+                    "surface-container": "#A4BAD0",
+                    "on-secondary-container": "#754500",
+                    "outline": "#5B83AB",
+                    "inverse-surface": "#31312b",
+                    "primary-container": "#181C1D",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5B83AB",
+                    "primary-fixed-dim": "#f8b997",
+                    "on-primary-container": "#e0a483",
+                    "outline-variant": "#A4BAD0",
+                    "on-surface": "#181C1D",
+                    "surface-bright": "#E6E5DA",
+                    "tertiary": "#181C1D",
+                    "on-surface-variant": "#181C1D",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#2e1507",
+                    "surface-container-highest": "#A4BAD0",
+                    "on-tertiary-fixed-variant": "#603f2e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#ffdbca",
+                    "surface-tint": "#835338",
+                    "on-primary-fixed-variant": "#673c23",
+                    "on-secondary-fixed": "#2c1700",
+                    "surface-dim": "#dddad1",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#A4BAD0",
+                    "on-tertiary-container": "#d4a791",
+                    "secondary-fixed": "#ffdcbc",
+                    "surface-variant": "#e6e2d9",
+                    "secondary-container": "#A4BAD0",
+                    "background": "#E6E5DA",
+                    "surface": "#E6E5DA",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#5c3c2b",
+                    "on-secondary-fixed-variant": "#683d00",
+                    "surface-container-low": "#E6E5DA",
+                    "tertiary-fixed-dim": "#ebbda6",
+                    "on-background": "#181C1D",
+                    "inverse-primary": "#f8b997"
+            },
+            "fontFamily": {
+                    "sans": ["Poppins", "ui-serif", "Georgia", "serif"],
+                    "gasoek": ["More Sugar", "ui-sans-serif", "system-ui", "sans-serif"],
+                    "fraunces": ["Poppins", "ui-serif", "Georgia", "serif"],
+                    "epilogue": ["Poppins", "ui-serif", "serif"],
+                    "newsreader": ["Poppins", "ui-serif", "serif"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+html, body { font-family: "Poppins", ui-serif, Georgia, serif; font-weight: 400;  -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.015em; }
+.font-display { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif !important; }
+.font-fraunces, .font-newsreader, .font-epilogue { font-family: "Poppins", ui-serif, Georgia, serif !important; }
+.font-gasoek { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif !important; }
+.gasoek-caps { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif !important; text-transform: uppercase; letter-spacing: -0.01em; }
+.fraunces-italic { font-family: "Poppins", ui-serif, Georgia, serif !important; font-style: italic; font-weight: 400; }
+.grain-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9999; opacity: .35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>");
+}
+.text-bleed { letter-spacing: -0.03em; }
+.sep-line { height: 1px; background-color: rgba(100, 57, 32, 0.15); width: 100%; }
+.warm-filter { filter: saturate(.88) contrast(1.06) brightness(.97); }
+
+/* === Creative "Réserver" bubble === */
+.btn-reserve{
+  font-family:'More Sugar', system-ui, sans-serif;
+  font-size:clamp(.95rem, 1.1vw, 1.05rem);
+  letter-spacing:.01em;
+  color:#fff;
+  background:#5B83AB;
+  padding:.75rem 1.7rem .8rem;
+  border:none; cursor:pointer;
+  display:inline-flex; align-items:center; gap:.55rem;
+  border-radius: 62% 38% 55% 45% / 50% 60% 40% 50%;
+  transform: rotate(-3deg);
+  box-shadow: 0 4px 0 #181C1D, 0 8px 22px rgba(24,28,29,.25);
+  transition: transform .4s cubic-bezier(.34,1.6,.64,1), box-shadow .35s, background .3s, border-radius .8s;
+  position:relative;
+}
+.btn-reserve::before{ content:'✦'; font-size:.85em; opacity:.9; }
+.btn-reserve:hover{
+  transform: rotate(2deg) scale(1.06);
+  background:#4A6F94;
+  border-radius: 45% 55% 42% 58% / 55% 45% 60% 40%;
+  box-shadow: 0 6px 0 #181C1D, 0 12px 32px rgba(24,28,29,.3);
+}
+.btn-reserve:active{
+  transform: rotate(-1deg) scale(.97);
+  box-shadow: 0 2px 0 #181C1D, 0 4px 10px rgba(24,28,29,.2);
+}
+
+/* === Patio-style gallery mosaic === */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: clamp(70px, 8vw, 130px);
+  gap: clamp(8px, 1vw, 14px);
+  grid-auto-flow: dense;
+}
+.gallery-grid .tile {
+  position: relative; overflow: hidden; border-radius: 4px;
+  background: rgba(24,28,29,.05);
+}
+.gallery-grid .tile > img,
+.gallery-grid .tile > video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1s cubic-bezier(.16,1,.3,1), filter .5s;
+  filter: saturate(.92) contrast(1.04);
+}
+.gallery-grid .tile:hover > img,
+.gallery-grid .tile:hover > video { transform: scale(1.06); filter: saturate(1.05) contrast(1.06); }
+.gallery-grid .tile::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(180deg, rgba(24,28,29,0) 60%, rgba(24,28,29,.18));
+}
+/* Tile sizing — curated asymmetric mosaic (cycles every 11) */
+.gallery-grid .tile:nth-child(11n+1) { grid-column: span 4; grid-row: span 3; }
+.gallery-grid .tile:nth-child(11n+2) { grid-column: span 3; grid-row: span 4; }
+.gallery-grid .tile:nth-child(11n+3) { grid-column: span 5; grid-row: span 3; }
+.gallery-grid .tile:nth-child(11n+4) { grid-column: span 4; grid-row: span 2; }
+.gallery-grid .tile:nth-child(11n+5) { grid-column: span 5; grid-row: span 4; }
+.gallery-grid .tile:nth-child(11n+6) { grid-column: span 3; grid-row: span 2; }
+.gallery-grid .tile:nth-child(11n+7) { grid-column: span 4; grid-row: span 3; }
+.gallery-grid .tile:nth-child(11n+8) { grid-column: span 5; grid-row: span 2; }
+.gallery-grid .tile:nth-child(11n+9) { grid-column: span 3; grid-row: span 3; }
+.gallery-grid .tile:nth-child(11n+10){ grid-column: span 4; grid-row: span 3; }
+.gallery-grid .tile:nth-child(11n+11){ grid-column: span 5; grid-row: span 2; }
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 90px; gap: 8px; }
+  .gallery-grid .tile:nth-child(odd)  { grid-column: span 3; grid-row: span 3; }
+  .gallery-grid .tile:nth-child(even) { grid-column: span 3; grid-row: span 2; }
+  .gallery-grid .tile:nth-child(7n+3){ grid-column: span 6; grid-row: span 3; }
+}
+.gallery-grid .tile-video::before {
+  content:"►"; position:absolute; top:10px; right:10px; z-index:2;
+  width:28px; height:28px; border-radius:999px;
+  background: rgba(24,28,29,.55); color:#E6E5DA;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.6rem; letter-spacing:-.05em; backdrop-filter: blur(4px);
+}
+</style>
+</head>
+<body class="bg-[#E6E5DA] text-[#181C1D]">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#E6E5DA]/90 backdrop-blur-md dark:bg-stone-900/90 border-b border-[#181C1D]/15 flex justify-between items-center px-8 py-4 w-full">
+<a href="#" aria-label="Bistro St-Charles" class="block text-[#181C1D]" style="width:clamp(140px,11vw,180px);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 149.99" style="width:100%;height:auto;display:block;fill:currentColor;">
+<rect x="40.37" y="26.08" width="278.45" height="6.04"/>
+<rect x="40.37" y="94.76" width="278.45" height="6.04"/>
+<path d="M95.82,50.82c3.37,0,6.05.99,9.25,3.4l3.1,2.34,5.48-7.72-2.91-2.21c-4.43-3.38-9.42-5.09-14.83-5.09-11.99,0-21.75,10.08-21.75,22.47s9.58,22.67,21.8,22.67c5.71,0,10.61-1.8,15.42-5.66l2.78-2.24-5.32-7.44-3.09,2.27c-3.66,2.69-6.47,3.79-9.7,3.79-6.94,0-12.17-5.8-12.17-13.49s5.23-13.08,11.91-13.08Z"/>
+<polygon points="147.71 86.16 147.71 42.04 138.08 42.04 138.08 56.82 128.42 56.82 128.42 42.04 118.78 42.04 118.78 86.16 128.42 86.16 128.42 66.05 138.08 66.05 138.08 86.16 147.71 86.16"/>
+<path d="M170.32,41.18h-1.82l-16.91,44.98h10.06l3.71-9.95h11.63l3.56,9.95h10.19l-16.42-44.98h-4ZM168.78,66.98l2.48-6.67,2.4,6.67h-4.88Z"/>
+<path d="M223.44,57.75c0-9.25-7.38-15.71-17.95-15.71h-10.64v44.12h9.64v-8.58l10.74,8.58h15.35l-17.45-13.71c6.39-2.41,10.31-7.73,10.31-14.7ZM205.08,64.74h-.59v-13.47h.79c1.97,0,8.41.47,8.41,6.58,0,2.57-1.12,6.89-8.62,6.89Z"/>
+<polygon points="233.77 42.04 233.77 86.16 256.36 86.16 256.36 76.93 243.41 76.93 243.41 42.04 233.77 42.04"/>
+<polygon points="285.66 51.27 285.66 42.04 262.67 42.04 262.67 86.16 285.76 86.16 285.76 76.93 272.3 76.93 272.3 66.05 285.46 66.05 285.46 56.82 272.3 56.82 272.3 51.27 285.66 51.27"/>
+<path d="M304.37,77.18c-2,0-4.32-.73-7.08-2.23l-3.6-1.96-3.94,8.87,3.23,1.62c2.73,1.36,6.9,2.99,11.29,2.99,8.29,0,14.54-5.71,14.54-13.28,0-6.84-3.83-10.56-10.9-15.03-5.4-3.4-5.4-4.23-5.4-5.28,0-1.62,1.74-1.86,2.77-1.86,1.89,0,3.16.5,4.73,1.36l3.44,1.9,4.28-8.56-3.29-1.72c-2.24-1.17-4.89-2.26-9.06-2.26-7.04,0-12.56,4.94-12.56,11.24,0,5.92,3.58,9.31,9.74,13.15,6.56,4.11,6.56,5.39,6.56,7.16,0,2.51-1.68,3.89-4.75,3.89Z"/>
+<path d="M44.88,64.31h2.95c2.93,0,4.54-1.61,4.54-4.54v-3.07c0-1.88-.57-2.99-2.1-4.1l-4.67-2.19c-.25-.18-.3-.27-.3-.64v-2.15s.03,0,.04,0h1.9s.03,0,.04,0v2.22h4.9v-2.28c0-2.96-2.27-4.51-4.51-4.51h-2.19c-3.39,0-5.12,1.52-5.12,4.53v2.59c0,1.88.59,3.03,2.11,4.11l4.65,2.18c.28.22.31.31.31.65v2.63s-.04,0-.07,0h-2.06s-.05,0-.07,0v-1.95h-4.87v2.01c0,2.91,1.6,4.51,4.51,4.51Z"/>
+<polygon points="62.35 64.15 62.35 47.9 66.2 47.9 66.2 43.21 53.75 43.21 53.75 47.9 57.4 47.9 57.4 64.15 62.35 64.15"/>
+<rect x="40.37" y="66.84" width="25.83" height="4.82"/>
+<path d="M218.01,106.7h-17.06v17.31h17.06c1.16,0,2.17-.49,3.01-1.46.79-.94,1.18-2.07,1.18-3.36v-7.68c0-1.27-.4-2.39-1.18-3.33-.82-.97-1.86-1.49-3.01-1.49ZM218.64,119.2c0,.31-.08.55-.23.73-.16.19-.29.21-.4.21h-13.5v-2.85h14.14v1.9ZM218.64,113.42h-14.14v-2.85h13.5c.07,0,.2,0,.38.22.17.2.25.43.25.72v1.9Z"/>
+<rect x="224.27" y="106.7" width="3.56" height="17.31"/>
+<path d="M246.96,106.7h-12.87c-1.19,0-2.21.5-3.04,1.5-.76.94-1.15,2.05-1.15,3.32s.39,2.41,1.17,3.37c.82.95,1.82,1.44,2.85,1.44h.03l13.01,1.93c.07,0,.2,0,.38.22.17.2.25.43.25.72,0,.31-.08.55-.23.73-.17.19-.29.21-.4.21h-12.87c-.12,0-.26-.02-.39-.17-.16-.21-.24-.45-.24-.77v-.98h-3.56v.98c0,1.29.39,2.41,1.17,3.37.83.96,1.85,1.45,3.03,1.45h12.87c1.17,0,2.18-.49,3.01-1.46.79-.94,1.19-2.07,1.19-3.36s-.4-2.39-1.19-3.33c-.81-.97-1.77-1.48-2.87-1.48l-13.01-1.93c-.12,0-.26-.02-.39-.17-.16-.21-.24-.45-.24-.77,0-.3.08-.53.22-.72.17-.2.3-.22.41-.22h12.87c.07,0,.2,0,.38.22.17.2.25.43.25.72v.98h3.56v-.98c0-1.27-.4-2.39-1.19-3.33-.82-.97-1.86-1.49-3.01-1.49Z"/>
+<polygon points="252.42 110.57 261.27 110.57 261.27 124.01 264.83 124.01 264.83 110.57 273.68 110.57 273.68 106.7 252.42 106.7 252.42 110.57"/>
+<path d="M295.02,114.87c.79-.94,1.18-2.07,1.18-3.36s-.4-2.39-1.18-3.33c-.82-.97-1.86-1.49-3.01-1.49h-17.06v17.31h3.56v-7.68h12.21l2.16,7.68h3.64l-2.35-8.35c.31-.22.59-.48.85-.79ZM292.41,112.25c-.16.19-.29.21-.4.21h-13.5v-1.89h13.5c.07,0,.2,0,.38.22.17.2.25.43.25.72,0,.31-.08.55-.23.73Z"/>
+<path d="M314.53,106.7h-12.87c-1.19,0-2.21.5-3.04,1.5-.76.94-1.15,2.05-1.15,3.32v7.68c0,1.29.39,2.41,1.17,3.37.83.96,1.85,1.45,3.03,1.45h12.87c1.16,0,2.17-.49,3.01-1.46.78-.94,1.18-2.07,1.18-3.36v-7.68c0-1.27-.4-2.39-1.19-3.33-.82-.97-1.86-1.49-3.01-1.49ZM315.16,119.2c0,.31-.08.55-.23.73-.16.19-.29.21-.4.21h-12.87c-.12,0-.26-.02-.39-.17-.16-.21-.24-.45-.24-.77v-7.68c0-.3.08-.53.23-.72.17-.2.3-.22.41-.22h12.87c.07,0,.2,0,.38.22.17.2.25.43.25.72v7.68Z"/>
+</svg>
+</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#181C1D] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#menu">Menu</a>
+<a class="text-[#181C1D] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="./carte-vins.html">À boire</a>
+<a class="text-[#181C1D] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#photos">Photos</a>
+<a class="text-[#181C1D] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#contact">Nous joindre</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-[#181C1D] font-epilogue hidden sm:block">450·818·8668</span>
+<button data-open-reserve class="btn-reserve">Réserver</button>
+</div>
+</nav>
+<!-- Hero -->
+<header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" style="filter:saturate(.8) contrast(1.05) brightness(.55);" data-alt="Salle du Bistro St-Charles" src="./photos/103f98ea3bb09013aa44c77626b02caf.JPEG"/>
+<!-- Palette gradient overlay 30-40% -->
+<div class="absolute inset-0" style="
+  background:
+    radial-gradient(60% 60% at 15% 20%, rgba(164,186,208,0.35) 0%, rgba(164,186,208,0) 60%),
+    radial-gradient(70% 60% at 85% 15%, rgba(91,131,171,0.40) 0%, rgba(91,131,171,0) 65%),
+    radial-gradient(80% 80% at 70% 100%, rgba(24,28,29,0.55) 0%, rgba(24,28,29,0) 70%),
+    linear-gradient(180deg, rgba(230,229,218,0.10) 0%, rgba(91,131,171,0.18) 50%, rgba(24,28,29,0.40) 100%);
+  mix-blend-mode:normal;"></div>
+<div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(24,28,29,0) 40%, rgba(24,28,29,0.45) 100%);"></div>
+</div>
+<div class="absolute left-12 top-1/2 -translate-y-1/2 hidden lg:block">
+<div class="rotate-[-90deg] origin-left text-[11px] gasoek-caps tracking-[0.28em] text-[#E6E5DA]/60">
+                MIRABEL · QUÉBEC
+            </div>
+</div>
+<div class="absolute right-12 top-1/2 -translate-y-1/2 hidden lg:block">
+<div class="rotate-[90deg] origin-right text-[11px] gasoek-caps tracking-[0.28em] text-[#E6E5DA]/60">
+                ÉTABLI EN BON VOISINAGE
+            </div>
+</div>
+<div class="relative z-10 text-center flex flex-col items-center">
+<h1 class="text-[#E6E5DA] gasoek-caps text-5xl md:text-7xl leading-[0.9] tracking-tight">
+                Votre bistro<br/>de quartier
+            </h1>
+</div>
+<div class="absolute bottom-12 right-12 z-10 bg-[#E6E5DA] p-6 rounded-lg border border-[#181C1D]/15 shadow-xl">
+<div class="flex items-center gap-1 mb-2 text-[#5B83AB]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<div class="text-[#181C1D] gasoek-caps text-xl">4,4 / 5,0</div>
+<div class="text-[#181C1D]/70 text-[10px] uppercase tracking-widest mt-1">535 avis Google</div>
+</div>
+</header>
+<!-- L'Esprit du Bistro -->
+<section class="bg-[#E6E5DA] py-24 px-8 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="relative aspect-[4/5] overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover warm-filter" data-alt="Plat servi au Bistro St-Charles" src="./photos/117586c66808523f6332975f9ee58b03.JPEG"/>
+</div>
+<div class="text-[#181C1D]">
+<span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#5B83AB] block mb-6">① L'esprit du bistro</span>
+<h2 class="text-4xl md:text-6xl gasoek-caps leading-[0.9] mb-8 text-[#181C1D]">
+                Une table<br/>vivante<br/>et raffinée.
+            </h2>
+<p class="font-fraunces text-xl leading-relaxed text-[#181C1D]/80 mb-10 max-w-md">
+                Un bistro de quartier qui change avec le marché. L'ardoise évolue chaque semaine, la carte des vins respire avec les saisons, les cocktails sont signés maison. Produits d'ici, cuisine de saison, idées vives — à chaque visite, son moment.
+            </p>
+<button class="border border-[#181C1D]/40 text-[#181C1D] px-8 py-3 rounded-full gasoek-caps text-xs tracking-widest hover:bg-[#181C1D] hover:text-[#E6E5DA] transition-colors">
+                Découvrir notre histoire
+            </button>
+</div>
+</section>
+<!-- Menus du jour — Ardoise (soir) | Midi -->
+<section class="grid grid-cols-1 lg:grid-cols-2">
+
+  <!-- LEFT: MENU ARDOISE (soir) -->
+  <div class="bg-[#5B83AB] text-[#E6E5DA] p-10 md:p-16 lg:p-20 relative">
+    <span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-10 opacity-90">Menu ardoise</span>
+    <ul class="divide-y divide-[#E6E5DA]/30">
+      <!-- MENU:ardoise:START -->
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Ceviche de flétan à la péruvienne</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Leche de tigre, lime, gingembre, coriandre, jalapeño et maïs croquants.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Arancinis homard</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Mayo harissa au homard et citron, relish de pomme et fenouil avec chips de prosciutto.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Tataki d'espadon</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce miso blanc, lime et gingembre, patate douce frites, oignons verts et sésames.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Mac &amp; cheese</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce fromagée à la bisque, gratiné au mozzarella avec queue de homard.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Agneau</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Yogourt aux herbes, asperges grillées, pois chiches croustillants, chimichurri aux pistaches et feta.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Contrefilet 12 oz</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce au poivre, crevettes tigrées et frites maison.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Moules frites</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce crème, vin blanc, oignon vert et parmesan, servies avec frites maison.</p>
+      </li>
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Flétan</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Bok choy grillé, sauté de crevettes, tomates, fenouil, câpres et beurre citronné, flambé à la sambuca.</p>
+      </li>
+      <!-- MENU:ardoise:END -->
+    </ul>
+  </div>
+
+  <!-- RIGHT: MENU MIDI -->
+  <div class="bg-[#A4BAD0] text-[#181C1D] p-10 md:p-16 lg:p-20 relative">
+    <span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-10 opacity-90">Menu midi</span>
+    <ul class="divide-y divide-[#181C1D]/20">
+      <!-- MENU:midi:START -->
+      <li class="py-7">
+        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Menu midi à venir</h3>
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Le client va déposer la première photo dans le dossier Dropbox prochainement.</p>
+      </li>
+      <!-- MENU:midi:END -->
+    </ul>
+  </div>
+
+</section>
+<!-- Quote Band -->
+<section class="relative h-[614px] flex items-center justify-center overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover" style="filter:saturate(.7) brightness(.5);" data-alt="Salle du bistro" src="./photos/1de1894bb11277386138aab232b276d4.JPEG"/>
+<div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(24,28,29,0.55), rgba(91,131,171,0.35));"></div>
+<div class="relative z-10 px-8 text-center">
+<blockquote class="fraunces-italic text-2xl md:text-4xl text-[#E6E5DA] leading-snug max-w-4xl mx-auto" style="font-weight:400;">
+                « La bonne cuisine, c'est celle qui goûte l'endroit où on est assis. »
+            </blockquote>
+<cite class="block mt-8 text-[#E6E5DA]/60 gasoek-caps text-[12px] tracking-[0.3em] font-normal not-italic">— SIMON COURCELLES · CHEF</cite>
+</div>
+</section>
+<!-- L'Art du Bistro — Amrit-style catering layout -->
+<section class="bg-[#A4BAD0] py-24 md:py-32 px-8 md:px-16">
+  <!-- Header row: left label · centered title · right label -->
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-start mb-20">
+    <div class="md:col-span-2 md:pt-10">
+      <span class="text-[11px] tracking-[0.28em] uppercase text-[#181C1D]/80 block">③ Hospitalité</span>
+    </div>
+    <h2 class="md:col-span-8 text-center text-[#181C1D] gasoek-caps leading-[0.95] tracking-tight" style="font-size:clamp(2rem,4.4vw,4rem);">
+      Notre façon<br/>de recevoir
+    </h2>
+    <div class="md:col-span-2 md:pt-10 md:text-right">
+      <span class="text-[11px] tracking-[0.28em] uppercase text-[#181C1D]/80 block">À Mirabel</span>
+    </div>
+  </div>
+
+  <p class="max-w-xl mx-auto text-center text-[#181C1D]/80 leading-relaxed mb-16 md:mb-20">
+    Un soir en amoureux, un repas de famille, une soirée bien arrosée entre amis — on ouvre la maison à toutes les occasions. Une cuisine de caractère, un service qui prend son temps, une table qu'on n'oublie pas.
+  </p>
+
+  <!-- 3 big rectangles -->
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <figure class="group">
+      <div class="overflow-hidden aspect-[4/5] bg-black/5">
+        <img src="./photos/4462c5dd39b2d23c4fa4e9a09b7968fa.JPEG" alt="Menus du marché" class="w-full h-full object-cover warm-filter group-hover:scale-[1.03] transition-transform duration-700"/>
+      </div>
+      <figcaption class="text-center mt-6">
+        <h3 class="text-xl md:text-2xl text-[#181C1D] mb-2">Menus du marché</h3>
+        <p class="text-sm md:text-base text-[#181C1D]/75 leading-relaxed max-w-xs mx-auto">L'ardoise change au gré des arrivages. On cuisine ce que la saison donne, rien d'autre.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="group">
+      <div class="overflow-hidden aspect-[4/5] bg-black/5">
+        <img src="./photos/a9ca2cd207294fdab2ad48097f2ee684.JPEG" alt="Service attentif" class="w-full h-full object-cover warm-filter group-hover:scale-[1.03] transition-transform duration-700"/>
+      </div>
+      <figcaption class="text-center mt-6">
+        <h3 class="text-xl md:text-2xl text-[#181C1D] mb-2">Service attentif</h3>
+        <p class="text-sm md:text-base text-[#181C1D]/75 leading-relaxed max-w-xs mx-auto">Une équipe qui connaît ses classiques, raconte l'assiette et ouvre les bonnes bouteilles.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="group">
+      <div class="overflow-hidden aspect-[4/5] bg-black/5">
+        <img src="./photos/66a8c7fdc0f46dd72b7c976c4a3a5af4.JPEG" alt="Table familiale" class="w-full h-full object-cover warm-filter group-hover:scale-[1.03] transition-transform duration-700"/>
+      </div>
+      <figcaption class="text-center mt-6">
+        <h3 class="text-xl md:text-2xl text-[#181C1D] mb-2">Table familiale</h3>
+        <p class="text-sm md:text-base text-[#181C1D]/75 leading-relaxed max-w-xs mx-auto">Groupes, anniversaires, célébrations — on ouvre la grande table et on partage tout.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+<!-- Photos / Galerie — patio-style mosaic -->
+<section id="photos" class="bg-[#E6E5DA] py-24 md:py-32 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto mb-12 md:mb-16 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+    <div class="md:col-span-8">
+      <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#5B83AB] block mb-6">④ Photos</span>
+      <h2 class="gasoek-caps text-[#181C1D] leading-[0.95] tracking-tight" style="font-size:clamp(2.4rem,5vw,4.5rem);">
+        Dans l'œil<br/>du bistro.
+      </h2>
+    </div>
+    <div class="md:col-span-4 md:text-right">
+      <p class="font-fraunces text-base md:text-lg text-[#181C1D]/75 leading-relaxed max-w-sm md:ml-auto">
+        Une soirée chez nous, en images — assiettes, salle, équipe, instants volés.
+      </p>
+      <a href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" class="inline-block mt-4 text-[11px] gasoek-caps tracking-[0.28em] text-[#5B83AB] hover:text-[#181C1D] transition-colors">@bistrostcharles ↗</a>
+    </div>
+  </div>
+
+  <div class="gallery-grid max-w-7xl mx-auto">
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_489775214_1230612005735909_6827620372631405828_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_497615011_1260428996087543_4698489966192123522_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile tile-video"><video src="./photos/gallery/SaveClip.App_AQM6NtuXm5a3d51-_pl5hBpBAI3i4PcPw3vIhT-IP3hMD25AP-XrieP--Z9fyQwXuFwP-c735Fe378Ldxj-aYLFHQp-NezMSbc1qH5Q.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_506353170_1284382817025494_5795956111659535316_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_506353610_1284386003691842_4493601760879754759_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_506469589_1284384310358678_5630749386227718148_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile tile-video"><video src="./photos/gallery/SaveClip.App_AQMWk8bQRecF-1--5zgG-xoXDOKH0SiCEqRdH6Ol0ysdpVcBmP-XdC-TYmObLpbxzJ-C7tdPH3SlZBjtTgnPCeI22tdl8GJH0Bpf0C8.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_558322540_1383265257137249_7504803143566374165_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_573827995_18512800087071792_1088421448355728026_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_689448206_18551703433071792_7988434569048982471_n.jpg" alt="" loading="lazy"/></div>
+    <div class="tile"><img src="./photos/gallery/SaveClip.App_506353610_1284386003691842_4493601760879754759_n%20(1).jpg" alt="" loading="lazy"/></div>
+  </div>
+</section>
+
+<!-- Gift Cards -->
+<section class="bg-[#181C1D] py-24 px-8 md:px-20 overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center p-4 md:p-12 relative">
+<div class="flex-1">
+<span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#A4BAD0] block mb-6">⑤ Cadeau</span>
+<h2 class="text-5xl md:text-7xl gasoek-caps text-[#E6E5DA] leading-[0.85] mb-8">
+                    OFFREZ<br/>UN SOIR<br/>AU BISTRO.
+                </h2>
+<p class="font-fraunces text-xl mb-8 max-w-sm text-[#E6E5DA]/80">Un cadeau mémorable pour les amoureux du goût.</p>
+<button class="bg-[#5B83AB] hover:bg-[#A4BAD0] text-[#E6E5DA] px-10 py-4 rounded-full gasoek-caps text-sm tracking-[0.2em] transition-colors">Commander</button>
+</div>
+<div class="flex-1 relative">
+<img class="w-full h-auto rounded shadow-2xl warm-filter" data-alt="A luxury cream-colored monogrammed envelope sitting on a dark wooden surface" src="./photos/ebd4f1508e9362305c61f9ec6087369e.JPEG"/>
+<div class="absolute -bottom-6 -right-6 bg-[#5B83AB] text-white gasoek-caps p-8 rounded-full text-center leading-none">
+                    BSC<br/><span class="text-[10px]">MIRABEL</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Heritage -->
+<section class="bg-[#E6E5DA] py-24 px-8 md:px-20">
+<span class="text-[11px] gasoek-caps tracking-[0.28em] text-primary block mb-12">⑥ La maison</span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+<div>
+<img class="w-full h-auto grayscale warm-filter contrast-125" data-alt="Cinematic portrait of a chef in a white apron, looking thoughtfully in a dark kitchen" src="./photos/ee39e421d9a94c2f1788de8e093cd13b.JPEG"/>
+</div>
+<div class="flex flex-col justify-center">
+<h2 class="gasoek-caps text-3xl md:text-5xl text-primary mb-8 leading-[0.95]">UNE ADRESSE,<br/>PAS UNE ENSEIGNE.</h2>
+<div class="space-y-6 font-newsreader text-xl leading-relaxed text-on-surface-variant">
+<p>Le Bistro St-Charles est né d'une volonté simple : créer un lieu de rencontre où la gastronomie n'est pas un spectacle, mais une conversation. C'est le projet d'une vie pour Simon Courcelles, natif de la région.</p>
+<p>Chaque brique de ce bâtiment centenaire a été restaurée pour accueillir les récits des convives, autour d'une cuisine qui refuse les compromis sur la qualité des produits.</p>
+<p>Nous ne sommes pas une franchise, nous sommes vos voisins.</p>
+</div>
+<div class="mt-12 border-l-4 border-secondary pl-8 py-4">
+<p class="gasoek-caps text-3xl text-primary leading-none">"C'EST ICI <br/> QUE LA VIE <br/> SE PASSE."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Reviews -->
+<section class="bg-[#5B83AB] py-24 px-8 overflow-hidden text-[#E6E5DA]">
+<div class="max-w-7xl mx-auto">
+<span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#A4BAD0] block mb-6">⑦ On en parle</span>
+<h2 class="text-3xl md:text-5xl gasoek-caps text-[#E6E5DA] mb-16 leading-[0.95]">
+                Ce que<br/>nos clients disent.
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-[#E6E5DA] p-10 rounded-lg flex flex-col text-[#181C1D]">
+<div class="flex mb-6 text-[#5B83AB]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-fraunces italic text-xl mb-8 leading-relaxed">"Une expérience sensorielle complète. La lumière, le son des verres, et surtout cette sauce au poivre..."</p>
+<div class="mt-auto gasoek-caps text-xs tracking-widest text-primary">— MATHIEU LEBLANC</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#E6E5DA] p-10 rounded-lg flex flex-col text-[#181C1D]">
+<div class="flex mb-6 text-[#5B83AB]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-fraunces italic text-xl mb-8 leading-relaxed">"Le meilleur tartare au nord de Montréal. On sent l'amour du produit local dans chaque bouchée."</p>
+<div class="mt-auto gasoek-caps text-xs tracking-widest text-primary">— SOPHIE GAGNON</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#E6E5DA] p-10 rounded-lg flex flex-col text-[#181C1D]">
+<div class="flex mb-6 text-[#5B83AB]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-fraunces italic text-xl mb-8 leading-relaxed">"Le service est exceptionnel. On nous a fait sentir comme des habitués dès notre première visite."</p>
+<div class="mt-auto gasoek-caps text-xs tracking-widest text-primary">— JEAN-PHILIPPE T.</div>
+</div>
+</div>
+<div class="mt-16 flex gap-4">
+<button class="w-12 h-12 rounded-full border border-[#E6E5DA]/40 flex items-center justify-center text-[#E6E5DA] hover:bg-[#E6E5DA] hover:text-[#5B83AB] transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-[#E6E5DA] flex items-center justify-center text-[#5B83AB] bg-[#E6E5DA]">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full relative overflow-hidden pt-20 pb-10 bg-[#181C1D] dark:bg-black text-[#E6E5DA]">
+<div class="text-[15vw] leading-[0.8] font-black text-[#E6E5DA] opacity-10 tracking-tighter uppercase gasoek-caps absolute -top-10 -left-10 pointer-events-none select-none">
+            BISTRO ST-CHARLES
+        </div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-full relative z-10">
+<div>
+<span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-6 text-[#E6E5DA]/40">CONTACT</span>
+<p class="font-fraunces italic text-lg leading-relaxed text-[#E6E5DA]/80">
+                    234, rue Saint-Charles <br/>
+                    Mirabel, QC J7N 1A2 <br/>
+<span class="block mt-4">450·818·8668</span>
+</p>
+</div>
+<div>
+<span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-6 text-[#E6E5DA]/40">HOURS</span>
+<p class="font-fraunces italic text-lg leading-relaxed text-[#E6E5DA]/80">
+                    Mar — Ven : 17h — 22h <br/>
+                    Sam : 16h — 23h <br/>
+                    Dim — Lun : Fermé
+                </p>
+</div>
+<div>
+<span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-6 text-[#E6E5DA]/40">LINKS</span>
+<ul class="font-fraunces italic text-lg space-y-2">
+<li><a class="text-[#E6E5DA]/80 hover:text-white transition-colors" href="#">Politique de confidentialité</a></li>
+<li><a class="text-[#E6E5DA]/80 hover:text-white transition-colors" href="#">Emplois</a></li>
+<li><a class="text-[#E6E5DA]/80 hover:text-white transition-colors" href="#">Presse</a></li>
+</ul>
+</div>
+<div>
+<span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-6 text-[#E6E5DA]/40">NEWSLETTER</span>
+<div class="relative">
+<input class="bg-transparent border-b border-[#E6E5DA]/30 w-full py-2 font-fraunces italic focus:outline-none focus:border-secondary transition-colors text-[#E6E5DA]" placeholder="votre@courriel.com" type="email"/>
+<button class="absolute right-0 bottom-2 text-[#5B83AB] hover:text-white transition-colors">
+<span class="material-symbols-outlined">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-20 px-12 pt-8 border-t border-[#E6E5DA]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] gasoek-caps tracking-[0.2em] text-[#E6E5DA]/40">
+<div>© BISTRO ST-CHARLES — TOUS DROITS RÉSERVÉS</div>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">INSTAGRAM</a>
+<a class="hover:text-white transition-colors" href="#">FACEBOOK</a>
+</div>
+</div>
+</footer>
+
+<!-- Reservation Drawer -->
+<div id="reserve-backdrop" aria-hidden="true" class="fixed inset-0 z-[100] bg-[#1c0c04]/55 opacity-0 pointer-events-none transition-opacity duration-500" style="backdrop-filter:blur(4px);"></div>
+<aside id="reserve-drawer" aria-hidden="true" aria-label="Réservation Bistro St-Charles"
+       class="fixed top-0 right-0 z-[101] h-[100svh] w-full sm:w-[420px] bg-[#E6E5DA] text-[#181C1D] translate-x-full transition-transform duration-500 shadow-2xl flex flex-col"
+       style="transition-timing-function:cubic-bezier(.16,1,.3,1);">
+  <header class="flex items-center justify-between px-7 py-6 border-b border-[#181C1D]/15">
+    <div>
+      <span class="block text-[10px] gasoek-caps tracking-[0.28em] text-[#5B83AB] mb-1">Bistro St-Charles</span>
+      <h3 class="gasoek-caps text-2xl text-[#181C1D] leading-none">Réservation</h3>
+    </div>
+    <button id="reserve-close" aria-label="Fermer" class="w-10 h-10 rounded-full border border-[#181C1D]/25 flex items-center justify-center text-[#181C1D] hover:bg-[#181C1D] hover:text-[#E6E5DA] transition-colors">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </header>
+  <div class="px-7 py-5 text-sm font-fraunces leading-relaxed text-[#181C1D]/80 border-b border-[#181C1D]/10">
+    Choisissez la date, l'heure et le nombre de convives. On vous garde une table à Mirabel.
+  </div>
+  <div class="flex-1 overflow-y-auto p-4 bg-[#E6E5DA]">
+    <div class="bg-[#E6E5DA] rounded-md border border-[#181C1D]/15 overflow-hidden mx-auto" style="max-width:380px;">
+      <iframe src="https://widgets.libroreserve.com/WEB/QC015530247062/book"
+              title="Réservation en ligne — LibroReserve"
+              loading="lazy"
+              class="block w-full"
+              style="border:0; height:520px;"></iframe>
+    </div>
+    <p class="text-center text-[11px] gasoek-caps tracking-[0.28em] text-[#5B83AB] mt-6">Propulsé par LibroReserve</p>
+  </div>
+  <footer class="px-7 py-5 border-t border-[#181C1D]/15 flex items-center justify-between text-xs gasoek-caps tracking-[0.2em] text-[#181C1D]">
+    <a href="tel:+14508188668" class="hover:opacity-70 transition-opacity">450·818·8668</a>
+    <span class="text-[#5B83AB]">Mirabel · QC</span>
+  </footer>
+</aside>
+
+<script>
+(function(){
+  const drawer = document.getElementById('reserve-drawer');
+  const backdrop = document.getElementById('reserve-backdrop');
+  const closeBtn = document.getElementById('reserve-close');
+  const triggers = document.querySelectorAll('[data-open-reserve]');
+  let lastFocus = null;
+
+  function open(e){
+    if(e) e.preventDefault();
+    lastFocus = document.activeElement;
+    drawer.classList.remove('translate-x-full');
+    drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.remove('opacity-0','pointer-events-none');
+    backdrop.classList.add('opacity-100');
+    document.body.style.overflow = 'hidden';
+    setTimeout(()=>closeBtn.focus(), 350);
+  }
+  function close(){
+    drawer.classList.add('translate-x-full');
+    drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.add('opacity-0','pointer-events-none');
+    backdrop.classList.remove('opacity-100');
+    document.body.style.overflow = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  triggers.forEach(t => t.addEventListener('click', open));
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') close();
+  });
+})();
+</script>
+
+</body></html>
