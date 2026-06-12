@@ -127,6 +127,29 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
   box-shadow: 0 2px 0 #181C1D, 0 4px 10px rgba(24,28,29,.2);
 }
 
+/* === Notre menu — dotted leader rows === */
+.menu-list li{
+  display:flex; align-items:baseline; gap:.75rem;
+  padding:.65rem 0;
+}
+.menu-list li span{
+  font-family:"Poppins", sans-serif;
+  font-size:clamp(1rem, 1.3vw, 1.15rem);
+  font-weight:500;
+}
+.menu-list li i{
+  flex:1; min-width:2rem;
+  border-bottom:2px dotted rgba(230,229,218,.35);
+  transform:translateY(-4px);
+}
+.menu-list li b{
+  font-family:"More Sugar", system-ui, sans-serif;
+  font-weight:400; font-size:1.15rem;
+  white-space:nowrap;
+}
+.menu-list li:hover span{ text-decoration:none; }
+.menu-list li:hover i{ border-color:rgba(230,229,218,.7); }
+
 /* === Patio-style gallery mosaic === */
 .gallery-grid {
   display: grid;
@@ -270,63 +293,92 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
             </p>
 </div>
 </section>
-<!-- Menus du jour — Ardoise (soir) | Midi -->
-<section class="grid grid-cols-1 lg:grid-cols-2">
+<!-- Notre menu -->
+<section id="menu" class="bg-[#5B83AB] text-[#E6E5DA] py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
 
-  <!-- LEFT: MENU ARDOISE (soir) -->
-  <div class="bg-[#5B83AB] text-[#E6E5DA] p-10 md:p-16 lg:p-20 relative">
-    <span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-10 opacity-90">Menu ardoise</span>
-    <ul class="divide-y divide-[#E6E5DA]/30">
-      <!-- MENU:ardoise:START -->
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Ceviche de flétan à la péruvienne</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Leche de tigre, lime, gingembre, coriandre, jalapeño et maïs croquants.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Arancinis homard</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Mayo harissa au homard et citron, relish de pomme et fenouil avec chips de prosciutto.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Tataki d'espadon</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce miso blanc, lime et gingembre, patate douce frites, oignons verts et sésames.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Mac &amp; cheese</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce fromagée à la bisque, gratiné au mozzarella avec queue de homard.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Agneau</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Yogourt aux herbes, asperges grillées, pois chiches croustillants, chimichurri aux pistaches et feta.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Contrefilet 12 oz</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce au poivre, crevettes tigrées et frites maison.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Moules frites</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Sauce crème, vin blanc, oignon vert et parmesan, servies avec frites maison.</p>
-      </li>
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Flétan</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Bok choy grillé, sauté de crevettes, tomates, fenouil, câpres et beurre citronné, flambé à la sambuca.</p>
-      </li>
-      <!-- MENU:ardoise:END -->
-    </ul>
+  <!-- Header -->
+  <div class="max-w-6xl mx-auto mb-16 md:mb-24 flex flex-wrap items-end justify-between gap-8">
+    <div>
+      <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#A4BAD0] block mb-6">② Notre menu</span>
+      <h2 class="gasoek-caps leading-[0.92] tracking-tight" style="font-size:clamp(2.8rem,7vw,6rem);">
+        Notre<br/>menu.
+      </h2>
+    </div>
+    <p class="font-fraunces text-base md:text-lg text-[#E6E5DA]/75 leading-relaxed max-w-xs md:text-right md:pb-3">
+      Menu de saison — les plats changent au gré du marché et des idées du chef.
+    </p>
   </div>
 
-  <!-- RIGHT: MENU MIDI -->
-  <div class="bg-[#A4BAD0] text-[#181C1D] p-10 md:p-16 lg:p-20 relative">
-    <span class="text-[11px] gasoek-caps tracking-[0.28em] block mb-10 opacity-90">Menu midi</span>
-    <ul class="divide-y divide-[#181C1D]/20">
-      <!-- MENU:midi:START -->
-      <li class="py-7">
-        <h3 class="font-epilogue font-bold tracking-wide mb-2 text-xl md:text-2xl">Menu midi à venir</h3>
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed opacity-85">Le client va déposer la première photo dans le dossier Dropbox prochainement.</p>
-      </li>
-      <!-- MENU:midi:END -->
-    </ul>
-  </div>
+  <!-- Menu grid -->
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-16">
 
+    <!-- Col 1 : Entrées + Les crus -->
+    <div class="space-y-16">
+      <div>
+        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Entrées</h3>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <ul class="menu-list">
+          <li><span>Calamars China Town</span><i></i><b>18</b></li>
+          <li><span>Fondu au fromage</span><i></i><b>19</b></li>
+          <li><span>Burrata</span><i></i><b>27</b></li>
+          <li><span>Pieuvre</span><i></i><b>25</b></li>
+          <li><span>Arancini</span><i></i><b>19</b></li>
+          <li><span>Choux de Bruxelles frits</span><i></i><b>18</b></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Les crus</h3>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <ul class="menu-list">
+          <li><span>Crudo hamachi</span><i></i><b>23</b></li>
+          <li><span>Carpaccio</span><i></i><b>22</b></li>
+          <li><span>Tartare de thon</span><i></i><b>18&hairsp;/&hairsp;39</b></li>
+          <li><span>Tartare de bœuf</span><i></i><b>17&hairsp;/&hairsp;36</b></li>
+          <li><span>Tartare de saumon</span><i></i><b>17&hairsp;/&hairsp;36</b></li>
+          <li><span>Huîtres fraîches</span><i></i><b>20&hairsp;/&hairsp;37</b></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Salades</h3>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <ul class="menu-list">
+          <li><span>Salade verte</span><i></i><b>11&hairsp;/&hairsp;17</b></li>
+          <li><span>Salade César</span><i></i><b>14&hairsp;/&hairsp;19</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Col 2 : Repas -->
+    <div class="space-y-16">
+      <div>
+        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Repas</h3>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <ul class="menu-list">
+          <li><span>Morue</span><i></i><b>44</b></li>
+          <li><span>Boudin</span><i></i><b>32</b></li>
+          <li><span>Poulet à la jerk</span><i></i><b>37</b></li>
+          <li><span>Filet mignon</span><i></i><b>60</b></li>
+          <li><span>Filet d'épaule de bœuf</span><i></i><b>41</b></li>
+          <li><span>Ravioli aux champignons</span><i></i><b>28</b></li>
+          <li><span>Poutine St-Charles</span><i></i><b>26</b></li>
+          <li><span>Burger</span><i></i><b>26</b></li>
+        </ul>
+      </div>
+
+      <!-- Note + CTA -->
+      <div class="border border-[#E6E5DA]/30 rounded-lg p-8 md:p-10">
+        <p class="font-fraunces italic text-base md:text-lg leading-relaxed text-[#E6E5DA]/85 mb-6">
+          Deux prix ? Petite ou grande faim — plusieurs plats se déclinent en deux formats.
+        </p>
+        <a href="./lemenu/" class="inline-flex items-center gap-3 bg-[#E6E5DA] text-[#181C1D] px-7 py-3.5 rounded-full gasoek-caps text-xs tracking-[0.18em] hover:bg-[#A4BAD0] transition-colors">
+          <span>Voir la carte à boire</span><span aria-hidden>→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
 </section>
 <!-- Quote Band -->
 <section class="relative h-[614px] flex items-center justify-center overflow-hidden">
@@ -375,15 +427,14 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 <section class="bg-[#181C1D] py-24 px-8 md:px-20 overflow-hidden">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center p-4 md:p-12 relative">
 <div class="flex-1">
-<span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#A4BAD0] block mb-6">④ Cadeau</span>
 <h2 class="text-5xl md:text-7xl gasoek-caps text-[#E6E5DA] leading-[0.85] mb-8">
                     OFFREZ<br/>UN SOIR<br/>AU BISTRO.
                 </h2>
-<p class="font-fraunces text-xl mb-8 max-w-sm text-[#E6E5DA]/80">Un cadeau mémorable pour les amoureux du goût.</p>
-<button class="bg-[#5B83AB] hover:bg-[#A4BAD0] text-[#E6E5DA] px-10 py-4 rounded-full gasoek-caps text-sm tracking-[0.2em] transition-colors">Commander</button>
+<p class="font-fraunces text-xl mb-3 max-w-sm text-[#E6E5DA]/80">Un cadeau mémorable pour les amoureux du goût.</p>
+<p class="gasoek-caps text-base md:text-lg text-[#A4BAD0]">Demandez nos cartes-cadeaux en restaurant.</p>
 </div>
 <div class="flex-1 relative">
-<img class="w-full h-auto rounded shadow-2xl warm-filter" data-alt="A luxury cream-colored monogrammed envelope sitting on a dark wooden surface" src="./photos/ebd4f1508e9362305c61f9ec6087369e.JPEG"/>
+<img class="w-full h-auto rounded shadow-2xl warm-filter" alt="Plat du Bistro St-Charles" src="./photos/66a8c7fdc0f46dd72b7c976c4a3a5af4.JPEG"/>
 <div class="absolute -bottom-6 -right-6 bg-[#5B83AB] text-white gasoek-caps p-8 rounded-full text-center leading-none">
                     BSC<br/><span class="text-[10px]">MIRABEL</span>
 </div>
