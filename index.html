@@ -128,27 +128,33 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 }
 
 /* === Notre menu — dotted leader rows === */
-.menu-list li{
-  display:flex; align-items:baseline; gap:.75rem;
-  padding:.65rem 0;
-}
+.menu-list li{ padding:.6rem 0; border-bottom:1px solid rgba(230,229,218,.1); }
+.menu-list li:last-child{ border-bottom:none; }
+.menu-list li .row{ display:flex; align-items:baseline; gap:.6rem; }
 .menu-list li span{
   font-family:"Poppins", sans-serif;
-  font-size:clamp(1rem, 1.3vw, 1.15rem);
-  font-weight:500;
+  font-size:clamp(.95rem, 1.2vw, 1.05rem);
+  font-weight:600;
 }
 .menu-list li i{
-  flex:1; min-width:2rem;
-  border-bottom:2px dotted rgba(230,229,218,.35);
+  flex:1; min-width:1.5rem;
+  border-bottom:2px dotted rgba(230,229,218,.3);
   transform:translateY(-4px);
 }
 .menu-list li b{
   font-family:"More Sugar", system-ui, sans-serif;
-  font-weight:400; font-size:1.15rem;
+  font-weight:400; font-size:1.1rem;
   white-space:nowrap;
 }
-.menu-list li:hover span{ text-decoration:none; }
-.menu-list li:hover i{ border-color:rgba(230,229,218,.7); }
+.menu-list li .desc{
+  font-family:"Poppins", sans-serif;
+  font-size:.78rem;
+  color:rgba(230,229,218,.55);
+  line-height:1.45;
+  margin-top:.18rem;
+}
+.menu-list li:hover span{ opacity:.85; }
+.menu-list li:hover i{ border-color:rgba(230,229,218,.6); }
 
 /* === Patio-style gallery mosaic === */
 .gallery-grid {
@@ -315,70 +321,140 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
   <!-- Menu grid -->
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-16">
 
-    <!-- Col 1 : Entrées + Les crus -->
-    <div class="space-y-16">
+    <!-- Col 1 : Entrées + Repas -->
+    <div class="space-y-14">
+
       <div>
         <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Entrées</h3>
-        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-5"></div>
         <ul class="menu-list">
-          <li><span>Calamars China Town</span><i></i><b>18</b></li>
-          <li><span>Fondu au fromage</span><i></i><b>19</b></li>
-          <li><span>Burrata</span><i></i><b>27</b></li>
-          <li><span>Pieuvre</span><i></i><b>25</b></li>
-          <li><span>Arancini</span><i></i><b>19</b></li>
-          <li><span>Choux de Bruxelles frits</span><i></i><b>18</b></li>
+          <li>
+            <div class="row"><span>Calamars China Town</span><i></i><b>19</b></div>
+            <p class="desc">Calamars frits, sauce chili doux, coriandre, sésame, basilic thai, lime</p>
+          </li>
+          <li>
+            <div class="row"><span>Fondue au fromage</span><i></i><b>19</b></div>
+            <p class="desc">Pain grillé, légumes marinés, prosciutto</p>
+          </li>
+          <li>
+            <div class="row"><span>Burrata</span><i></i><b>27</b></div>
+            <p class="desc">Crème de tournesol, fraises au xérès, concombres pressés citron et poivre, basilic, pain grillé</p>
+          </li>
+          <li>
+            <div class="row"><span>Pieuvre grillée</span><i></i><b>25&hairsp;/&hairsp;41</b></div>
+            <p class="desc">Grelots poêlés, tomates séchées, chorizo, yogourt aux herbes, beurre nduja, chimichurri, poivron</p>
+          </li>
+          <li>
+            <div class="row"><span>Arancinis homard (3)</span><i></i><b>19</b></div>
+            <p class="desc">Risotto homard, salade pomme verte et fenouil, mayonnaise homard et harissa, chips de prosciutto</p>
+          </li>
+          <li>
+            <div class="row"><span>Flanc de porc al pastor</span><i></i><b>17</b></div>
+            <p class="desc">Flanc de porc braisé, marinade Al Pastor, crema coriandre et lime, jalapeño, salsa d'ananas</p>
+          </li>
+          <li>
+            <div class="row"><span>Salade césar</span><i></i><b>17</b></div>
+            <p class="desc">Romaine, sauce césar maison, câpres frites, crumble de pain, parmesan ++</p>
+          </li>
         </ul>
       </div>
+
+      <div>
+        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Repas</h3>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-5"></div>
+        <ul class="menu-list">
+          <li>
+            <div class="row"><span>Flétan</span><i></i><b>44</b></div>
+            <p class="desc">Beurre blanc tartare, radis poêlés au beurre, pdt rattes, poireaux frits</p>
+          </li>
+          <li>
+            <div class="row"><span>Boudin</span><i></i><b>34</b></div>
+            <p class="desc">Sauce foie gras, oignons perlés, marmelade de bacon, pommes au Calvados, pdt pilées</p>
+          </li>
+          <li>
+            <div class="row"><span>Ravioli homard</span><i></i><b>37</b></div>
+            <p class="desc">Bisque crémeuse, tomates confites, fenouil, crumble de prosciutto</p>
+          </li>
+          <li>
+            <div class="row"><span>Contre filet Surf &amp; Turf</span><i></i><b>63</b></div>
+            <p class="desc">Bœuf canadien Prime, crevettes tigrées (3), sauce au poivre, frites</p>
+          </li>
+          <li>
+            <div class="row"><span>Filet d'épaule de bœuf</span><i></i><b>42</b></div>
+            <p class="desc">Sauce au poivre, choux de Bruxelles frits, frites truffe et parmesan</p>
+          </li>
+          <li>
+            <div class="row"><span>Poutine St-Charles</span><i></i><b>26</b></div>
+            <p class="desc">Frites maison, fromage en grain, filet d'épaule, oignons confits, champignons, sauce poutine</p>
+          </li>
+          <li>
+            <div class="row"><span>Burger</span><i></i><b>26</b></div>
+            <p class="desc">Bœuf CAB, pain brioché, laitue, tomate, marmelade de bacon sauce St-Charles, fromage Oka, frites maison</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Col 2 : Les crus + Salades repas -->
+    <div class="space-y-14">
 
       <div>
         <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Les crus</h3>
-        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-5"></div>
         <ul class="menu-list">
-          <li><span>Crudo hamachi</span><i></i><b>23</b></li>
-          <li><span>Carpaccio</span><i></i><b>22</b></li>
-          <li><span>Tartare de thon</span><i></i><b>18&hairsp;/&hairsp;39</b></li>
-          <li><span>Tartare de bœuf</span><i></i><b>17&hairsp;/&hairsp;36</b></li>
-          <li><span>Tartare de saumon</span><i></i><b>17&hairsp;/&hairsp;36</b></li>
-          <li><span>Huîtres fraîches</span><i></i><b>20&hairsp;/&hairsp;37</b></li>
+          <li>
+            <div class="row"><span>Tataki d'espadon</span><i></i><b>20</b></div>
+            <p class="desc">Sauce miso blanc, lime, gingembre, pommes pailles de patate douce</p>
+          </li>
+          <li>
+            <div class="row"><span>Carpaccio de bœuf</span><i></i><b>23</b></div>
+            <p class="desc">Filet d'épaule, cornichons, câpres, mayo truffe, parmesan, crumble de pain, oignons marinés</p>
+          </li>
+          <li>
+            <div class="row"><span>Tartare de thon</span><i></i><b>19&hairsp;/&hairsp;41</b></div>
+            <p class="desc">Sauce hawaienne, salsa d'ananas, coriandre, lime, concombre, ciboulette</p>
+          </li>
+          <li>
+            <div class="row"><span>Tartare de bœuf</span><i></i><b>18&hairsp;/&hairsp;39</b></div>
+            <p class="desc">Sauce crémeuse à l'aneth, cornichon, moutarde Dijon, fromage en grain, échalotes françaises, ciboulette</p>
+          </li>
+          <li>
+            <div class="row"><span>Tartare de saumon</span><i></i><b>17&hairsp;/&hairsp;38</b></div>
+            <p class="desc">Concombre, tobiko, coriandre, sésame, échalotes françaises, sauce asiatique crémeuse</p>
+          </li>
+          <li>
+            <div class="row"><span>Ceviche de flétan</span><i></i><b>19</b></div>
+            <p class="desc">Lait de coco, jalapeño, coriandre, maïs croquant, lime, pdt douce, tobiko</p>
+          </li>
         </ul>
       </div>
 
       <div>
-        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Salades</h3>
-        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
+        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Salades repas</h3>
+        <div class="h-[2px] bg-[#E6E5DA]/40 mb-5"></div>
         <ul class="menu-list">
-          <li><span>Salade verte</span><i></i><b>11&hairsp;/&hairsp;17</b></li>
-          <li><span>Salade César</span><i></i><b>14&hairsp;/&hairsp;19</b></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Col 2 : Repas -->
-    <div class="space-y-16">
-      <div>
-        <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Repas</h3>
-        <div class="h-[2px] bg-[#E6E5DA]/40 mb-6"></div>
-        <ul class="menu-list">
-          <li><span>Morue</span><i></i><b>44</b></li>
-          <li><span>Boudin</span><i></i><b>32</b></li>
-          <li><span>Poulet à la jerk</span><i></i><b>37</b></li>
-          <li><span>Filet mignon</span><i></i><b>60</b></li>
-          <li><span>Filet d'épaule de bœuf</span><i></i><b>41</b></li>
-          <li><span>Ravioli aux champignons</span><i></i><b>28</b></li>
-          <li><span>Poutine St-Charles</span><i></i><b>26</b></li>
-          <li><span>Burger</span><i></i><b>26</b></li>
+          <li>
+            <div class="row"><span>Salade tataki de thon</span><i></i><b>33</b></div>
+            <p class="desc">Vinaigrette soya ananas, thon, nouilles Udon, carotte, radis, arachide, choux, sésame, coriandre, tomate cerise</p>
+          </li>
+          <li>
+            <div class="row"><span>Salade césar canard</span><i></i><b>29</b></div>
+            <p class="desc">Romaine, sauce césar maison, câpres frites, crumble de pain, lardons, chips de prosciutto, canard confit</p>
+          </li>
         </ul>
       </div>
 
       <!-- Note + CTA -->
-      <div class="border border-[#E6E5DA]/30 rounded-lg p-8 md:p-10">
-        <p class="font-fraunces italic text-base md:text-lg leading-relaxed text-[#E6E5DA]/85 mb-6">
+      <div class="border border-[#E6E5DA]/30 rounded-lg p-7 md:p-9">
+        <p class="font-['Poppins'] text-sm leading-relaxed text-[#E6E5DA]/75 mb-5 italic">
           Deux prix ? Petite ou grande faim — plusieurs plats se déclinent en deux formats.
         </p>
         <a href="./lemenu/" class="inline-flex items-center gap-3 bg-[#E6E5DA] text-[#181C1D] px-7 py-3.5 rounded-full gasoek-caps text-xs tracking-[0.18em] hover:bg-[#A4BAD0] transition-colors">
           <span>Voir la carte à boire</span><span aria-hidden>→</span>
         </a>
       </div>
+
     </div>
 
   </div>
