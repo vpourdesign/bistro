@@ -25,29 +25,29 @@
             "colors": {
                     "on-tertiary": "#ffffff",
                     "on-primary-fixed": "#331200",
-                    "secondary-fixed-dim": "#DDD9C9",
-                    "primary": "#33181C",
+                    "secondary-fixed-dim": "#DFD8C6",
+                    "primary": "#371D12",
                     "error-container": "#ffdad6",
                     "inverse-on-surface": "#f4f0e7",
-                    "surface-container": "#DDD9C9",
+                    "surface-container": "#DFD8C6",
                     "on-secondary-container": "#754500",
-                    "outline": "#6F5F4D",
+                    "outline": "#72604A",
                     "inverse-surface": "#31312b",
-                    "primary-container": "#33181C",
+                    "primary-container": "#371D12",
                     "error": "#ba1a1a",
                     "on-primary": "#ffffff",
-                    "secondary": "#6F5F4D",
+                    "secondary": "#72604A",
                     "primary-fixed-dim": "#f8b997",
                     "on-primary-container": "#e0a483",
-                    "outline-variant": "#DDD9C9",
-                    "on-surface": "#33181C",
-                    "surface-bright": "#EAECE4",
-                    "tertiary": "#33181C",
-                    "on-surface-variant": "#33181C",
+                    "outline-variant": "#DFD8C6",
+                    "on-surface": "#371D12",
+                    "surface-bright": "#EDEAE0",
+                    "tertiary": "#371D12",
+                    "on-surface-variant": "#371D12",
                     "tertiary-fixed": "#ffdbca",
                     "on-error-container": "#93000a",
                     "on-tertiary-fixed": "#2e1507",
-                    "surface-container-highest": "#DDD9C9",
+                    "surface-container-highest": "#DFD8C6",
                     "on-tertiary-fixed-variant": "#603f2e",
                     "surface-container-lowest": "#ffffff",
                     "primary-fixed": "#ffdbca",
@@ -56,19 +56,19 @@
                     "on-secondary-fixed": "#2c1700",
                     "surface-dim": "#dddad1",
                     "on-secondary": "#ffffff",
-                    "surface-container-high": "#DDD9C9",
+                    "surface-container-high": "#DFD8C6",
                     "on-tertiary-container": "#d4a791",
                     "secondary-fixed": "#ffdcbc",
                     "surface-variant": "#e6e2d9",
-                    "secondary-container": "#DDD9C9",
-                    "background": "#EAECE4",
-                    "surface": "#EAECE4",
+                    "secondary-container": "#DFD8C6",
+                    "background": "#EDEAE0",
+                    "surface": "#EDEAE0",
                     "on-error": "#ffffff",
                     "tertiary-container": "#5c3c2b",
                     "on-secondary-fixed-variant": "#683d00",
-                    "surface-container-low": "#EAECE4",
+                    "surface-container-low": "#EDEAE0",
                     "tertiary-fixed-dim": "#ebbda6",
-                    "on-background": "#33181C",
+                    "on-background": "#371D12",
                     "inverse-primary": "#f8b997"
             },
             "fontFamily": {
@@ -96,7 +96,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>");
 }
 .text-bleed { letter-spacing: -0.03em; }
-.sep-line { height: 1px; background-color: rgba(51, 24, 28, 0.15); width: 100%; }
+.sep-line { height: 1px; background-color: rgba(55, 29, 18, 0.15); width: 100%; }
 .warm-filter { filter: saturate(.88) contrast(1.06) brightness(.97); }
 
 /* === "Réserver" — plaque crème, ombre dure, presse renfoncée === */
@@ -105,60 +105,60 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
   text-transform:uppercase;
   font-size:clamp(.9rem, 1.05vw, 1rem);
   letter-spacing:.06em;
-  color:#6F5F4D;
-  background:#F7F8F1;
+  color:#72604A;
+  background:#F8F6EE;
   padding:.7rem 1.6rem .75rem;
-  border:1.5px solid rgba(51,24,28,.9); cursor:pointer;
+  border:1.5px solid rgba(55,29,18,.9); cursor:pointer;
   display:inline-flex; align-items:center; justify-content:center;
   border-radius:14px;
-  box-shadow: 5px 5px 0 #33181C;
+  box-shadow: 5px 5px 0 #371D12;
   transform: translate(0,0);
   transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s cubic-bezier(.34,1.56,.64,1), color .18s;
   position:relative;
 }
 .btn-reserve:hover{
   transform: translate(2px,2px);
-  box-shadow: 3px 3px 0 #33181C;
-  color:#5C4E3E;
+  box-shadow: 3px 3px 0 #371D12;
+  color:#5F4F3B;
 }
 .btn-reserve:active{
   transform: translate(5px,5px);
-  box-shadow: 0 0 0 #33181C;
+  box-shadow: 0 0 0 #371D12;
 }
 .btn-reserve:focus-visible{
-  outline:2px solid #6F5F4D; outline-offset:3px;
+  outline:2px solid #72604A; outline-offset:3px;
 }
 
 /* === Notre menu — dotted leader rows === */
-.menu-list li{ padding:.75rem 0; border-bottom:1px solid rgba(234,236,228,.12); }
+.menu-list li{ padding:.75rem 0; border-bottom:1px solid rgba(237,234,224,.12); }
 .menu-list li:last-child{ border-bottom:none; }
 .menu-list li .row{ display:flex; align-items:baseline; gap:.6rem; }
 .menu-list li span{
   font-family:"Poppins", sans-serif;
   font-size:clamp(1.05rem, 1.4vw, 1.2rem);
   font-weight:700;
-  color:rgba(234,236,228,1);
+  color:rgba(237,234,224,1);
 }
 .menu-list li i{
   flex:1; min-width:1.5rem;
-  border-bottom:2px dotted rgba(234,236,228,.3);
+  border-bottom:2px dotted rgba(237,234,224,.3);
   transform:translateY(-4px);
 }
 .menu-list li b{
   font-family:"More Sugar", system-ui, sans-serif;
   font-weight:400; font-size:1.2rem;
   white-space:nowrap;
-  color:rgba(234,236,228,1);
+  color:rgba(237,234,224,1);
 }
 .menu-list li .desc{
   font-family:"Poppins", sans-serif;
   font-size:.9rem;
-  color:rgba(234,236,228,.82);
+  color:rgba(237,234,224,.82);
   line-height:1.45;
   margin-top:.18rem;
 }
 .menu-list li:hover span{ opacity:.85; }
-.menu-list li:hover i{ border-color:rgba(234,236,228,.6); }
+.menu-list li:hover i{ border-color:rgba(237,234,224,.6); }
 
 /* === Patio-style gallery mosaic === */
 .gallery-grid {
@@ -170,7 +170,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 }
 .gallery-grid .tile {
   position: relative; overflow: hidden; border-radius: 4px;
-  background: rgba(51,24,28,.05);
+  background: rgba(55,29,18,.05);
 }
 .gallery-grid .tile > img,
 .gallery-grid .tile > video {
@@ -182,7 +182,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 .gallery-grid .tile:hover > video { transform: scale(1.06); filter: saturate(1.05) contrast(1.06); }
 .gallery-grid .tile::after {
   content:""; position:absolute; inset:0; pointer-events:none;
-  background: linear-gradient(180deg, rgba(51,24,28,0) 60%, rgba(51,24,28,.18));
+  background: linear-gradient(180deg, rgba(55,29,18,0) 60%, rgba(55,29,18,.18));
 }
 /* Tile sizing — curated asymmetric mosaic (cycles every 11) */
 .gallery-grid .tile:nth-child(11n+1) { grid-column: span 4; grid-row: span 3; }
@@ -205,17 +205,17 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 .gallery-grid .tile-video::before {
   content:"►"; position:absolute; top:10px; right:10px; z-index:2;
   width:28px; height:28px; border-radius:999px;
-  background: rgba(51,24,28,.55); color:#EAECE4;
+  background: rgba(55,29,18,.55); color:#EDEAE0;
   display:flex; align-items:center; justify-content:center;
   font-size:.6rem; letter-spacing:-.05em; backdrop-filter: blur(4px);
 }
 </style>
 </head>
-<body class="bg-[#EAECE4] text-[#33181C]">
+<body class="bg-[#EDEAE0] text-[#371D12]">
 <div class="grain-overlay"></div>
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-[#EAECE4]/90 backdrop-blur-md dark:bg-stone-900/90 border-b border-[#33181C]/15 flex justify-between items-center px-8 py-4 w-full">
-<a href="#" aria-label="Bistro St-Charles" class="block text-[#33181C]" style="width:clamp(140px,11vw,180px);">
+<nav class="fixed top-0 w-full z-50 bg-[#EDEAE0]/90 backdrop-blur-md dark:bg-stone-900/90 border-b border-[#371D12]/15 flex justify-between items-center px-8 py-4 w-full">
+<a href="#" aria-label="Bistro St-Charles" class="block text-[#371D12]" style="width:clamp(140px,11vw,180px);">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 149.99" style="width:100%;height:auto;display:block;fill:currentColor;">
 <rect x="40.37" y="26.08" width="278.45" height="6.04"/>
 <rect x="40.37" y="94.76" width="278.45" height="6.04"/>
@@ -238,16 +238,16 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 </svg>
 </a>
 <div class="hidden md:flex gap-8 items-center">
-<a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#">Accueil</a>
-<a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#menu">Menu</a>
-<a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="./lemenu/">À boire</a>
-<a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#photos">Photos</a>
-<span class="w-px h-4 bg-[#33181C]/20"></span>
-<a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-<a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.facebook.com/bistrostcharles" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+<a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#">Accueil</a>
+<a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#menu">Menu</a>
+<a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="./lemenu/">À boire</a>
+<a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="#photos">Photos</a>
+<span class="w-px h-4 bg-[#371D12]/20"></span>
+<a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+<a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.facebook.com/bistrostcharles" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
 </div>
 <div class="flex items-center gap-6">
-<span class="text-[#33181C] font-epilogue hidden sm:block">450·818·8668</span>
+<span class="text-[#371D12] font-epilogue hidden sm:block">450·818·8668</span>
 <button data-open-reserve class="btn-reserve">Réserver</button>
 </div>
 </nav>
@@ -258,51 +258,51 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 <!-- Palette gradient overlay 30-40% -->
 <div class="absolute inset-0" style="
   background:
-    radial-gradient(60% 60% at 15% 20%, rgba(221,217,201,0.35) 0%, rgba(221,217,201,0) 60%),
-    radial-gradient(70% 60% at 85% 15%, rgba(111,95,77,0.40) 0%, rgba(111,95,77,0) 65%),
-    radial-gradient(80% 80% at 70% 100%, rgba(51,24,28,0.55) 0%, rgba(51,24,28,0) 70%),
-    linear-gradient(180deg, rgba(234,236,228,0.10) 0%, rgba(111,95,77,0.18) 50%, rgba(51,24,28,0.40) 100%);
+    radial-gradient(60% 60% at 15% 20%, rgba(223,216,198,0.35) 0%, rgba(223,216,198,0) 60%),
+    radial-gradient(70% 60% at 85% 15%, rgba(114,96,74,0.40) 0%, rgba(114,96,74,0) 65%),
+    radial-gradient(80% 80% at 70% 100%, rgba(55,29,18,0.55) 0%, rgba(55,29,18,0) 70%),
+    linear-gradient(180deg, rgba(237,234,224,0.10) 0%, rgba(114,96,74,0.18) 50%, rgba(55,29,18,0.40) 100%);
   mix-blend-mode:normal;"></div>
-<div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(51,24,28,0) 40%, rgba(51,24,28,0.45) 100%);"></div>
+<div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(55,29,18,0) 40%, rgba(55,29,18,0.45) 100%);"></div>
 </div>
 <div class="absolute left-12 top-1/2 -translate-y-1/2 hidden lg:block">
-<div class="rotate-[-90deg] origin-left text-[11px] gasoek-caps tracking-[0.28em] text-[#EAECE4]/60">
+<div class="rotate-[-90deg] origin-left text-[11px] gasoek-caps tracking-[0.28em] text-[#EDEAE0]/60">
                 MIRABEL · QUÉBEC
             </div>
 </div>
 <div class="absolute right-12 top-1/2 -translate-y-1/2 hidden lg:block">
-<div class="rotate-[90deg] origin-right text-[11px] gasoek-caps tracking-[0.28em] text-[#EAECE4]/60">
+<div class="rotate-[90deg] origin-right text-[11px] gasoek-caps tracking-[0.28em] text-[#EDEAE0]/60">
                 ÉTABLI EN BON VOISINAGE
             </div>
 </div>
 <div class="relative z-10 text-center flex flex-col items-center">
-<h1 class="text-[#EAECE4] gasoek-caps text-5xl md:text-7xl leading-[0.9] tracking-tight">
+<h1 class="text-[#EDEAE0] gasoek-caps text-5xl md:text-7xl leading-[0.9] tracking-tight">
                 Votre bistro<br/>de quartier
             </h1>
 </div>
-<div class="absolute bottom-12 right-12 z-10 bg-[#EAECE4] p-6 rounded-lg border border-[#33181C]/15 shadow-xl">
-<div class="flex items-center gap-1 mb-2 text-[#6F5F4D]">
+<div class="absolute bottom-12 right-12 z-10 bg-[#EDEAE0] p-6 rounded-lg border border-[#371D12]/15 shadow-xl">
+<div class="flex items-center gap-1 mb-2 text-[#72604A]">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
 </div>
-<div class="text-[#33181C] gasoek-caps text-xl">4,4 / 5,0</div>
-<div class="text-[#33181C]/70 text-[10px] uppercase tracking-widest mt-1">535 avis Google</div>
+<div class="text-[#371D12] gasoek-caps text-xl">4,4 / 5,0</div>
+<div class="text-[#371D12]/70 text-[10px] uppercase tracking-widest mt-1">535 avis Google</div>
 </div>
 </header>
 <!-- Photos / Galerie — patio-style mosaic -->
-<section id="photos" class="bg-[#EAECE4] py-24 md:py-32 px-6 md:px-12">
+<section id="photos" class="bg-[#EDEAE0] py-24 md:py-32 px-6 md:px-12">
   <div class="max-w-7xl mx-auto mb-12 md:mb-16 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
     <div class="md:col-span-8">
-      <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#6F5F4D] block mb-6">③ Photos</span>
-      <h2 class="gasoek-caps text-[#33181C] leading-[0.95] tracking-tight" style="font-size:clamp(2.4rem,5vw,4.5rem);">
+      <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#72604A] block mb-6">③ Photos</span>
+      <h2 class="gasoek-caps text-[#371D12] leading-[0.95] tracking-tight" style="font-size:clamp(2.4rem,5vw,4.5rem);">
         Dans l'œil<br/>du bistro.
       </h2>
     </div>
     <div class="md:col-span-4 md:text-right">
-      <a href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" class="inline-block mt-4 font-fraunces text-lg md:text-xl text-[#6F5F4D] hover:opacity-70 transition-opacity">Voir plus sur Instagram <span class="font-fraunces">@bistrostcharles</span> ↗</a>
+      <a href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" class="inline-block mt-4 font-fraunces text-lg md:text-xl text-[#72604A] hover:opacity-70 transition-opacity">Voir plus sur Instagram <span class="font-fraunces">@bistrostcharles</span> ↗</a>
     </div>
   </div>
 
@@ -321,31 +321,31 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
   </div>
 </section>
 <!-- L'Esprit du Bistro -->
-<section class="bg-[#EAECE4] py-24 px-8 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<section class="bg-[#EDEAE0] py-24 px-8 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 <div class="relative aspect-[4/5] overflow-hidden rounded-lg">
 <img class="w-full h-full object-cover warm-filter" data-alt="Plat servi au Bistro St-Charles" src="./photos/web/DSCF7001.jpg"/>
 </div>
-<div class="text-[#33181C]">
-<h2 class="text-4xl md:text-6xl gasoek-caps leading-[0.95] mb-8 text-[#33181C]">
+<div class="text-[#371D12]">
+<h2 class="text-4xl md:text-6xl gasoek-caps leading-[0.95] mb-8 text-[#371D12]">
                 Une table<br/>de quartier
             </h2>
-<p class="font-fraunces text-xl leading-relaxed text-[#33181C]/80 max-w-md">
+<p class="font-fraunces text-xl leading-relaxed text-[#371D12]/80 max-w-md">
                 Le Bistro Saint-Charles met en valeur les produits de saison à travers une cuisine inspirée et accessible. Notre menu évolue selon les arrivages et les idées du moment. Une expérience sincère où chaque détail est pensé pour être savouré.
             </p>
 </div>
 </section>
 <!-- Notre menu -->
-<section id="menu" class="bg-[#6F5F4D] text-[#EAECE4] py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
+<section id="menu" class="bg-[#72604A] text-[#EDEAE0] py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
 
   <!-- Header -->
   <div class="max-w-6xl mx-auto mb-16 md:mb-24 flex flex-wrap items-end justify-between gap-8">
     <div>
-      <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#DDD9C9] block mb-6">② Notre menu</span>
+      <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#DFD8C6] block mb-6">② Notre menu</span>
       <h2 class="gasoek-caps leading-[0.92] tracking-tight" style="font-size:clamp(2.8rem,7vw,6rem);">
         Notre<br/>menu.
       </h2>
     </div>
-    <p class="font-fraunces text-base md:text-lg text-[#EAECE4]/75 leading-relaxed max-w-xs md:text-right md:pb-3">
+    <p class="font-fraunces text-base md:text-lg text-[#EDEAE0]/75 leading-relaxed max-w-xs md:text-right md:pb-3">
       Menu de saison — les plats changent au gré du marché et des idées du chef.
     </p>
   </div>
@@ -358,7 +358,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 
       <div>
         <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Entrées</h3>
-        <div class="h-[2px] bg-[#EAECE4]/40 mb-5"></div>
+        <div class="h-[2px] bg-[#EDEAE0]/40 mb-5"></div>
         <ul class="menu-list">
           <li>
             <div class="row"><span>Calamars China Town</span><i></i><b>19</b></div>
@@ -393,7 +393,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 
       <div>
         <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Repas</h3>
-        <div class="h-[2px] bg-[#EAECE4]/40 mb-5"></div>
+        <div class="h-[2px] bg-[#EDEAE0]/40 mb-5"></div>
         <ul class="menu-list">
           <li>
             <div class="row"><span>Flétan</span><i></i><b>44</b></div>
@@ -433,7 +433,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 
       <div>
         <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Les crus</h3>
-        <div class="h-[2px] bg-[#EAECE4]/40 mb-5"></div>
+        <div class="h-[2px] bg-[#EDEAE0]/40 mb-5"></div>
         <ul class="menu-list">
           <li>
             <div class="row"><span>Tataki d'espadon</span><i></i><b>20</b></div>
@@ -464,7 +464,7 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 
       <div>
         <h3 class="gasoek-caps text-2xl md:text-3xl mb-2">Salades repas</h3>
-        <div class="h-[2px] bg-[#EAECE4]/40 mb-5"></div>
+        <div class="h-[2px] bg-[#EDEAE0]/40 mb-5"></div>
         <ul class="menu-list">
           <li>
             <div class="row"><span>Salade tataki de thon</span><i></i><b>33</b></div>
@@ -478,11 +478,11 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
       </div>
 
       <!-- Note + CTA -->
-      <div class="border border-[#EAECE4]/30 rounded-lg p-7 md:p-9">
-        <p class="font-['Poppins'] text-sm leading-relaxed text-[#EAECE4]/75 mb-5 italic">
+      <div class="border border-[#EDEAE0]/30 rounded-lg p-7 md:p-9">
+        <p class="font-['Poppins'] text-sm leading-relaxed text-[#EDEAE0]/75 mb-5 italic">
           Deux prix ? Petite ou grande faim — plusieurs plats se déclinent en deux formats.
         </p>
-        <a href="./lemenu/" class="inline-flex items-center gap-3 bg-[#EAECE4] text-[#33181C] px-7 py-3.5 rounded-full gasoek-caps text-xs tracking-[0.18em] hover:bg-[#DDD9C9] transition-colors">
+        <a href="./lemenu/" class="inline-flex items-center gap-3 bg-[#EDEAE0] text-[#371D12] px-7 py-3.5 rounded-full gasoek-caps text-xs tracking-[0.18em] hover:bg-[#DFD8C6] transition-colors">
           <span>Voir la carte à boire</span><span aria-hidden>→</span>
         </a>
       </div>
@@ -494,43 +494,43 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 <!-- Quote Band -->
 <section class="relative h-[614px] flex items-center justify-center overflow-hidden">
 <img class="absolute inset-0 w-full h-full object-cover" style="filter:saturate(.7) brightness(.5);" data-alt="Assiette signature du bistro" src="./photos/web/DSCF7095.jpg"/>
-<div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(51,24,28,0.55), rgba(111,95,77,0.35));"></div>
+<div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(55,29,18,0.55), rgba(114,96,74,0.35));"></div>
 <div class="relative z-10 px-8 text-center">
-<blockquote class="fraunces-italic text-2xl md:text-4xl text-[#EAECE4] leading-snug max-w-4xl mx-auto" style="font-weight:400;">
+<blockquote class="fraunces-italic text-2xl md:text-4xl text-[#EDEAE0] leading-snug max-w-4xl mx-auto" style="font-weight:400;">
                 « La bonne cuisine, c'est celle qui goûte l'endroit où on est assis. »
             </blockquote>
-<cite class="block mt-8 text-[#EAECE4]/60 gasoek-caps text-[12px] tracking-[0.3em] font-normal not-italic">— SIMON COURCELLES · CHEF</cite>
+<cite class="block mt-8 text-[#EDEAE0]/60 gasoek-caps text-[12px] tracking-[0.3em] font-normal not-italic">— SIMON COURCELLES · CHEF</cite>
 </div>
 </section>
 <!-- Gift Cards -->
-<section class="bg-[#33181C] py-24 px-8 md:px-20 overflow-hidden">
+<section class="bg-[#371D12] py-24 px-8 md:px-20 overflow-hidden">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center p-4 md:p-12 relative">
 <div class="flex-1">
-<h2 class="text-5xl md:text-7xl gasoek-caps text-[#EAECE4] leading-[0.85] mb-8">
+<h2 class="text-5xl md:text-7xl gasoek-caps text-[#EDEAE0] leading-[0.85] mb-8">
                     OFFREZ<br/>UN SOIR<br/>AU BISTRO.
                 </h2>
-<p class="font-fraunces text-xl mb-3 max-w-sm text-[#EAECE4]/80">Un cadeau mémorable pour les amoureux du goût.</p>
-<p class="gasoek-caps text-base md:text-lg text-[#DDD9C9]">Demandez nos cartes-cadeaux en restaurant.</p>
+<p class="font-fraunces text-xl mb-3 max-w-sm text-[#EDEAE0]/80">Un cadeau mémorable pour les amoureux du goût.</p>
+<p class="gasoek-caps text-base md:text-lg text-[#DFD8C6]">Demandez nos cartes-cadeaux en restaurant.</p>
 </div>
 <div class="flex-1 relative">
 <img class="w-full h-auto rounded shadow-2xl warm-filter" alt="Plat du Bistro St-Charles" src="./photos/web/DSCF6871.jpg"/>
-<div class="absolute -bottom-6 -right-6 bg-[#6F5F4D] text-white gasoek-caps p-8 rounded-full text-center leading-none">
+<div class="absolute -bottom-6 -right-6 bg-[#72604A] text-white gasoek-caps p-8 rounded-full text-center leading-none">
                     BSC<br/><span class="text-[10px]">MIRABEL</span>
 </div>
 </div>
 </div>
 </section>
 <!-- Reviews -->
-<section class="bg-[#6F5F4D] py-24 px-8 overflow-hidden text-[#EAECE4]">
+<section class="bg-[#72604A] py-24 px-8 overflow-hidden text-[#EDEAE0]">
 <div class="max-w-7xl mx-auto">
-<span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#DDD9C9] block mb-6">⑤ On en parle</span>
-<h2 class="text-3xl md:text-5xl gasoek-caps text-[#EAECE4] mb-16 leading-[0.95]">
+<span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#DFD8C6] block mb-6">⑤ On en parle</span>
+<h2 class="text-3xl md:text-5xl gasoek-caps text-[#EDEAE0] mb-16 leading-[0.95]">
                 Ce que<br/>nos clients disent.
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <!-- Card 1 -->
-<div class="bg-[#EAECE4] p-10 rounded-lg flex flex-col text-[#33181C]">
-<div class="flex mb-6 text-[#6F5F4D]">
+<div class="bg-[#EDEAE0] p-10 rounded-lg flex flex-col text-[#371D12]">
+<div class="flex mb-6 text-[#72604A]">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -541,8 +541,8 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 <div class="mt-auto gasoek-caps text-xs tracking-widest text-primary">— MATHIEU LEBLANC</div>
 </div>
 <!-- Card 2 -->
-<div class="bg-[#EAECE4] p-10 rounded-lg flex flex-col text-[#33181C]">
-<div class="flex mb-6 text-[#6F5F4D]">
+<div class="bg-[#EDEAE0] p-10 rounded-lg flex flex-col text-[#371D12]">
+<div class="flex mb-6 text-[#72604A]">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -553,8 +553,8 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 <div class="mt-auto gasoek-caps text-xs tracking-widest text-primary">— SOPHIE GAGNON</div>
 </div>
 <!-- Card 3 -->
-<div class="bg-[#EAECE4] p-10 rounded-lg flex flex-col text-[#33181C]">
-<div class="flex mb-6 text-[#6F5F4D]">
+<div class="bg-[#EDEAE0] p-10 rounded-lg flex flex-col text-[#371D12]">
+<div class="flex mb-6 text-[#72604A]">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -566,22 +566,22 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 </div>
 </div>
 <div class="mt-16 flex gap-4">
-<button class="w-12 h-12 rounded-full border border-[#EAECE4]/40 flex items-center justify-center text-[#EAECE4] hover:bg-[#EAECE4] hover:text-[#6F5F4D] transition-colors">
+<button class="w-12 h-12 rounded-full border border-[#EDEAE0]/40 flex items-center justify-center text-[#EDEAE0] hover:bg-[#EDEAE0] hover:text-[#72604A] transition-colors">
 <span class="material-symbols-outlined">arrow_back</span>
 </button>
-<button class="w-12 h-12 rounded-full border border-[#EAECE4] flex items-center justify-center text-[#6F5F4D] bg-[#EAECE4]">
+<button class="w-12 h-12 rounded-full border border-[#EDEAE0] flex items-center justify-center text-[#72604A] bg-[#EDEAE0]">
 <span class="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
 </div>
 </section>
 <!-- Footer -->
-<footer class="w-full relative overflow-hidden pt-20 pb-10 bg-[#33181C] text-[#EAECE4]">
-  <div class="text-[15vw] leading-[0.8] font-black text-[#EAECE4] opacity-5 tracking-tighter uppercase gasoek-caps absolute -top-10 -left-10 pointer-events-none select-none">BISTRO ST-CHARLES</div>
+<footer class="w-full relative overflow-hidden pt-20 pb-10 bg-[#371D12] text-[#EDEAE0]">
+  <div class="text-[15vw] leading-[0.8] font-black text-[#EDEAE0] opacity-5 tracking-tighter uppercase gasoek-caps absolute -top-10 -left-10 pointer-events-none select-none">BISTRO ST-CHARLES</div>
 
   <!-- Logo centré -->
   <div class="flex justify-center mb-16 relative z-10">
-    <svg class="w-64 opacity-90" viewBox="0 0 360 149.99" xmlns="http://www.w3.org/2000/svg" fill="#EAECE4">
+    <svg class="w-64 opacity-90" viewBox="0 0 360 149.99" xmlns="http://www.w3.org/2000/svg" fill="#EDEAE0">
       <rect x="40.37" y="26.08" width="278.45" height="6.04"/><rect x="40.37" y="94.76" width="278.45" height="6.04"/>
       <path d="M95.82,50.82c3.37,0,6.05.99,9.25,3.4l3.1,2.34,5.48-7.72-2.91-2.21c-4.43-3.38-9.42-5.09-14.83-5.09-11.99,0-21.75,10.08-21.75,22.47s9.58,22.67,21.8,22.67c5.71,0,10.61-1.8,15.42-5.66l2.78-2.24-5.32-7.44-3.09,2.27c-3.66,2.69-6.47,3.79-9.7,3.79-6.94,0-12.17-5.8-12.17-13.49s5.23-13.08,11.91-13.08Z"/>
       <polygon points="147.71 86.16 147.71 42.04 138.08 42.04 138.08 56.82 128.42 56.82 128.42 42.04 118.78 42.04 118.78 86.16 128.42 86.16 128.42 66.05 138.08 66.05 138.08 86.16 147.71 86.16"/>
@@ -607,83 +607,83 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 
     <!-- Contact -->
     <div>
-      <span class="text-[10px] gasoek-caps tracking-[0.3em] block mb-5 text-[#DDD9C9]">CONTACT</span>
-      <address class="not-italic font-['Poppins'] text-sm leading-relaxed text-[#EAECE4]/70 space-y-1">
+      <span class="text-[10px] gasoek-caps tracking-[0.3em] block mb-5 text-[#DFD8C6]">CONTACT</span>
+      <address class="not-italic font-['Poppins'] text-sm leading-relaxed text-[#EDEAE0]/70 space-y-1">
         <p>17680 rue St-Charles #100</p>
         <p>Mirabel, QC J7J 0T6</p>
-        <a href="tel:4508188668" class="block mt-4 text-[#EAECE4]/90 hover:text-white transition-colors">(450) 818-8668</a>
+        <a href="tel:4508188668" class="block mt-4 text-[#EDEAE0]/90 hover:text-white transition-colors">(450) 818-8668</a>
       </address>
       <div class="flex gap-5 mt-6">
-        <a href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" class="text-[10px] gasoek-caps tracking-[0.2em] text-[#EAECE4]/40 hover:text-[#DDD9C9] transition-colors">IG</a>
-        <a href="https://www.facebook.com/bistrostcharles" target="_blank" rel="noopener" class="text-[10px] gasoek-caps tracking-[0.2em] text-[#EAECE4]/40 hover:text-[#DDD9C9] transition-colors">FB</a>
+        <a href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" class="text-[10px] gasoek-caps tracking-[0.2em] text-[#EDEAE0]/40 hover:text-[#DFD8C6] transition-colors">IG</a>
+        <a href="https://www.facebook.com/bistrostcharles" target="_blank" rel="noopener" class="text-[10px] gasoek-caps tracking-[0.2em] text-[#EDEAE0]/40 hover:text-[#DFD8C6] transition-colors">FB</a>
       </div>
     </div>
 
     <!-- Horaires -->
     <div>
-      <span class="text-[10px] gasoek-caps tracking-[0.3em] block mb-5 text-[#DDD9C9]">HORAIRES</span>
-      <table class="font-['Poppins'] text-sm text-[#EAECE4]/70 w-full border-separate" style="border-spacing:0 0.4rem">
+      <span class="text-[10px] gasoek-caps tracking-[0.3em] block mb-5 text-[#DFD8C6]">HORAIRES</span>
+      <table class="font-['Poppins'] text-sm text-[#EDEAE0]/70 w-full border-separate" style="border-spacing:0 0.4rem">
         <tbody>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Lundi</td><td>11h30 – 21h00</td></tr>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Mardi</td><td>11h30 – 21h00</td></tr>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Mercredi</td><td>11h30 – 22h00</td></tr>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Jeudi</td><td>11h30 – 22h00</td></tr>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Vendredi</td><td>11h30 – 22h00</td></tr>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Samedi</td><td>17h00 – 22h00</td></tr>
-          <tr><td class="pr-6 text-[#EAECE4]/40 text-xs uppercase tracking-wider">Dimanche</td><td class="text-[#EAECE4]/40 italic">Fermé</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Lundi</td><td>11h30 – 21h00</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Mardi</td><td>11h30 – 21h00</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Mercredi</td><td>11h30 – 22h00</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Jeudi</td><td>11h30 – 22h00</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Vendredi</td><td>11h30 – 22h00</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Samedi</td><td>17h00 – 22h00</td></tr>
+          <tr><td class="pr-6 text-[#EDEAE0]/40 text-xs uppercase tracking-wider">Dimanche</td><td class="text-[#EDEAE0]/40 italic">Fermé</td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- Liens -->
     <div>
-      <span class="text-[10px] gasoek-caps tracking-[0.3em] block mb-5 text-[#DDD9C9]">LIENS</span>
+      <span class="text-[10px] gasoek-caps tracking-[0.3em] block mb-5 text-[#DFD8C6]">LIENS</span>
       <ul class="font-['Poppins'] text-sm space-y-3">
-        <li><a class="text-[#EAECE4]/70 hover:text-white transition-colors" href="#">Menu</a></li>
-        <li><a class="text-[#EAECE4]/70 hover:text-white transition-colors" href="./lemenu/">À boire</a></li>
-        <li><a class="text-[#EAECE4]/70 hover:text-white transition-colors" href="#">Politique de confidentialité</a></li>
+        <li><a class="text-[#EDEAE0]/70 hover:text-white transition-colors" href="#">Menu</a></li>
+        <li><a class="text-[#EDEAE0]/70 hover:text-white transition-colors" href="./lemenu/">À boire</a></li>
+        <li><a class="text-[#EDEAE0]/70 hover:text-white transition-colors" href="#">Politique de confidentialité</a></li>
       </ul>
     </div>
 
   </div>
 
   <!-- Barre de bas de page -->
-  <div class="mt-16 px-12 pt-8 border-t border-[#EAECE4]/10 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] gasoek-caps tracking-[0.2em] text-[#EAECE4]/30 relative z-10">
+  <div class="mt-16 px-12 pt-8 border-t border-[#EDEAE0]/10 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] gasoek-caps tracking-[0.2em] text-[#EDEAE0]/30 relative z-10">
     <div>© 2025 BISTRO ST-CHARLES — TOUS DROITS RÉSERVÉS</div>
-    <a href="https://www.vpourdesign.com" target="_blank" class="hover:text-[#EAECE4]/60 transition-colors">DESIGN · V POUR DESIGN</a>
+    <a href="https://www.vpourdesign.com" target="_blank" class="hover:text-[#EDEAE0]/60 transition-colors">DESIGN · V POUR DESIGN</a>
   </div>
 </footer>
 
 <!-- Reservation Drawer -->
-<div id="reserve-backdrop" aria-hidden="true" class="fixed inset-0 z-[100] bg-[#33181C]/55 opacity-0 pointer-events-none transition-opacity duration-500" style="backdrop-filter:blur(4px);"></div>
+<div id="reserve-backdrop" aria-hidden="true" class="fixed inset-0 z-[100] bg-[#371D12]/55 opacity-0 pointer-events-none transition-opacity duration-500" style="backdrop-filter:blur(4px);"></div>
 <aside id="reserve-drawer" aria-hidden="true" aria-label="Réservation Bistro St-Charles"
-       class="fixed top-0 right-0 z-[101] h-[100svh] w-full sm:w-[420px] bg-[#EAECE4] text-[#33181C] translate-x-full transition-transform duration-500 shadow-2xl flex flex-col"
+       class="fixed top-0 right-0 z-[101] h-[100svh] w-full sm:w-[420px] bg-[#EDEAE0] text-[#371D12] translate-x-full transition-transform duration-500 shadow-2xl flex flex-col"
        style="transition-timing-function:cubic-bezier(.16,1,.3,1);">
-  <header class="flex items-center justify-between px-7 py-6 border-b border-[#33181C]/15">
+  <header class="flex items-center justify-between px-7 py-6 border-b border-[#371D12]/15">
     <div>
-      <span class="block text-[10px] gasoek-caps tracking-[0.28em] text-[#6F5F4D] mb-1">Bistro St-Charles</span>
-      <h3 class="gasoek-caps text-2xl text-[#33181C] leading-none">Réservation</h3>
+      <span class="block text-[10px] gasoek-caps tracking-[0.28em] text-[#72604A] mb-1">Bistro St-Charles</span>
+      <h3 class="gasoek-caps text-2xl text-[#371D12] leading-none">Réservation</h3>
     </div>
-    <button id="reserve-close" aria-label="Fermer" class="w-10 h-10 rounded-full border border-[#33181C]/25 flex items-center justify-center text-[#33181C] hover:bg-[#33181C] hover:text-[#EAECE4] transition-colors">
+    <button id="reserve-close" aria-label="Fermer" class="w-10 h-10 rounded-full border border-[#371D12]/25 flex items-center justify-center text-[#371D12] hover:bg-[#371D12] hover:text-[#EDEAE0] transition-colors">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </header>
-  <div class="px-7 py-5 text-sm font-fraunces leading-relaxed text-[#33181C]/80 border-b border-[#33181C]/10">
+  <div class="px-7 py-5 text-sm font-fraunces leading-relaxed text-[#371D12]/80 border-b border-[#371D12]/10">
     Choisissez la date, l'heure et le nombre de convives. On vous garde une table à Mirabel.
   </div>
-  <div class="flex-1 overflow-y-auto p-4 bg-[#EAECE4]">
-    <div class="bg-[#EAECE4] rounded-md border border-[#33181C]/15 overflow-hidden mx-auto" style="max-width:380px;">
+  <div class="flex-1 overflow-y-auto p-4 bg-[#EDEAE0]">
+    <div class="bg-[#EDEAE0] rounded-md border border-[#371D12]/15 overflow-hidden mx-auto" style="max-width:380px;">
       <iframe src="https://widgets.libroreserve.com/WEB/QC015530247062/book"
               title="Réservation en ligne — LibroReserve"
               loading="lazy"
               class="block w-full"
               style="border:0; height:520px;"></iframe>
     </div>
-    <p class="text-center text-[11px] gasoek-caps tracking-[0.28em] text-[#6F5F4D] mt-6">Propulsé par LibroReserve</p>
+    <p class="text-center text-[11px] gasoek-caps tracking-[0.28em] text-[#72604A] mt-6">Propulsé par LibroReserve</p>
   </div>
-  <footer class="px-7 py-5 border-t border-[#33181C]/15 flex items-center justify-between text-xs gasoek-caps tracking-[0.2em] text-[#33181C]">
+  <footer class="px-7 py-5 border-t border-[#371D12]/15 flex items-center justify-between text-xs gasoek-caps tracking-[0.2em] text-[#371D12]">
     <a href="tel:+14508188668" class="hover:opacity-70 transition-opacity">450·818·8668</a>
-    <span class="text-[#6F5F4D]">Mirabel · QC</span>
+    <span class="text-[#72604A]">Mirabel · QC</span>
   </footer>
 </aside>
 

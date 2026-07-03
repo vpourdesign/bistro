@@ -18,28 +18,28 @@
 }
 </style>
 <style>
-  :root { --obsidian:#EAECE4; --porcelain:#33181C; --harbor:#6F5F4D; --steel:#DDD9C9; }
+  :root { --obsidian:#EDEAE0; --porcelain:#371D12; --harbor:#72604A; --steel:#DFD8C6; }
   html, body { background: var(--obsidian); color: var(--porcelain); font-family: "Poppins", ui-serif, Georgia, serif; font-weight: 400; -webkit-font-smoothing: antialiased; }
   h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.015em; }
   .gasoek-caps { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif !important; text-transform: uppercase; letter-spacing: -0.01em; }
   .fraunces-italic { font-family: "Poppins", serif; font-style: italic; font-weight: 400; }
   .grain-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: .3; mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-  .row { display: grid; grid-template-columns: var(--grid-d, 1fr 70px 90px); gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid rgba(51,24,28,0.12); }
+  .row { display: grid; grid-template-columns: var(--grid-d, 1fr 70px 90px); gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid rgba(55,29,18,0.12); }
   @media (max-width: 640px){ .row { grid-template-columns: var(--grid-m, 1fr 56px 70px); gap: .8rem; padding: .9rem 0; } }
   .row .name { font-family: "Poppins", serif; font-size: clamp(0.95rem, 1.4vw, 1.05rem); line-height: 1.35; }
-  .row .desc { display: block; font-family: "Poppins", sans-serif; font-size: .85rem; font-style: italic; color: rgba(51,24,28,.65); line-height: 1.45; margin-top: .25rem; max-width: 46ch; }
+  .row .desc { display: block; font-family: "Poppins", sans-serif; font-size: .85rem; font-style: italic; color: rgba(55,29,18,.65); line-height: 1.45; margin-top: .25rem; max-width: 46ch; }
   .row .price { font-family: "More Sugar", system-ui, sans-serif; font-size: 1rem; color: var(--porcelain); text-align: right; opacity: .92; font-feature-settings: "tnum"; }
   .row .price.empty { opacity: .25; }
-  .head { display: grid; grid-template-columns: var(--grid-d, 1fr 70px 90px); gap: 1.5rem; padding: 0 0 .75rem; border-bottom: 1px solid rgba(51,24,28,0.35);
+  .head { display: grid; grid-template-columns: var(--grid-d, 1fr 70px 90px); gap: 1.5rem; padding: 0 0 .75rem; border-bottom: 1px solid rgba(55,29,18,0.35);
     font-family: "More Sugar", system-ui, sans-serif; text-transform: uppercase; letter-spacing: .22em; font-size: .65rem; color: var(--harbor); }
   @media (max-width: 640px){ .head { grid-template-columns: var(--grid-m, 1fr 56px 70px); gap: .8rem; } }
   .head .col-right { text-align: right; }
-  .tab { position: relative; padding: .8rem 0; font-family: "More Sugar", system-ui, sans-serif; text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; color: rgba(51,24,28,0.55); transition: color .3s; }
+  .tab { position: relative; padding: .8rem 0; font-family: "More Sugar", system-ui, sans-serif; text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; color: rgba(55,29,18,0.55); transition: color .3s; }
   .tab:hover { color: var(--porcelain); }
   .tab.active { color: var(--porcelain); }
   .tab.active::after { content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background: var(--porcelain); }
-  .skeleton { animation: pulse 1.4s ease-in-out infinite; background: linear-gradient(90deg, rgba(51,24,28,0.04), rgba(51,24,28,0.10), rgba(51,24,28,0.04)); }
+  .skeleton { animation: pulse 1.4s ease-in-out infinite; background: linear-gradient(90deg, rgba(55,29,18,0.04), rgba(55,29,18,0.10), rgba(55,29,18,0.04)); }
   @keyframes pulse { 0%,100%{opacity:.55} 50%{opacity:1} }
   ::selection { background: var(--harbor); color: var(--obsidian); }
   /* === "Réserver" — plaque crème, ombre dure, presse renfoncée === */
@@ -48,28 +48,28 @@
     text-transform:uppercase;
     font-size:clamp(.9rem, 1.05vw, 1rem);
     letter-spacing:.06em;
-    color:#6F5F4D;
-    background:#F7F8F1;
+    color:#72604A;
+    background:#F8F6EE;
     padding:.7rem 1.6rem .75rem;
-    border:1.5px solid rgba(51,24,28,.9); cursor:pointer;
+    border:1.5px solid rgba(55,29,18,.9); cursor:pointer;
     display:inline-flex; align-items:center; justify-content:center;
     border-radius:14px;
-    box-shadow: 5px 5px 0 #33181C;
+    box-shadow: 5px 5px 0 #371D12;
     transform: translate(0,0);
     transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s cubic-bezier(.34,1.56,.64,1), color .18s;
     position:relative;
   }
   .btn-reserve:hover{
     transform: translate(2px,2px);
-    box-shadow: 3px 3px 0 #33181C;
-    color:#5C4E3E;
+    box-shadow: 3px 3px 0 #371D12;
+    color:#5F4F3B;
   }
   .btn-reserve:active{
     transform: translate(5px,5px);
-    box-shadow: 0 0 0 #33181C;
+    box-shadow: 0 0 0 #371D12;
   }
   .btn-reserve:focus-visible{
-    outline:2px solid #6F5F4D; outline-offset:3px;
+    outline:2px solid #72604A; outline-offset:3px;
   }
 </style>
 </head>
@@ -77,41 +77,41 @@
 <div class="grain-overlay"></div>
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-50 bg-[#EAECE4]/85 backdrop-blur-md border-b border-[#33181C]/10 flex justify-between items-center px-8 py-4">
-  <a href="../index.html" aria-label="Bistro St-Charles" class="block text-[#33181C]" style="width:clamp(140px,11vw,180px);">
+<nav class="fixed top-0 w-full z-50 bg-[#EDEAE0]/85 backdrop-blur-md border-b border-[#371D12]/10 flex justify-between items-center px-8 py-4">
+  <a href="../index.html" aria-label="Bistro St-Charles" class="block text-[#371D12]" style="width:clamp(140px,11vw,180px);">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 149.99" style="width:100%;height:auto;display:block;fill:currentColor;">
       <rect x="40.37" y="26.08" width="278.45" height="6.04"/><rect x="40.37" y="94.76" width="278.45" height="6.04"/><path d="M95.82,50.82c3.37,0,6.05.99,9.25,3.4l3.1,2.34,5.48-7.72-2.91-2.21c-4.43-3.38-9.42-5.09-14.83-5.09-11.99,0-21.75,10.08-21.75,22.47s9.58,22.67,21.8,22.67c5.71,0,10.61-1.8,15.42-5.66l2.78-2.24-5.32-7.44-3.09,2.27c-3.66,2.69-6.47,3.79-9.7,3.79-6.94,0-12.17-5.8-12.17-13.49s5.23-13.08,11.91-13.08Z"/><polygon points="147.71 86.16 147.71 42.04 138.08 42.04 138.08 56.82 128.42 56.82 128.42 42.04 118.78 42.04 118.78 86.16 128.42 86.16 128.42 66.05 138.08 66.05 138.08 86.16 147.71 86.16"/><path d="M170.32,41.18h-1.82l-16.91,44.98h10.06l3.71-9.95h11.63l3.56,9.95h10.19l-16.42-44.98h-4ZM168.78,66.98l2.48-6.67,2.4,6.67h-4.88Z"/><path d="M223.44,57.75c0-9.25-7.38-15.71-17.95-15.71h-10.64v44.12h9.64v-8.58l10.74,8.58h15.35l-17.45-13.71c6.39-2.41,10.31-7.73,10.31-14.7ZM205.08,64.74h-.59v-13.47h.79c1.97,0,8.41.47,8.41,6.58,0,2.57-1.12,6.89-8.62,6.89Z"/><polygon points="233.77 42.04 233.77 86.16 256.36 86.16 256.36 76.93 243.41 76.93 243.41 42.04 233.77 42.04"/><polygon points="285.66 51.27 285.66 42.04 262.67 42.04 262.67 86.16 285.76 86.16 285.76 76.93 272.3 76.93 272.3 66.05 285.46 66.05 285.46 56.82 272.3 56.82 272.3 51.27 285.66 51.27"/><path d="M304.37,77.18c-2,0-4.32-.73-7.08-2.23l-3.6-1.96-3.94,8.87,3.23,1.62c2.73,1.36,6.9,2.99,11.29,2.99,8.29,0,14.54-5.71,14.54-13.28,0-6.84-3.83-10.56-10.9-15.03-5.4-3.4-5.4-4.23-5.4-5.28,0-1.62,1.74-1.86,2.77-1.86,1.89,0,3.16.5,4.73,1.36l3.44,1.9,4.28-8.56-3.29-1.72c-2.24-1.17-4.89-2.26-9.06-2.26-7.04,0-12.56,4.94-12.56,11.24,0,5.92,3.58,9.31,9.74,13.15,6.56,4.11,6.56,5.39,6.56,7.16,0,2.51-1.68,3.89-4.75,3.89Z"/><path d="M44.88,64.31h2.95c2.93,0,4.54-1.61,4.54-4.54v-3.07c0-1.88-.57-2.99-2.1-4.1l-4.67-2.19c-.25-.18-.3-.27-.3-.64v-2.15s.03,0,.04,0h1.9s.03,0,.04,0v2.22h4.9v-2.28c0-2.96-2.27-4.51-4.51-4.51h-2.19c-3.39,0-5.12,1.52-5.12,4.53v2.59c0,1.88.59,3.03,2.11,4.11l4.65,2.18c.28.22.31.31.31.65v2.63s-.04,0-.07,0h-2.06s-.05,0-.07,0v-1.95h-4.87v2.01c0,2.91,1.6,4.51,4.51,4.51Z"/><polygon points="62.35 64.15 62.35 47.9 66.2 47.9 66.2 43.21 53.75 43.21 53.75 47.9 57.4 47.9 57.4 64.15 62.35 64.15"/><rect x="40.37" y="66.84" width="25.83" height="4.82"/><path d="M218.01,106.7h-17.06v17.31h17.06c1.16,0,2.17-.49,3.01-1.46.79-.94,1.18-2.07,1.18-3.36v-7.68c0-1.27-.4-2.39-1.18-3.33-.82-.97-1.86-1.49-3.01-1.49ZM218.64,119.2c0,.31-.08.55-.23.73-.16.19-.29.21-.4.21h-13.5v-2.85h14.14v1.9ZM218.64,113.42h-14.14v-2.85h13.5c.07,0,.2,0,.38.22.17.2.25.43.25.72v1.9Z"/><rect x="224.27" y="106.7" width="3.56" height="17.31"/><path d="M246.96,106.7h-12.87c-1.19,0-2.21.5-3.04,1.5-.76.94-1.15,2.05-1.15,3.32s.39,2.41,1.17,3.37c.82.95,1.82,1.44,2.85,1.44h.03l13.01,1.93c.07,0,.2,0,.38.22.17.2.25.43.25.72,0,.31-.08.55-.23.73-.17.19-.29.21-.4.21h-12.87c-.12,0-.26-.02-.39-.17-.16-.21-.24-.45-.24-.77v-.98h-3.56v.98c0,1.29.39,2.41,1.17,3.37.83.96,1.85,1.45,3.03,1.45h12.87c1.17,0,2.18-.49,3.01-1.46.79-.94,1.19-2.07,1.19-3.36s-.4-2.39-1.19-3.33c-.81-.97-1.77-1.48-2.87-1.48l-13.01-1.93c-.12,0-.26-.02-.39-.17-.16-.21-.24-.45-.24-.77,0-.3.08-.53.22-.72.17-.2.3-.22.41-.22h12.87c.07,0,.2,0,.38.22.17.2.25.43.25.72v.98h3.56v-.98c0-1.27-.4-2.39-1.19-3.33-.82-.97-1.86-1.49-3.01-1.49Z"/><polygon points="252.42 110.57 261.27 110.57 261.27 124.01 264.83 124.01 264.83 110.57 273.68 110.57 273.68 106.7 252.42 106.7 252.42 110.57"/><path d="M295.02,114.87c.79-.94,1.18-2.07,1.18-3.36s-.4-2.39-1.18-3.33c-.82-.97-1.86-1.49-3.01-1.49h-17.06v17.31h3.56v-7.68h12.21l2.16,7.68h3.64l-2.35-8.35c.31-.22.59-.48.85-.79ZM292.41,112.25c-.16.19-.29.21-.4.21h-13.5v-1.89h13.5c.07,0,.2,0,.38.22.17.2.25.43.25.72,0,.31-.08.55-.23.73Z"/><path d="M314.53,106.7h-12.87c-1.19,0-2.21.5-3.04,1.5-.76.94-1.15,2.05-1.15,3.32v7.68c0,1.29.39,2.41,1.17,3.37.83.96,1.85,1.45,3.03,1.45h12.87c1.16,0,2.17-.49,3.01-1.46.78-.94,1.18-2.07,1.18-3.36v-7.68c0-1.27-.4-2.39-1.19-3.33-.82-.97-1.86-1.49-3.01-1.49ZM315.16,119.2c0,.31-.08.55-.23.73-.16.19-.29.21-.4.21h-12.87c-.12,0-.26-.02-.39-.17-.16-.21-.24-.45-.24-.77v-7.68c0-.3.08-.53.23-.72.17-.2.3-.22.41-.22h12.87c.07,0,.2,0,.38.22.17.2.25.43.25.72v7.68Z"/>
     </svg>
   </a>
   <div class="hidden md:flex gap-8 items-center">
-    <a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="../index.html">Accueil</a>
-    <a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="../index.html#menu">Menu</a>
-    <a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="./">À boire</a>
-    <a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="../index.html#photos">Photos</a>
-    <span class="w-px h-4 bg-[#33181C]/20"></span>
-    <a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-    <a class="text-[#33181C] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.facebook.com/bistrostcharles" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+    <a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="../index.html">Accueil</a>
+    <a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="../index.html#menu">Menu</a>
+    <a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="./">À boire</a>
+    <a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="../index.html#photos">Photos</a>
+    <span class="w-px h-4 bg-[#371D12]/20"></span>
+    <a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.instagram.com/bistrostcharles/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+    <a class="text-[#371D12] font-epilogue tracking-wide transition-opacity hover:opacity-70" href="https://www.facebook.com/bistrostcharles" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
   </div>
   <div class="flex items-center gap-6">
-    <span class="text-[#33181C] hidden sm:block">450·818·8668</span>
+    <span class="text-[#371D12] hidden sm:block">450·818·8668</span>
     <button data-open-reserve class="btn-reserve">Réserver</button>
   </div>
 </nav>
 
 <!-- HEADER -->
 <header class="pt-40 pb-16 px-6 md:px-12 max-w-6xl mx-auto">
-  <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#6F5F4D] block mb-6">① La cave</span>
-  <h1 class="gasoek-caps text-5xl md:text-7xl leading-[0.9] text-[#33181C] max-w-3xl">
+  <span class="text-[11px] gasoek-caps tracking-[0.28em] text-[#72604A] block mb-6">① La cave</span>
+  <h1 class="gasoek-caps text-5xl md:text-7xl leading-[0.9] text-[#371D12] max-w-3xl">
     À<br/>boire.
   </h1>
-  <p class="font-fraunces text-lg md:text-xl text-[#33181C]/75 mt-8 max-w-xl leading-relaxed">
+  <p class="font-fraunces text-lg md:text-xl text-[#371D12]/75 mt-8 max-w-xl leading-relaxed">
     Une sélection mise à jour régulièrement — pensée pour s'accorder avec la cuisine de saison du chef Simon Courcelles.
   </p>
 </header>
 
 <!-- TABS -->
 <div class="px-6 md:px-12 max-w-6xl mx-auto">
-  <nav class="flex flex-wrap gap-x-10 gap-y-2 border-b border-[#33181C]/15">
+  <nav class="flex flex-wrap gap-x-10 gap-y-2 border-b border-[#371D12]/15">
     <button class="tab active" data-tab="rouges">Vins rouges</button>
     <button class="tab" data-tab="blancs">Blancs &amp; bulles</button>
     <button class="tab" data-tab="cocktails">Cocktails</button>
@@ -134,23 +134,23 @@
       <div class="row"><span class="skeleton block h-4 w-4/5 rounded"></span><span class="skeleton block h-4 rounded"></span><span class="skeleton block h-4 rounded"></span></div>
       <div class="row"><span class="skeleton block h-4 w-2/4 rounded"></span><span class="skeleton block h-4 rounded"></span><span class="skeleton block h-4 rounded"></span></div>
     </div>
-    <div id="wine-empty" class="hidden text-center py-16 text-[#33181C]/60 font-fraunces italic">Aucun vin pour le moment.</div>
-    <div id="wine-error" class="hidden text-center py-16 text-[#6F5F4D] font-fraunces italic"></div>
+    <div id="wine-empty" class="hidden text-center py-16 text-[#371D12]/60 font-fraunces italic">Aucun vin pour le moment.</div>
+    <div id="wine-error" class="hidden text-center py-16 text-[#72604A] font-fraunces italic"></div>
   </div>
 
-  <p class="mt-12 text-xs gasoek-caps tracking-[0.28em] text-[#33181C]/40 text-center">Prix en dollars canadiens, taxes en sus</p>
+  <p class="mt-12 text-xs gasoek-caps tracking-[0.28em] text-[#371D12]/40 text-center">Prix en dollars canadiens, taxes en sus</p>
 </main>
 
 <!-- FOOTER -->
-<footer class="border-t border-[#33181C]/10 pt-12 pb-8 px-6 md:px-12">
+<footer class="border-t border-[#371D12]/10 pt-12 pb-8 px-6 md:px-12">
   <div class="max-w-6xl mx-auto flex flex-wrap justify-between gap-6 text-sm">
     <div>
-      <span class="block text-[10px] gasoek-caps tracking-[0.28em] text-[#6F5F4D] mb-2">Bistro St-Charles</span>
-      <p class="text-[#33181C]/80">17680 Rue Charles #100, Mirabel, QC J7J 0T6</p>
+      <span class="block text-[10px] gasoek-caps tracking-[0.28em] text-[#72604A] mb-2">Bistro St-Charles</span>
+      <p class="text-[#371D12]/80">17680 Rue Charles #100, Mirabel, QC J7J 0T6</p>
     </div>
     <div class="text-right">
-      <p class="text-[#33181C]/80">450·818·8668</p>
-      <a href="../index.html" class="text-[#6F5F4D] hover:opacity-70 transition-opacity">Retour à l'accueil ↗</a>
+      <p class="text-[#371D12]/80">450·818·8668</p>
+      <a href="../index.html" class="text-[#72604A] hover:opacity-70 transition-opacity">Retour à l'accueil ↗</a>
     </div>
   </div>
 </footer>
