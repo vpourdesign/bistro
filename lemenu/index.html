@@ -269,7 +269,7 @@ function formatPrice(v){
   // accept numbers or "13.5" strings
   const n = typeof v === 'number' ? v : parseFloat(String(v).replace(',','.'));
   if(isNaN(n)) return String(v);
-  return n.toFixed(0); // entier — change to .toFixed(2) pour décimales
+  return Number.isInteger(n) ? String(n) : String(n).replace('.', ',');
 }
 
 function render(list){
