@@ -160,6 +160,107 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
 .menu-list li:hover span{ opacity:.85; }
 .menu-list li:hover i{ border-color:rgba(237,234,224,.6); }
 
+/* === Menu de groupe — accordéon espresso sur le cacao === */
+.group-menu{
+  background:#371D12;
+  border:1.5px solid rgba(237,234,224,.16);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:
+    0 1px 2px rgba(24,10,4,.3),
+    0 10px 26px rgba(24,10,4,.24),
+    0 30px 64px rgba(24,10,4,.18);
+}
+.group-menu > summary{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:center; gap:clamp(1rem,3vw,2rem);
+  padding:clamp(1.3rem,2.4vw,1.9rem) clamp(1.3rem,2.4vw,2rem);
+  transition:background-color .25s ease;
+}
+.group-menu > summary::-webkit-details-marker{ display:none; }
+.group-menu > summary:hover{ background:rgba(237,234,224,.05); }
+.group-menu > summary:focus-visible{ outline:2px solid #DFD8C6; outline-offset:-5px; }
+.gm-label{
+  display:block; margin-bottom:.5rem;
+  font-family:'More Sugar', system-ui, sans-serif;
+  text-transform:uppercase; letter-spacing:.28em;
+  font-size:11px; color:#DFD8C6;
+}
+.gm-title{
+  display:block;
+  font-family:'More Sugar', system-ui, sans-serif;
+  text-transform:uppercase; letter-spacing:-.01em; line-height:.95;
+  font-size:clamp(1.6rem,4vw,2.7rem);
+  color:#EDEAE0;
+}
+.gm-price{
+  margin-left:auto; white-space:nowrap;
+  font-family:'More Sugar', system-ui, sans-serif;
+  font-size:clamp(1.05rem,1.8vw,1.4rem);
+  color:#EDEAE0;
+}
+.gm-toggle{
+  flex:none; width:2.6rem; height:2.6rem; border-radius:999px;
+  border:1.5px solid rgba(237,234,224,.35);
+  display:grid; place-items:center;
+  font-family:'More Sugar', system-ui, sans-serif;
+  font-size:1.35rem; line-height:1; color:#EDEAE0;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), border-color .3s, opacity .3s;
+}
+.group-menu > summary:hover .gm-toggle{ border-color:rgba(237,234,224,.7); transform:scale(1.06); }
+.group-menu[open] > summary .gm-toggle{ transform:rotate(135deg); }
+.group-menu[open] > summary:hover .gm-toggle{ transform:rotate(135deg) scale(1.06); }
+.gm-body{ padding:0 clamp(1.3rem,2.4vw,2rem) clamp(1.8rem,3vw,2.4rem); }
+.gm-divider{ height:1px; background:rgba(237,234,224,.14); margin-bottom:clamp(1.6rem,2.6vw,2.2rem); }
+.gm-grid{ display:grid; grid-template-columns:1fr; gap:clamp(1.8rem,3vw,3rem); }
+@media (min-width:768px){ .gm-grid{ grid-template-columns:1fr 1fr; gap:clamp(2rem,4vw,4rem); } }
+.gm-col h4{
+  font-family:'More Sugar', system-ui, sans-serif;
+  text-transform:uppercase; letter-spacing:.16em;
+  font-size:.82rem; color:#DFD8C6;
+  padding-bottom:.7rem; margin-bottom:.4rem;
+  border-bottom:1px solid rgba(237,234,224,.22);
+}
+.gm-list li{ padding:.85rem 0; border-bottom:1px solid rgba(237,234,224,.09); }
+.gm-list li:last-child{ border-bottom:none; }
+.gm-list li strong{
+  font-family:'Poppins', sans-serif; font-weight:700;
+  font-size:clamp(1rem,1.3vw,1.1rem); color:#EDEAE0;
+}
+.gm-list li p{
+  font-family:'Poppins', sans-serif; font-size:.88rem;
+  color:rgba(237,234,224,.72); line-height:1.45; margin-top:.2rem;
+}
+.gm-dessert{
+  margin-top:clamp(1.6rem,2.6vw,2.2rem);
+  padding-top:clamp(1.3rem,2.2vw,1.8rem);
+  border-top:1px solid rgba(237,234,224,.22);
+  display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:.9rem;
+  text-align:center;
+}
+.gm-dessert strong{
+  font-family:'More Sugar', system-ui, sans-serif;
+  text-transform:uppercase; letter-spacing:.06em;
+  font-size:clamp(1.05rem,1.9vw,1.45rem); color:#EDEAE0;
+}
+.gm-dessert em{
+  font-family:'Poppins', sans-serif; font-style:italic;
+  font-size:.88rem; color:rgba(237,234,224,.6);
+}
+.group-menu[open] .gm-body{ animation:gmReveal .5s cubic-bezier(.16,1,.3,1) both; }
+.group-menu[open] .gm-col:nth-child(2){ animation:gmReveal .55s cubic-bezier(.16,1,.3,1) .07s both; }
+.group-menu[open] .gm-dessert{ animation:gmReveal .55s cubic-bezier(.16,1,.3,1) .13s both; }
+@keyframes gmReveal{
+  from{ opacity:0; transform:translateY(-10px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+@media (prefers-reduced-motion:reduce){
+  .group-menu[open] .gm-body,
+  .group-menu[open] .gm-col:nth-child(2),
+  .group-menu[open] .gm-dessert{ animation:none; }
+  .gm-toggle{ transition:none; }
+}
+
 /* === Patio-style gallery mosaic === */
 .gallery-grid {
   display: grid;
@@ -458,7 +559,7 @@ body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(
         <ul class="menu-list">
           <li>
             <div class="row"><span>Flétan</span><i></i><b>44</b></div>
-            <p class="desc">Beurre blanc tartare, radis poêlés au beurre, pdt rattes, poireaux frits</p>
+            <p class="desc">Beurre blanc tartare, radis poêlés au beurre, pdt rattes, légumes, poireaux frits</p>
           </li>
           <li>
             <div class="row"><span>Boudin</span><i></i><b>34</b></div>
@@ -473,7 +574,7 @@ body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(
             <p class="desc">Bœuf canadien Prime, crevettes tigrées (3), sauce au poivre, frites</p>
           </li>
           <li>
-            <div class="row"><span>Filet d'épaule de bœuf</span><i></i><b>42</b></div>
+            <div class="row"><span>Bavette de bœuf</span><i></i><b>45</b></div>
             <p class="desc">Sauce au poivre, choux de Bruxelles frits, frites truffe et parmesan</p>
           </li>
           <li>
@@ -506,7 +607,7 @@ body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(
           </li>
           <li>
             <div class="row"><span>Tartare de thon</span><i></i><b>19&hairsp;/&hairsp;41</b></div>
-            <p class="desc">Sauce hawaienne, salsa d'ananas, coriandre, lime, concombre, ciboulette</p>
+            <p class="desc">Vinaigrette sésame, salsa d'ananas, coriandre, lime, concombre, ciboulette</p>
           </li>
           <li>
             <div class="row"><span>Tartare de bœuf</span><i></i><b>18&hairsp;/&hairsp;39</b></div>
@@ -551,16 +652,81 @@ body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(
     </div>
 
   </div>
+
+  <!-- Menu de groupe — accordéon -->
+  <div class="max-w-6xl mx-auto mt-16 md:mt-20">
+    <details class="group-menu">
+      <summary>
+        <span>
+          <span class="gm-label">Pour les tablées</span>
+          <span class="gm-title">Menu de groupe</span>
+        </span>
+        <span class="gm-price">65 $</span>
+        <span class="gm-toggle" aria-hidden="true">+</span>
+      </summary>
+      <div class="gm-body">
+        <div class="gm-divider"></div>
+        <div class="gm-grid">
+
+          <div class="gm-col">
+            <h4>Entrées</h4>
+            <ul class="gm-list">
+              <li>
+                <strong>Arancini homard</strong>
+                <p>Risotto homard, salade pomme verte et fenouil, mayonnaise homard et harissa, chips de prosciutto</p>
+              </li>
+              <li>
+                <strong>Salade César</strong>
+                <p>Romaine, parmesan, lardons fumés &amp; croûtons</p>
+              </li>
+              <li>
+                <strong>Calmars frits</strong>
+                <p>Coriandre, sauce chili sucrée &amp; roquette</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="gm-col">
+            <h4>Repas</h4>
+            <ul class="gm-list">
+              <li>
+                <strong>Tartare de thon</strong>
+                <p>Style hawaïen, soya, ananas, concombre, coriandre, graines de sésame, frites</p>
+              </li>
+              <li>
+                <strong>Flétan</strong>
+                <p>Beurre blanc, légumes du moment, citron</p>
+              </li>
+              <li>
+                <strong>Ravioli homard</strong>
+                <p>Bisque crémeuse, tomates confites, fenouil, crumble de prosciutto</p>
+              </li>
+              <li>
+                <strong>Bavette de bœuf</strong>
+                <p>Sauce aux poivres, choux de Bruxelles frits, frites truffe et parmesan</p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="gm-dessert">
+          <strong>Plateau de dessert</strong>
+          <em>inclus</em>
+        </div>
+      </div>
+    </details>
+  </div>
+
 </section>
 <!-- Quote Band -->
 <section class="relative h-[614px] flex items-center justify-center overflow-hidden">
 <img class="absolute inset-0 w-full h-full object-cover" style="filter:saturate(.7) brightness(.5);" data-alt="Assiette signature du bistro" src="./photos/web/DSCF7095.jpg"/>
 <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(55,29,18,0.55), rgba(114,96,74,0.35));"></div>
 <div class="relative z-10 px-8 text-center">
-<blockquote class="fraunces-italic text-2xl md:text-4xl text-[#EDEAE0] leading-snug max-w-4xl mx-auto" style="font-weight:400;">
-                « La bonne cuisine, c'est celle qui goûte l'endroit où on est assis. »
-            </blockquote>
-<cite class="block mt-8 text-[#EDEAE0]/60 gasoek-caps text-[12px] tracking-[0.3em] font-normal not-italic">— SIMON COURCELLES · CHEF</cite>
+<p class="fraunces-italic text-2xl md:text-4xl text-[#EDEAE0] leading-snug max-w-4xl mx-auto" style="font-weight:400;">
+                Vous n'avez qu'à prendre place à la table. On s'occupe du reste.
+            </p>
 </div>
 </section>
 <!-- Gift Cards -->
