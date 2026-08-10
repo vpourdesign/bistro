@@ -3,7 +3,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>À boire — Bistro St-Charles</title>
-<meta name="description" content="La carte des vins et cocktails du Bistro St-Charles. Rouges, blancs, bulles et signatures maison — mise à jour régulièrement."/>
+<meta name="description" content="La carte des vins, cocktails et bières du Bistro St-Charles. Rouges, blancs, bulles, signatures maison et bières en fût — mise à jour régulièrement."/>
 <link rel="canonical" href="https://www.bistrostcharles.com/lemenu"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +32,11 @@
   .row .desc { display: block; font-family: "Poppins", sans-serif; font-size: .85rem; font-style: italic; color: rgba(55,29,18,.65); line-height: 1.45; margin-top: .25rem; max-width: 46ch; }
   .row .price { font-family: "More Sugar", system-ui, sans-serif; font-size: 1rem; color: var(--porcelain); text-align: right; opacity: .92; font-feature-settings: "tnum"; }
   .row .price.empty { opacity: .25; }
+  /* Ligne de séparation : nom sans prix dans le Sheet → titre de section */
+  .row.section { display: block; padding: 2.4rem 0 .7rem; border-bottom: 1px solid rgba(55,29,18,0.35);
+    font-family: "More Sugar", system-ui, sans-serif; text-transform: uppercase; letter-spacing: .22em;
+    font-size: .7rem; color: var(--harbor); }
+  .row.section:first-child { padding-top: .2rem; }
   .head { display: grid; grid-template-columns: var(--grid-d, 1fr 70px 90px); gap: 1.5rem; padding: 0 0 .75rem; border-bottom: 1px solid rgba(55,29,18,0.35);
     font-family: "More Sugar", system-ui, sans-serif; text-transform: uppercase; letter-spacing: .22em; font-size: .65rem; color: var(--harbor); }
   @media (max-width: 640px){ .head { grid-template-columns: var(--grid-m, 1fr 56px 70px); gap: .8rem; } }
@@ -176,6 +181,7 @@
     <button class="tab active" data-tab="rouges">Vins rouges</button>
     <button class="tab" data-tab="blancs">Blancs &amp; bulles</button>
     <button class="tab" data-tab="cocktails">Cocktails</button>
+    <button class="tab" data-tab="bieres">Bières</button>
   </nav>
 </div>
 
@@ -275,10 +281,15 @@ const SHEET_ID = "1qd57-dBw1Xaqehi62x28oo8tp9wE1sVKUFMy2gI71jM";
 const TABS = {
   rouges:    { name: "vins rouges", cols: ["Vin",      "Verre", "Bouteille"] },
   blancs:    { name: "vins blancs", cols: ["Vin",      "Verre", "Bouteille"] },
-  cocktails: { name: "Cocktails",   cols: ["Cocktail", "",      "Prix"     ], desc: true }
+  cocktails: { name: "Cocktails",   cols: ["Cocktail", "",      "Prix"     ], desc: true },
+  bieres:    { name: "bieres",      cols: ["Bière",    "",      "Prix"     ], priceCol: "B", sections: true, headers: 0 }
 };
-// `desc: true` → la colonne B du Google Sheet est un descriptif affiché sous le nom
-// (au lieu d'un prix au verre)
+// `desc: true`     → la colonne B du Google Sheet est un descriptif affiché sous le nom
+//                    (au lieu d'un prix au verre)
+// `priceCol: "B"`  → le prix est en colonne B du Sheet (et non en C)
+// `sections: true` → une ligne avec un nom mais aucun prix devient un titre de section
+//                    (ex. « Fût », « Sans alcool »)
+// `headers: 0`     → empêche Google de prendre la 1ʳᵉ ligne pour un en-tête
 
 /* ========================================================================= */
 
@@ -313,7 +324,8 @@ function applyTabHeader(cols){
 }
 
 function gvizUrl(tab, cbName){
-  const base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json;responseHandler:${cbName}`;
+  let base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json;responseHandler:${cbName}`;
+  if(tab.headers !== undefined) base += `&headers=${encodeURIComponent(tab.headers)}`;
   if(tab.gid !== undefined) return `${base}&gid=${encodeURIComponent(tab.gid)}`;
   if(tab.name) return `${base}&sheet=${encodeURIComponent(tab.name)}`;
   return base;
@@ -377,10 +389,14 @@ function render(list){
   }
   emptyEl.classList.add('hidden');
   errorEl.classList.add('hidden');
-  const hasDesc = !!TABS[currentTab].desc;
+  const hasDesc     = !!TABS[currentTab].desc;
+  const hasSections = !!TABS[currentTab].sections;
+  const priceFromB  = TABS[currentTab].priceCol === "B";
   rowsEl.innerHTML = list.map(w => {
     const g = formatPrice(w.glass);
-    const b = formatPrice(w.bottle);
+    const b = formatPrice(priceFromB ? w.glass : w.bottle);
+    // Ligne sans aucun prix dans une carte à sections → titre de section
+    if(hasSections && !g && !b) return `<div class="row section">${escapeHtml(w.name)}</div>`;
     const d = hasDesc ? (w.glass ?? '').toString().trim() : '';
     return `<div class="row">
       <span class="name">${escapeHtml(w.name)}${d ? `<span class="desc">${escapeHtml(d)}</span>` : ''}</span>
