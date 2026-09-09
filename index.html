@@ -129,6 +129,95 @@ h1, h2, h3 { font-family: "More Sugar", ui-sans-serif, system-ui, sans-serif; le
   outline:2px solid #72604A; outline-offset:3px;
 }
 
+/* === Popup promo — Midweek Oysters === */
+#promo-backdrop{
+  position:fixed; inset:0; z-index:90;
+  background:rgba(55,29,18,.62); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+  opacity:0; pointer-events:none; transition:opacity .45s cubic-bezier(.16,1,.3,1);
+}
+#promo{
+  position:fixed; z-index:91; left:50%; top:50%;
+  width:min(92vw, 860px); max-height:min(92svh, 720px);
+  transform:translate(-50%,-50%) scale(.96) translateY(14px);
+  opacity:0; pointer-events:none;
+  transition:opacity .45s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1);
+  background:#EDEAE0; color:#371D12;
+  border:1.5px solid rgba(55,29,18,.9); border-radius:14px;
+  box-shadow:8px 8px 0 #371D12;
+  overflow:hidden;
+  display:grid; grid-template-columns:1fr; grid-template-rows:auto 1fr;
+}
+body.promo-open #promo-backdrop{ opacity:1; pointer-events:auto; }
+body.promo-open #promo{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1) translateY(0); }
+#promo .promo-media{
+  position:relative; overflow:hidden; background:#371D12;
+  height:min(44svh, 360px);
+}
+#promo .promo-media img{
+  width:100%; height:100%; object-fit:cover; object-position:50% 42%; display:block;
+  filter:saturate(.92) contrast(1.06);
+}
+/* voile doux au centre pour que le texte imprimé dans la photo reste lisible */
+#promo .promo-media::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(55,29,18,0) 22%, rgba(55,29,18,.28) 50%, rgba(55,29,18,0) 78%);
+}
+#promo .promo-body{
+  padding:clamp(1.25rem, 3.2vw, 2.4rem) clamp(1.25rem, 3.4vw, 2.6rem);
+  display:flex; flex-direction:column; justify-content:center; gap:.9rem;
+  overflow:auto;
+}
+#promo .promo-kicker{
+  font-family:'More Sugar', system-ui, sans-serif; text-transform:uppercase;
+  font-size:.68rem; letter-spacing:.28em; color:#72604A;
+}
+#promo h2{
+  font-family:'More Sugar', system-ui, sans-serif; text-transform:uppercase;
+  font-size:clamp(1.9rem, 4.6vw, 3rem); line-height:.95; letter-spacing:-.01em; color:#371D12;
+  margin:0;
+}
+#promo .promo-rows{ list-style:none; margin:.2rem 0 0; padding:0; border-top:1px solid rgba(55,29,18,.18); }
+#promo .promo-rows li{
+  display:flex; align-items:baseline; gap:.6rem; padding:.62rem 0;
+  border-bottom:1px solid rgba(55,29,18,.18);
+  font-family:'Poppins', sans-serif; font-size:clamp(.98rem, 1.15vw, 1.08rem);
+}
+#promo .promo-rows li i{ flex:1; border-bottom:2px dotted rgba(55,29,18,.35); transform:translateY(-.3em); }
+#promo .promo-rows li b{
+  font-family:'More Sugar', system-ui, sans-serif; font-weight:400; font-size:1.35em; line-height:1;
+  color:#371D12; white-space:nowrap; font-variant-numeric:tabular-nums;
+}
+#promo .promo-note{ font-family:'Poppins', sans-serif; font-size:.9rem; line-height:1.55; color:rgba(55,29,18,.78); margin:0; }
+#promo .promo-note strong{ font-weight:600; color:#371D12; }
+#promo .promo-actions{ display:flex; align-items:center; gap:1.1rem; flex-wrap:wrap; margin-top:.35rem; }
+#promo .promo-link{
+  font-family:'More Sugar', system-ui, sans-serif; text-transform:uppercase; font-size:.72rem; letter-spacing:.22em;
+  color:#72604A; text-decoration:none; border-bottom:1px solid rgba(114,96,74,.5); padding-bottom:2px;
+  transition:color .18s, border-color .18s;
+}
+#promo .promo-link:hover{ color:#371D12; border-color:#371D12; }
+#promo .promo-link:focus-visible{ outline:2px solid #72604A; outline-offset:3px; }
+#promo-close{
+  position:absolute; top:.8rem; right:.8rem; z-index:2;
+  width:40px; height:40px; border-radius:999px; cursor:pointer;
+  background:#F8F6EE; color:#371D12; border:1.5px solid rgba(55,29,18,.9);
+  box-shadow:3px 3px 0 #371D12;
+  display:flex; align-items:center; justify-content:center;
+  transform:translate(0,0);
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s cubic-bezier(.34,1.56,.64,1), background-color .18s, color .18s;
+}
+#promo-close:hover{ transform:translate(2px,2px); box-shadow:1px 1px 0 #371D12; background:#371D12; color:#EDEAE0; }
+#promo-close:active{ transform:translate(3px,3px); box-shadow:0 0 0 #371D12; }
+#promo-close:focus-visible{ outline:2px solid #72604A; outline-offset:3px; }
+@media (min-width:700px){
+  #promo{ grid-template-columns:minmax(0,11fr) minmax(0,10fr); grid-template-rows:1fr; }
+  #promo .promo-media{ height:auto; min-height:460px; }
+  #promo .promo-media img{ object-position:50% 45%; }
+}
+@media (prefers-reduced-motion:reduce){
+  #promo, #promo-backdrop{ transition:none; }
+}
+
 /* === Notre menu — dotted leader rows === */
 .menu-list li{ padding:.75rem 0; border-bottom:1px solid rgba(237,234,224,.12); }
 .menu-list li:last-child{ border-bottom:none; }
@@ -902,6 +991,30 @@ body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(
   </div>
 </footer>
 
+<!-- Popup promo — Midweek Oysters (une fois par session) -->
+<div id="promo-backdrop" aria-hidden="true"></div>
+<section id="promo" role="dialog" aria-modal="true" aria-labelledby="promo-title" aria-hidden="true">
+  <button id="promo-close" type="button" aria-label="Fermer la promotion">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="promo-media">
+    <img src="./photos/web/promo-huitres-mercredi.jpg" alt="Huîtres fraîches ouvertes à la main sur glace, Bistro St-Charles" width="1350" height="1688" loading="eager" decoding="async"/>
+  </div>
+  <div class="promo-body">
+    <span class="promo-kicker">Bistro St-Charles · Les mercredis dès 17 h</span>
+    <h2 id="promo-title">Midweek Oysters</h2>
+    <ul class="promo-rows">
+      <li><span>Huîtres fraîches</span><i></i><b>1,50 $</b></li>
+      <li><span>Huîtres Rockefeller</span><i></i><b>3 $</b></li>
+    </ul>
+    <p class="promo-note">Une bonne raison de réserver votre mercredi. <strong>Tous les mercredis dès 17 h</strong>, pour une durée limitée.</p>
+    <div class="promo-actions">
+      <button type="button" class="btn-reserve" data-open-reserve>Réserver</button>
+      <a class="promo-link" href="#menu" data-promo-close>Voir le menu</a>
+    </div>
+  </div>
+</section>
+
 <!-- Reservation Drawer -->
 <div id="reserve-backdrop" aria-hidden="true" class="fixed inset-0 z-[100] bg-[#371D12]/55 opacity-0 pointer-events-none transition-opacity duration-500" style="backdrop-filter:blur(4px);"></div>
 <aside id="reserve-drawer" aria-hidden="true" aria-label="Réservation Bistro St-Charles"
@@ -997,6 +1110,54 @@ body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') close();
   });
+})();
+</script>
+
+<script>
+(function(){
+  const promo = document.getElementById('promo');
+  const backdrop = document.getElementById('promo-backdrop');
+  const closeBtn = document.getElementById('promo-close');
+  if(!promo || !backdrop || !closeBtn) return;
+  const KEY = 'promo-huitres-2026-09';
+  let lastFocus = null;
+
+  function seen(){ try { return sessionStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  function markSeen(){ try { sessionStorage.setItem(KEY, '1'); } catch(e){} }
+
+  function open(){
+    if(document.body.classList.contains('menu-open')) return;
+    lastFocus = document.activeElement;
+    promo.setAttribute('aria-hidden','false');
+    backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('promo-open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => closeBtn.focus(), 450);
+  }
+  function close(){
+    if(!document.body.classList.contains('promo-open')) return;
+    promo.setAttribute('aria-hidden','true');
+    backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('promo-open');
+    markSeen();
+    // Si le tiroir de réservation vient de s'ouvrir, on lui laisse le verrou de défilement
+    const drawer = document.getElementById('reserve-drawer');
+    if(!drawer || drawer.getAttribute('aria-hidden') !== 'false') document.body.style.overflow = '';
+    if(lastFocus && lastFocus.focus && !(drawer && drawer.getAttribute('aria-hidden') === 'false')) lastFocus.focus();
+  }
+
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  promo.querySelectorAll('[data-promo-close], [data-open-reserve]').forEach(el => el.addEventListener('click', close));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && document.body.classList.contains('promo-open')) close();
+  });
+
+  if(!seen()){
+    const show = () => setTimeout(open, 1400);
+    if(document.readyState === 'complete') show();
+    else window.addEventListener('load', show, { once:true });
+  }
 })();
 </script>
 
